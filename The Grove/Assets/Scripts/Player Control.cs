@@ -1,35 +1,76 @@
 using UnityEngine;
+using System;
 
 public class PlayerControl : MonoBehaviour
 {
-    // Player Control Settings
+    [Header("References")]
+    [SerializeField] private QuickTimeEvent quickTimeEventScript;
+
     [Header("Player Settings")]
-    //[SerializeField] public Camera playerCamera;
-    [SerializeField] public float playerSpeed = 2f;
-    [SerializeField] public float horizontalSpeed = 3f;
+    [SerializeField] private float playerSpeed = 2f;
+    [SerializeField] private float horizontalSpeed = 3f;
 
-    Rigidbody rb;
+    private Rigidbody rb;
+    private bool isFrozen = false;
+    public event Action OnResetPosition;
 
-    void Awake()
+    private void Awake()
     {
+        Debug.Log("DEBUG LOG: ON");
         rb = GetComponent<Rigidbody>();
-        rb.interpolation = RigidbodyInterpolation.Interpolate;
-        rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
+
+        quickTimeEventScript.enabled = false;
+        quickTimeEventScript.OnQteComplete += UnfreezePlayer;
     }
 
-    void FixedUpdate()
+    // For player input and movement
+    private void FixedUpdate()
     {
+        if (isFrozen) return;
+
         float x = 0f;
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) x = -1f;
-        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) x =  1f;
+        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) x = 1f;
 
         Vector3 move = Vector3.forward * playerSpeed + Vector3.right * (x * horizontalSpeed);
         rb.MovePosition(rb.position + move * Time.fixedDeltaTime);
     }
 
-    // Collision detection debugging
-    void OnCollisionEnter(Collision other)
+    // Collision detection for obstacles and respawns
+    private void OnCollisionEnter(Collision other)
     {
-        Debug.Log("TRIPPED ON:" + other.gameObject.name);
+        // Freeze the player for now, and start the QTE
+        if (other.gameObject.CompareTag("Obstacle"))
+        {
+            Debug.Log("TRIPPED ON:" + other.gameObject.name);
+            FreezePlayer();
+            quickTimeEventScript.enabled = true;
+        }
+
+        // Reset position when the player reaches the respawn point
+        if (other.gameObject.CompareTag("Respawn"))
+        {
+            Debug.Log("Respawning Player");
+            ResetPosition();
+        }
+    }
+
+    private void FreezePlayer()
+    {
+        isFrozen = true;
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+    }
+
+    private void UnfreezePlayer()
+    {
+        isFrozen = false;
+    }
+    public void ResetPosition()
+    {
+        OnResetPosition?.Invoke();
+        rb.position = Vector3.zero;
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
     }
 }
