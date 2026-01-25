@@ -1,43 +1,58 @@
 using UnityEngine;
 using System;
+using UnityEngine.AI;
 
-public class PlayerControl : MonoBehaviour
+public class NavMeshPlayerControl : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private QTEButton quickTimeEventScript;
 
+    // This is where the player will attempt to follow the end of the path
+    [Header("Exit Target")]
+    [SerializeField] Transform exitPath;
+
     [Header("Player Settings")]
-    [SerializeField] private float playerSpeed = 2f;
+    //[SerializeField] private float playerSpeed = 2f;
     [SerializeField] private float horizontalSpeed = 3f;
 
-    private Rigidbody rb;
+    NavMeshAgent agent;
+    Transform target;
     private bool isFrozen = false;
     public event Action OnResetPosition;
 
     private void Awake()
     {
         Debug.Log("DEBUG LOG: ON");
-        Debug.Log("Screen Width: " + Screen.width);
-        Debug.Log("Screen Height: " + Screen.height);
-        rb = GetComponent<Rigidbody>();
 
         quickTimeEventScript.enabled = false;
         quickTimeEventScript.OnQteComplete += UnfreezePlayer;
     }
 
-    // For player input and movement
-    private void FixedUpdate()
+    private void Start()
     {
-        if (isFrozen) return;
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = true;
+        agent.updateUpAxis = true;
+        ExitTarget();
+    }
+
+    // For player input and movement
+    private void Update()
+    {
+        if (isFrozen) {
+            agent.isStopped = true;
+            return;
+        }
+        agent.isStopped = false;
+        
+        if (exitPath != null)
+            agent.SetDestination(exitPath.position);
 
         float x = 0f;
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) x = -1f;
+        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) x = 1f;
 
-        // This is for left and right movement
-        if (Input.GetKey(KeyCode.Mouse0) || (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))) x = -1f;
-        if (Input.GetKey(KeyCode.Mouse1) || (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))) x = 1f;
-
-        Vector3 move = Vector3.forward * playerSpeed + Vector3.right * (x * horizontalSpeed);
-        rb.MovePosition(rb.position + move * Time.fixedDeltaTime);
+        Vector3 move = Vector3.forward * 2 + Vector3.right * (x * horizontalSpeed);
     }
 
     // Collision detection for obstacles and respawns
@@ -62,8 +77,11 @@ public class PlayerControl : MonoBehaviour
     private void FreezePlayer()
     {
         isFrozen = true;
-        rb.linearVelocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
+    }
+
+    void ExitTarget()
+    {
+        target = exitPath;
     }
 
     private void UnfreezePlayer()
@@ -73,8 +91,5 @@ public class PlayerControl : MonoBehaviour
     public void ResetPosition()
     {
         OnResetPosition?.Invoke();
-        rb.position = Vector3.zero;
-        rb.linearVelocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
     }
 }

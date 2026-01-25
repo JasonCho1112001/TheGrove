@@ -1,22 +1,23 @@
 using UnityEngine;
 using System;
 
-public class PlayerControl : MonoBehaviour
+public class PlayerControlWithDraggable : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private QTEButton quickTimeEventScript;
+    [SerializeField] private QTEDrag quickTimeEventScript;
 
     [Header("Player Settings")]
     [SerializeField] private float playerSpeed = 2f;
     [SerializeField] private float horizontalSpeed = 3f;
 
     private Rigidbody rb;
-    private bool isFrozen = false;
+    public bool isFrozen = false;
     public event Action OnResetPosition;
 
     private void Awake()
     {
         Debug.Log("DEBUG LOG: ON");
+        Debug.Log("Player Control With Draggable Script Initialized");
         Debug.Log("Screen Width: " + Screen.width);
         Debug.Log("Screen Height: " + Screen.height);
         rb = GetComponent<Rigidbody>();
@@ -33,8 +34,9 @@ public class PlayerControl : MonoBehaviour
         float x = 0f;
 
         // This is for left and right movement
-        if (Input.GetKey(KeyCode.Mouse0) || (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))) x = -1f;
-        if (Input.GetKey(KeyCode.Mouse1) || (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))) x = 1f;
+        // This version DOES NOT use mouse input for movement, cause it was causing issues with the draggable QTE
+        if  (Input.GetKey(KeyCode.Mouse0) || (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))) x = -1f;
+        if  (Input.GetKey(KeyCode.Mouse1) ||(Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))) x = 1f;
 
         Vector3 move = Vector3.forward * playerSpeed + Vector3.right * (x * horizontalSpeed);
         rb.MovePosition(rb.position + move * Time.fixedDeltaTime);
