@@ -34,6 +34,21 @@ public class QTEDrag : MonoBehaviour
     public event Action OnQteComplete;
     public event Action OnQteFailed;
 
+    public void Start()
+    {
+        if (tempQTEInfoText == null || tempQTETimerText == null)
+        {
+            Debug.LogError("Temporary QTE UI Texts not assigned in QTEDrag script.");
+        }
+        if (draggableRect == null)
+        {
+            Debug.LogError("Draggable RectTransform not assigned in QTEDrag script.");
+        }
+        if (destinationRect == null)
+        {
+            Debug.LogError("Destination RectTransform not assigned in QTEDrag script.");
+        }
+    }
     private void OnEnable()
     {
         // Reset state on each start
@@ -108,6 +123,7 @@ public class QTEDrag : MonoBehaviour
 
     private void Fail()
     {
+        Debug.Log("LLLLLLLL");
         running = false;
         OnQteFailed?.Invoke();
         enabled = false;

@@ -5,10 +5,8 @@ public class PlayerControlWithDraggable : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private QTEDrag quickTimeEventScript;
+    [SerializeField] private rowBoatInput rowBoatInput;
 
-    [Header("Player Settings")]
-    [SerializeField] private float playerSpeed = 2f;
-    [SerializeField] private float horizontalSpeed = 3f;
 
     private Rigidbody rb;
     public bool isFrozen = false;
@@ -24,22 +22,6 @@ public class PlayerControlWithDraggable : MonoBehaviour
 
         quickTimeEventScript.enabled = false;
         quickTimeEventScript.OnQteComplete += UnfreezePlayer;
-    }
-
-    // For player input and movement
-    private void FixedUpdate()
-    {
-        if (isFrozen) return;
-
-        float x = 0f;
-
-        // This is for left and right movement
-        // This version DOES NOT use mouse input for movement, cause it was causing issues with the draggable QTE
-        if  (Input.GetKey(KeyCode.Mouse0) || (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))) x = -1f;
-        if  (Input.GetKey(KeyCode.Mouse1) ||(Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))) x = 1f;
-
-        Vector3 move = Vector3.forward * playerSpeed + Vector3.right * (x * horizontalSpeed);
-        rb.MovePosition(rb.position + move * Time.fixedDeltaTime);
     }
 
     // Collision detection for obstacles and respawns
@@ -61,11 +43,28 @@ public class PlayerControlWithDraggable : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        if (isFrozen)
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            if (rowBoatInput != null)
+                rowBoatInput.enabled = false;
+        }
+        else
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            if (rowBoatInput != null)
+                rowBoatInput.enabled = true;
+        }
+    }
+
     private void FreezePlayer()
     {
+        Debug.Log("Freezing Player");
         isFrozen = true;
-        rb.linearVelocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
     }
 
     private void UnfreezePlayer()

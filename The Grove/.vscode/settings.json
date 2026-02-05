@@ -67,5 +67,5 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "Tyvin Tandy Branch The Grove.slnx"
+    "dotnet.defaultSolution": "Tyvin-Runner-Branch.slnx"
 }
