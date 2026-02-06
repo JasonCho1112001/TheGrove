@@ -8,6 +8,17 @@ public class uiManager : MonoBehaviour
     public Slider agitationSlider;
     public TextMeshProUGUI agitationText;
 
+    public Slider movementSlider;
+    public TextMeshProUGUI movementText;
+
+    public Slider staminaSlider;
+    public TextMeshProUGUI staminaText;
+
+    public GameObject aDisabledText;
+    public GameObject aEnabledText;
+    public GameObject dEnabledText;
+    public GameObject dDisabledText;
+
     void Awake()
     {
         if (agitationSlider == null)
@@ -17,6 +28,15 @@ public class uiManager : MonoBehaviour
         if (agitationText == null)
         {
             throw new System.Exception("Agitation Text not assigned in uiManager");
+        }
+
+        if (staminaSlider == null)
+        {
+            throw new System.Exception("Stamina Slider not assigned in uiManager");
+        }
+        if (staminaText == null)
+        {
+            throw new System.Exception("Stamina Text not assigned in uiManager");
         }
     }
 
@@ -34,5 +54,10 @@ public class uiManager : MonoBehaviour
     public void SetText(TextMeshProUGUI myText, string value)
     {
         myText.text = value;
+    }
+
+    public void EnableText(GameObject myText, bool enabled)
+    {
+        myText.SetActive(enabled);
     }
 }
