@@ -123,7 +123,7 @@ public class QTEDrag : MonoBehaviour
 
     private void Fail()
     {
-        Debug.Log("LLLLLLLL");
+        //Debug.Log("LLLLLLLL");
         running = false;
         OnQteFailed?.Invoke();
         enabled = false;
