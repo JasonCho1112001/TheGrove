@@ -19,6 +19,9 @@ public class uiManager : MonoBehaviour
     public GameObject dEnabledText;
     public GameObject dDisabledText;
 
+    public Image DDR1;
+    public Image DDR2;
+
     void Awake()
     {
         if (agitationSlider == null)
@@ -60,4 +63,15 @@ public class uiManager : MonoBehaviour
     {
         myText.SetActive(enabled);
     }
+
+    public void EnableImage(Image myImage, bool enabled)
+    {
+        myImage.enabled = enabled;
+    }
+
+    
 }
+
+
+
+

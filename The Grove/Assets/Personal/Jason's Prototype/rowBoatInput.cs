@@ -22,8 +22,9 @@ public class rowBoatInput : MonoBehaviour
     //Movement State
     public enum MovementState { Idle, Walking, Jogging, Sprinting}
     [SerializeField]
-    private MovementState currentState = MovementState.Idle;
-    public float movementAmount = 0f;
+    public MovementState currentState = MovementState.Idle;
+    public float[] movementMultipliers = new float[] {0f, 1f, 2f, 4f};
+    public float movementMultiplier = 0f;
     public float minimumForce = 5f;
 
     //Cadence Tracking
@@ -57,10 +58,14 @@ public class rowBoatInput : MonoBehaviour
     void Update()
     {
         //Currently polling input in Update for movement state determination
-        ManageMovementState();
-        ManageCadenceTimer();
         ManageMovement();
+        ManageCadenceTimer();
         ManageRigidBodyForce();
+
+        //Agitation UI
+        float targetValue = cadence / 5f; // Assuming 5 inputs per second is the max for full agitation meter
+        float currentValue = ui.agitationSlider.value;
+        ui.SetSlider(ui.agitationSlider, Mathf.Lerp(currentValue, targetValue, Time.deltaTime * 5f));
     }
 
     void OnEnable()
@@ -92,6 +97,8 @@ public class rowBoatInput : MonoBehaviour
         balanceState -= 1f;
         RecordInputTimestamps();
         ui.EnableText(ui.aEnabledText, true);
+
+        //TODO: play audio for footstep (instant)
     }
 
     void RightStep(InputAction.CallbackContext ctx)
@@ -99,6 +106,8 @@ public class rowBoatInput : MonoBehaviour
         balanceState += 1f;
         RecordInputTimestamps();
         ui.EnableText(ui.dEnabledText, true);
+
+        //TODO: play audio for footstep (instant)
     }
 
     void RecordInputTimestamps()
@@ -159,60 +168,44 @@ public class rowBoatInput : MonoBehaviour
 
         //UI 
         ui.SetText(ui.agitationText, cadence.ToString("F2"));
-        ui.SetSlider(ui.agitationSlider, cadence / 5f); // Assuming 5 inputs per second is the max for full agitation meter
-
     }
 
-    void ManageMovementState()
+    void ManageMovement()
     {
         //Determine movement state based off of cadence
         if (cadence < 0.25f)
         {
             currentState = MovementState.Idle;
+            movementMultiplier = movementMultipliers[0]; // 0
         }
         else if (cadence < 2f)
         {
             currentState = MovementState.Walking;
+            movementMultiplier = movementMultipliers[1]; // 1
         }
         else if (cadence < 3.5f)
         {
             currentState = MovementState.Jogging;
+            movementMultiplier = movementMultipliers[2]; // 2
         }
         else
         {
             currentState = MovementState.Sprinting;
+            movementMultiplier = movementMultipliers[3]; // 4
         }
+
+        //Deplete stamina based on movement state
+        stamina.DepleteStamina(movementMultiplier); // Deplete more stamina at higher movement states
 
         //UI
         ui.SetText(ui.movementText, currentState.ToString());
 
     }
 
-    void ManageMovement()
-    {
-        //Add rb force based on movement state
-        switch (currentState)
-        {
-            case MovementState.Idle:
-                movementAmount = 0f;
-                break;
-            case MovementState.Walking:
-                movementAmount = 1f;
-                break;
-            case MovementState.Jogging:
-                movementAmount = 2f;
-                break;
-            case MovementState.Sprinting:
-                movementAmount = 4f;
-                break;
-        }
-        
-    }
-
     void ManageRigidBodyForce()
     {
         //Apply forward force based on movement state
-        Vector3 forwardForceVector = transform.forward * minimumForce + transform.forward * forwardForce * movementAmount;
+        Vector3 forwardForceVector = transform.forward * minimumForce + transform.forward * forwardForce * movementMultiplier;
         rb.AddForce(forwardForceVector, ForceMode.Acceleration);
 
         //Cap speed
