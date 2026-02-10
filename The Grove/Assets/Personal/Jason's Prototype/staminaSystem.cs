@@ -32,6 +32,7 @@ public class staminaSystem : MonoBehaviour
         PassiveStaminaRegen();
         RestingRegen();
         HandleStaminaStages();
+        ManageAudio();
     }
 
     void HandleStaminaStages()
@@ -58,7 +59,7 @@ public class staminaSystem : MonoBehaviour
         }
 
         // Play breathing if in Stage 3 (Low) or Exhausted
-        if (currentStaminaState == StaminaState.Stage3 || currentStaminaState == StaminaState.Exhausted)
+        if (currentStaminaState == StaminaState.Stage2 || currentStaminaState == StaminaState.Stage3)
         {
             // Only call Play if we aren't already breathing
             if (!isBreathing)
@@ -70,7 +71,7 @@ public class staminaSystem : MonoBehaviour
                 }
             }
         }
-        // Stop breathing if we recovered to Stage 2 or 1
+        // Stop breathing if we recovered to Stage 1
         else
         {
             if (isBreathing)
@@ -86,14 +87,17 @@ public class staminaSystem : MonoBehaviour
         ui.SetText(ui.staminaText, currentStaminaState.ToString());
     }
 
-    void ManageAudio()
-    {
-        // Check if we are in low stamina (Stage 3 or Exhausted)
-        bool isLowStamina = (currentStaminaState == StaminaState.Stage3 || currentStaminaState == StaminaState.Exhausted);
+void ManageAudio()
+    {   
+        // Breathing: Starts at Stamina Stage 2
+        bool shouldBreathe = (currentStaminaState == StaminaState.Stage2);
 
-        if (isLowStamina)
+        // Heartbeat: Starts at Stamina Stage 3
+        bool shouldHeartbeat = (currentStaminaState == StaminaState.Stage3);
+
+        // Breathign Execution
+        if (shouldBreathe)
         {
-            // 1. Heavy Breathing
             if (!isBreathing)
             {
                 if (audioManager.instance != null)
@@ -102,8 +106,22 @@ public class staminaSystem : MonoBehaviour
                     isBreathing = true;
                 }
             }
+        }
+        else
+        {
+            if (isBreathing)
+            {
+                if (audioManager.instance != null)
+                {
+                    audioManager.instance.Stop("HeavyBreathing");
+                    isBreathing = false;
+                }
+            }
+        }
 
-            // 2. Heartbeat
+        // Heartbeat Execution
+        if (shouldHeartbeat)
+        {
             if (!isHeartBeating)
             {
                 if (audioManager.instance != null)
@@ -115,15 +133,6 @@ public class staminaSystem : MonoBehaviour
         }
         else
         {
-            // Stop sounds if we recovered
-            if (isBreathing)
-            {
-                if (audioManager.instance != null)
-                {
-                    audioManager.instance.Stop("HeavyBreathing");
-                    isBreathing = false;
-                }
-            }
             if (isHeartBeating)
             {
                 if (audioManager.instance != null)

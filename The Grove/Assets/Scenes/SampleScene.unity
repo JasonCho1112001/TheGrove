@@ -618,7 +618,7 @@ MonoBehaviour:
   staminaDepletionRate: 5
   staminaRegenDelay: 2
   restingStaminaRegenRate: 20
-  currentStaminaState: 0
+  currentStaminaState: 3
 --- !u!114 &176936843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5500,7 +5500,7 @@ MonoBehaviour:
     category: 2
     source: {fileID: 0}
   - soundName: AmbientSound
-    clip: {fileID: 8300000, guid: ea6463d76bfdc3046bf6305536840b60, type: 3}
+    clip: {fileID: 8300000, guid: 5c197498d4e01b64e9c892a209b6edac, type: 3}
     volume: 1
     pitch: 1
     loop: 1
