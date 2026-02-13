@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class rowBoatInput : MonoBehaviour
 {
     //Inputs
+    [Header("--Inputs--")]
     public InputActionReference leftInput;
     public InputActionReference rightInput;
 
@@ -11,18 +12,20 @@ public class rowBoatInput : MonoBehaviour
     private InputAction rightAction;
 
     //Stats
+    [Header("--Stats--")]
     public float forwardForce = 2.5f;
     public float maxSpeed = 5f;
 
+    [Header("--Audio Settings--")]
     public float stepAudioCooldown = 0.4f; 
     private float lastStepTime = 0f;    
-
-    //Balance State
-    [SerializeField]
-    private float balanceState = 0f;
+    public float cadenceDelayTime = 0f;
 
     //Movement State
+    
     public enum MovementState { Idle, Walking, Jogging, Sprinting}
+
+    [Header("--Movement State--")]
     [SerializeField]
     public MovementState currentState = MovementState.Idle;
     public float[] movementMultipliers = new float[] {0f, 1f, 2f, 4f};
@@ -30,6 +33,7 @@ public class rowBoatInput : MonoBehaviour
     public float minimumForce = 5f;
 
     //Cadence Tracking
+    [Header("--Cadence Tracking--")]
     public float[] inputTimestamps = new float[5];
     public float cadence = 0f;
     
@@ -96,35 +100,42 @@ public class rowBoatInput : MonoBehaviour
     
     void LeftStep(InputAction.CallbackContext ctx)
     {
-        balanceState -= 1f;
         RecordInputTimestamps();
         ui.EnableText(ui.aEnabledText, true);
 
-        // Audio
-        if (Time.time >= lastStepTime + stepAudioCooldown)
-        {
-            if (audioManager.instance != null)
-            {
-                audioManager.instance.Play("PlayerFootstep", gameObject);
-                lastStepTime = Time.time;
-            }
-        }
+        InvokeFootstepAudio();
     }
 
     void RightStep(InputAction.CallbackContext ctx)
     {
-        balanceState += 1f;
         RecordInputTimestamps();
         ui.EnableText(ui.dEnabledText, true);
         
+        InvokeFootstepAudio();
+    }
+
+
+    void InvokeFootstepAudio()
+    {
         // Audio
         if (Time.time >= lastStepTime + stepAudioCooldown)
         {
-            if (audioManager.instance != null)
-            {
-                audioManager.instance.Play("PlayerFootstep", gameObject);
-                lastStepTime = Time.time;
-            }
+            //Vision: Play the footstep audio with a delay based on cadence 
+            //Faster cadence = shorter delay , slower cadence = longer delay
+
+            //Determine cadence delay time (e.g. 0.5 seconds at 1 input per second, 0.25 seconds at 2 inputs per second, etc.)
+            cadenceDelayTime = Mathf.Clamp(1f / cadence, 0.1f, 0.5f); // Clamp delay between 0.1 and 0.5 seconds
+    
+            Invoke(nameof(PlayFootstepSound), cadenceDelayTime);
+            lastStepTime = Time.time;
+        }
+    }
+
+    void PlayFootstepSound()
+    {
+        if (audioManager.instance != null)
+        {
+            audioManager.instance.Play("PlayerFootstep", gameObject);
         }
     }
 
