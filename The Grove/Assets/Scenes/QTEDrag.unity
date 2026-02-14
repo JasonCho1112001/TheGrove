@@ -387,11 +387,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21d16720e0640c0419682162006843a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QuickTimeEvent
-  tempQTEInfoText: {fileID: 0}
-  tempQTETimerText: {fileID: 0}
-  minPresses: 3
-  maxPresses: 7
-  timerDuration: 10
 --- !u!1001 &144155062
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -777,9 +772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e59370b6b6f1d84bb580f7b4165bcc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseCamera
-  quickTimeEventScript: {fileID: 0}
   playerCamera: {fileID: 330585545}
-  playerController: {fileID: 0}
   sens: 50
   x: 0
   y: 0
@@ -1810,11 +1803,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21d16720e0640c0419682162006843a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QuickTimeEvent
-  tempQTEInfoText: {fileID: 1393745868}
-  tempQTETimerText: {fileID: 562239203}
-  minPresses: 3
-  maxPresses: 7
-  timerDuration: 10
 --- !u!4 &631822788
 Transform:
   m_ObjectHideFlags: 0
@@ -2362,7 +2350,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 952611894}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c5e7b1c1b47f166419e820e06e9060c4, type: 3}
   m_Name: 
@@ -2431,8 +2419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerControlWithDraggable
   quickTimeEventScript: {fileID: 1137566242}
-  playerSpeed: 1
-  horizontalSpeed: 2
+  rowBoatInput: {fileID: 0}
   isFrozen: 0
 --- !u!4 &995835212 stripped
 Transform:
