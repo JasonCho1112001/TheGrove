@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 
 public class BlurToggle : MonoBehaviour
 {
-    [Header("Assign the Renderer Feature asset here")]
     [SerializeField] private UniversalBlurFeature blurFeature;
 
     [Header("Controls")]
@@ -48,7 +47,7 @@ public class BlurToggle : MonoBehaviour
         while (t < 1f)
         {
             t += Time.unscaledDeltaTime / seconds; // unscaled so it still animates if you pause time
-            float eased = SmoothStep01(t);
+            float eased = SmoothStep(t);
             blurFeature.Intensity = Mathf.Lerp(start, target, eased);
             yield return null;
         }
@@ -57,7 +56,7 @@ public class BlurToggle : MonoBehaviour
         _tween = null;
     }
 
-    private static float SmoothStep01(float x)
+    private static float SmoothStep(float x)
     {
         x = Mathf.Clamp01(x);
         return x * x * (3f - 2f * x);
