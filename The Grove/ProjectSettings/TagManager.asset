@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - Obstacle
+  - Friend
+  - Left Camera Rotate
+  - Right Camera Rotate
   layers:
   - Default
   - TransparentFX

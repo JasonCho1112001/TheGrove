@@ -16,14 +16,6 @@ public class rowBoatInputModified : MonoBehaviour
     public float forwardForce = 2.5f;
     public float sidewaysForce = 100f;
 
-    //Camera Movement Sensitivity and Rotations
-    [Header("Camera Settings")]
-    public Camera playerCamera;
-    //public static MouseCamera instance;
-    [SerializeField] private float sens = 10.0f;
-    [SerializeField] private float x;
-    [SerializeField] private float y;
-
     //Balance State
     [Header("Character States")]
     [SerializeField]
@@ -45,7 +37,6 @@ public class rowBoatInputModified : MonoBehaviour
 
     //References
     private Rigidbody rb;
-    
     staminaSystem stamina;
     uiManager ui;
 
@@ -60,36 +51,22 @@ public class rowBoatInputModified : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         stamina = GetComponent<staminaSystem>();
         ui = FindFirstObjectByType<uiManager>();
+
     }
 
-    void Start()
+    void OnTriggerEnter(Collider other)
     {
-        playerCamera = GetComponent<Camera>();
-
-        Vector3 euler = transform.rotation.eulerAngles;
-        x = euler.x;
-        y = euler.y;
-
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        if (other.CompareTag("Left Camera Rotate"))
+        {
+            Debug.Log("Player Rotate Left");
+            transform.Rotate(0f, -90f, 0f);
+        }
+        if (other.CompareTag("Right Camera Rotate"))
+        {
+            Debug.Log("Player Rotate Right");
+            transform.Rotate(0f, 90f, 0f);
+        }
     }
-
-    void Update()
-    {
-        //Clamps camera rotation to prevent flipping
-        const float yMin = -89.9f;
-        const float yMax = 89.9f;
-
-        x += Input.GetAxis("Mouse X") * (sens * Time.deltaTime);
-        y -= Input.GetAxis("Mouse Y") * (sens * Time.deltaTime);
-        y = Mathf.Clamp(y, yMin, yMax);
-
-        transform.rotation = Quaternion.Euler(y, x, 0.0f);
-
-        //Currently polling input in Update for movement state determination
-        ManageMovementState();
-    }
-
     void OnEnable()
     {
         leftAction.Enable(); 
