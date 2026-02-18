@@ -8,8 +8,11 @@ public class rowBoatInput : MonoBehaviour
     public InputActionReference leftInput;
     public InputActionReference rightInput;
 
+    public InputActionReference lookInput;
+
     private InputAction leftAction;
     private InputAction rightAction;
+    private InputAction lookAction;
 
     //Stats
     [Header("--Stats--")]
@@ -40,10 +43,22 @@ public class rowBoatInput : MonoBehaviour
     public float cadenceTimerMax = 2f;
     public float cadenceTimer = 2f;
 
+    //Look Input
+    [Header("--Look Input--")]
+    public bool isLooking = false;
+    public float lookSpeed = 5f;
 
+    //Moving Left or Right
+    [Header("--Moving Left or Right--")]
+    public int leftRightBias = 0; // -1 for left, 1 for right, 0 for neutral
+    public int lastDirectionInput = 0; // -1 for left, 1 for right, 0 for neutral
+    public float horizontalSpeed = 2f; // How much the left/right bias influences horizontal movement
+    public float maxHorizontalRange = 5f; // Maximum horizontal distance from the center line
+    public Vector3 centerLine;
 
     //References
     private Rigidbody rb;
+    private Camera cam;
     
     staminaSystem stamina;
     uiManager ui;
@@ -54,19 +69,31 @@ public class rowBoatInput : MonoBehaviour
             } else { Debug.Log("No left input assigned");}
         if(rightInput != null) { rightAction = rightInput.action; 
             } else { Debug.Log("No right input assigned");} 
+        if(lookInput != null) { lookAction = lookInput.action; 
+            } else { Debug.Log("No look input assigned");} 
 
         //Get references
         rb = GetComponent<Rigidbody>();
         stamina = GetComponent<staminaSystem>();
         ui = FindFirstObjectByType<uiManager>();
+        cam = FindFirstObjectByType<Camera>();
+    }
+
+    void Start()
+    {
+        centerLine = transform.position;
     }
 
     void Update()
     {
+        //Movement
         //Currently polling input in Update for movement state determination
         ManageMovement();
         ManageCadenceTimer();
         ManageRigidBodyForce();
+
+        //Looking
+        HandleLookingCamera();
 
         //Agitation UI
         float targetValue = cadence / 5f; // Assuming 5 inputs per second is the max for full agitation meter
@@ -84,6 +111,10 @@ public class rowBoatInput : MonoBehaviour
         rightAction.performed += RightStep;
         rightAction.canceled += ctx => ui.EnableText(ui.dEnabledText, false); // Disable D enabled text on button release
 
+        lookAction.Enable();
+        lookAction.performed += LookStart;
+        lookAction.canceled += ctx => LookStop();
+
         ClearInputTimestamps();
     }
 
@@ -96,25 +127,79 @@ public class rowBoatInput : MonoBehaviour
         rightAction.Disable();
         rightAction.performed -= RightStep;
         rightAction.canceled -= ctx => ui.EnableText(ui.dEnabledText, false);
+
+        lookAction.Disable();
+        lookAction.performed -= LookStart;
+        lookAction.canceled -= ctx => LookStop();
     }
     
+    void LookStart(InputAction.CallbackContext ctx)
+    {
+        isLooking = true;
+    }
+
+    void LookStop()
+    {
+        isLooking = false;
+    }
+
+    void HandleLookingCamera()
+    {
+        if (isLooking)
+        {
+            //Rotate the camera toward the -forward direction of the character
+            Vector3 targetDirection = -transform.forward;
+            Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
+            cam.transform.rotation = Quaternion.Slerp(cam.transform.rotation, targetRotation, Time.deltaTime * lookSpeed);
+
+            //Stop movement while looking
+            cadence = 0f;
+        }
+        else
+        {
+            //Rotate it back to forward
+            Vector3 targetDirection = transform.forward;
+            Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
+            cam.transform.rotation = Quaternion.Slerp(cam.transform.rotation, targetRotation, Time.deltaTime * lookSpeed);
+        }
+    }
+
     void LeftStep(InputAction.CallbackContext ctx)
     {
         RecordInputTimestamps();
         ui.EnableText(ui.aEnabledText, true);
-
         InvokeFootstepAudio();
+
+        HandleLeftRightBias(-1);
     }
 
     void RightStep(InputAction.CallbackContext ctx)
     {
         RecordInputTimestamps();
         ui.EnableText(ui.dEnabledText, true);
-        
         InvokeFootstepAudio();
+
+        HandleLeftRightBias(1);
     }
 
+    void HandleLeftRightBias(int leftRight)
+    {
+        //Keep track of the last direction input 
+        //If the second input is the same direction, begin adding bias
 
+        if (leftRight == lastDirectionInput)
+        {
+            leftRightBias += leftRight * 5; //Takes two steps in the same direction to reach full bias
+        }
+        else
+        {
+            leftRightBias = 0; // Reset bias if direction changes
+        }
+        //Clamp bias to prevent excessive biasing
+        leftRightBias = (int)Mathf.Clamp(leftRightBias, -10f, 10f);
+
+        lastDirectionInput = leftRight;
+    }
     void InvokeFootstepAudio()
     {
         // Audio
@@ -229,13 +314,24 @@ public class rowBoatInput : MonoBehaviour
         //UI
         ui.SetText(ui.movementText, currentState.ToString());
 
+        //How moving left or right works:
+        //Left input adds to leftRightBias, right input adds to it. This bias then influences the direction of the forward force applied to the rigidbody in ManageRigidBodyForce, creating a curved movement path when bias is not neutral. Bias slowly returns to neutral over opposite steps.
+        
     }
 
     void ManageRigidBodyForce()
     {
-        //Apply forward force based on movement state
+        //Apply forward force based on movement state and left/right bias
         Vector3 forwardForceVector = transform.forward * minimumForce + transform.forward * forwardForce * movementMultiplier;
-        rb.AddForce(forwardForceVector, ForceMode.Acceleration);
+        Vector3 rightForceVector = Vector3.zero;
+
+        //Apply leftRightmovement Only if we are within horizontal range
+        Vector3 horizontalOffset = transform.position - centerLine;
+        if (Mathf.Abs(horizontalOffset.x) < maxHorizontalRange || Mathf.Sign(horizontalOffset.x) != Mathf.Sign(leftRightBias))
+        {
+            rightForceVector = transform.right * leftRightBias * horizontalSpeed;
+        }
+        rb.AddForce(forwardForceVector + rightForceVector, ForceMode.Acceleration);
 
         //Cap speed
         Vector3 horizontalVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
