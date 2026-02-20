@@ -31,7 +31,7 @@ public class ResetPlayerPosition : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Player finished level, resetting position.");
-            SceneManager.LoadScene("Simple Level Terrain");
+            SceneManager.LoadScene("Playtest Sprint 3");
         }
         if (other.CompareTag("Friend"))
         {

@@ -1,5 +1,8 @@
 using UnityEngine;
+using System.Collections.Generic;
 using UnityEngine.InputSystem;
+using UnityEditor;
+using JetBrains.Annotations;
 
 public class rowBoatInput : MonoBehaviour
 {
@@ -58,6 +61,17 @@ public class rowBoatInput : MonoBehaviour
     public PlayerSide playerSide = PlayerSide.Left;
     public enum PlayerSide { Left, Right }
 
+    //Monster Manager List
+    //Tyvin: There is a bug if the player turns left or right, the monster manager won't follow the player properly with its rotation
+    //For a temporary fix, I just have it where we have multiple monster managers. 
+    //When the player turns left or right, it disables the current monster manager and enables the next one.
+    //Like a linked list.
+    [Header("--Monster Manager List--")]
+    public List<GameObject> monsterManagers; 
+    public int currentIndex = 0;
+    public GameObject currentMonsterManager;
+    public bool isTurned = false;
+
     //References
     private Rigidbody rb;
     private Camera cam;
@@ -83,6 +97,15 @@ public class rowBoatInput : MonoBehaviour
 
     void Start()
     {
+        if (monsterManagers == null || monsterManagers.Count == 0)
+        {Debug.LogError("monsterManagers list is empty in player cube");}
+        for (int i = 0; i < monsterManagers.Count; i++)
+        { monsterManagers[i].SetActive(false); }
+
+        currentIndex = 0;
+        currentMonsterManager = monsterManagers[currentIndex];
+        currentMonsterManager.SetActive(true);
+
         centerLine = transform.position;
     }
 
@@ -101,6 +124,20 @@ public class rowBoatInput : MonoBehaviour
         float targetValue = cadence / 5f; // Assuming 5 inputs per second is the max for full agitation meter
         float currentValue = ui.agitationSlider.value;
         ui.SetSlider(ui.agitationSlider, Mathf.Lerp(currentValue, targetValue, Time.deltaTime * 5f));
+
+        //Monster Manager Handling
+        if (isTurned)
+        {MonsterManagerHelper(); isTurned = false;}
+    }
+
+    public void MonsterManagerHelper(){
+    cadence = 0f;
+    if (currentMonsterManager != null){currentMonsterManager.SetActive(false);}
+
+    currentIndex = (currentIndex + 1) % monsterManagers.Count;
+
+    currentMonsterManager = monsterManagers[currentIndex];
+    if (currentMonsterManager != null){currentMonsterManager.SetActive(true);}
     }
 
     void OnEnable()
@@ -135,17 +172,22 @@ public class rowBoatInput : MonoBehaviour
         lookAction.canceled -= ctx => LookStop();
     }
 
+    // Tyvin: This rotates the player when they enter a camera rotate trigger zone.
+    // TODO: Make the camera turns smoother and not instant.
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Left Camera Rotate"))
         {
             Debug.Log("Player Rotate Left");
             transform.Rotate(0f, -90f, 0f);
+            isTurned = true;
+            
         }
         if (other.CompareTag("Right Camera Rotate"))
         {
             Debug.Log("Player Rotate Right");
             transform.Rotate(0f, 90f, 0f);
+            isTurned = true;
         }
     }
     
