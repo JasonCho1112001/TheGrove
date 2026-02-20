@@ -134,6 +134,20 @@ public class rowBoatInput : MonoBehaviour
         lookAction.performed -= LookStart;
         lookAction.canceled -= ctx => LookStop();
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Left Camera Rotate"))
+        {
+            Debug.Log("Player Rotate Left");
+            transform.Rotate(0f, -90f, 0f);
+        }
+        if (other.CompareTag("Right Camera Rotate"))
+        {
+            Debug.Log("Player Rotate Right");
+            transform.Rotate(0f, 90f, 0f);
+        }
+    }
     
     void LookStart(InputAction.CallbackContext ctx)
     {
@@ -150,7 +164,7 @@ public class rowBoatInput : MonoBehaviour
         if (isLooking)
         {
             //Rotate the camera toward the -forward direction of the character
-            Vector3 targetDirection = -transform.forward;
+            Vector3 targetDirection = -transform.forward ;
             Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
             cam.transform.rotation = Quaternion.Slerp(cam.transform.rotation, targetRotation, Time.deltaTime * lookSpeed);
 
