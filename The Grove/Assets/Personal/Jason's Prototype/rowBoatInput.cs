@@ -61,16 +61,6 @@ public class rowBoatInput : MonoBehaviour
     public PlayerSide playerSide = PlayerSide.Left;
     public enum PlayerSide { Left, Right }
 
-    //Monster Manager List
-    //Tyvin: There is a bug if the player turns left or right, the monster manager won't follow the player properly with its rotation
-    //For a temporary fix, I just have it where we have multiple monster managers. 
-    //When the player turns left or right, it disables the current monster manager and enables the next one.
-    //Like a linked list.
-    [Header("--Monster Manager List--")]
-    public List<GameObject> monsterManagers; 
-    public int currentIndex = 0;
-    public GameObject currentMonsterManager;
-    public bool isTurned = false;
 
     //References
     private Rigidbody rb;
@@ -78,6 +68,7 @@ public class rowBoatInput : MonoBehaviour
     
     staminaSystem stamina;
     uiManager ui;
+    monsterManager monsterManager;
 
     void Awake()
     {   //Assign input actions
@@ -93,19 +84,11 @@ public class rowBoatInput : MonoBehaviour
         stamina = GetComponent<staminaSystem>();
         ui = FindFirstObjectByType<uiManager>();
         cam = FindFirstObjectByType<Camera>();
+        monsterManager = FindFirstObjectByType<monsterManager>();
     }
 
     void Start()
     {
-        if (monsterManagers == null || monsterManagers.Count == 0)
-        {Debug.LogError("monsterManagers list is empty in player cube");}
-        for (int i = 0; i < monsterManagers.Count; i++)
-        { monsterManagers[i].SetActive(false); }
-
-        currentIndex = 0;
-        currentMonsterManager = monsterManagers[currentIndex];
-        currentMonsterManager.SetActive(true);
-
         centerLine = transform.position;
     }
 
@@ -124,21 +107,8 @@ public class rowBoatInput : MonoBehaviour
         float targetValue = cadence / 5f; // Assuming 5 inputs per second is the max for full agitation meter
         float currentValue = ui.agitationSlider.value;
         ui.SetSlider(ui.agitationSlider, Mathf.Lerp(currentValue, targetValue, Time.deltaTime * 5f));
-
-        //Monster Manager Handling
-        if (isTurned)
-        {MonsterManagerHelper(); isTurned = false;}
     }
 
-    public void MonsterManagerHelper(){
-    cadence = 0f;
-    if (currentMonsterManager != null){currentMonsterManager.SetActive(false);}
-
-    currentIndex = (currentIndex + 1) % monsterManagers.Count;
-
-    currentMonsterManager = monsterManagers[currentIndex];
-    if (currentMonsterManager != null){currentMonsterManager.SetActive(true);}
-    }
 
     void OnEnable()
     {
@@ -176,19 +146,28 @@ public class rowBoatInput : MonoBehaviour
     // TODO: Make the camera turns smoother and not instant.
     void OnTriggerEnter(Collider other)
     {
+        //TODO: Calculate the new centerLine
         if (other.CompareTag("Left Camera Rotate"))
         {
+            Quaternion targetRotation = Quaternion.Euler(0f, -90f, 0f);
             Debug.Log("Player Rotate Left");
-            transform.Rotate(0f, -90f, 0f);
-            isTurned = true;
-            
+            transform.rotation = targetRotation;
+
+            //Monster Manager
+            //monsterManager.StorePlayerForward();
+            //monsterManager.RotatePrefabs(targetRotation);
         }
         if (other.CompareTag("Right Camera Rotate"))
         {
             Debug.Log("Player Rotate Right");
-            transform.Rotate(0f, 90f, 0f);
-            isTurned = true;
+            Quaternion targetRotation = Quaternion.Euler(0f, 90f, 0f);
+            transform.rotation = targetRotation;
+
+            //Monster Manager
+            //monsterManager.StorePlayerForward();
+            //monsterManager.RotatePrefabs(targetRotation);
         }
+        
     }
     
     void LookStart(InputAction.CallbackContext ctx)

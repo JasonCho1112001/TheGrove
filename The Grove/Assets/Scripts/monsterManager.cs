@@ -32,6 +32,13 @@ public class monsterManager : MonoBehaviour
     [Header("--Monster Prefab Management--")]
     public GameObject[] monsterPrefabs;
     public float monsterPrefabDistance = 25f;
+    public Vector3 monsterPrefabLeftTargetPosition;
+    public Vector3 monsterPrefabRightTargetPosition;
+    public float monsterPrefabVerticalOffset = 0f;
+    public float monsterPrefabLateralOffset = 0f;
+    public Vector3 playerForward;
+
+
 
     //References
     //Automatically found
@@ -59,7 +66,8 @@ public class monsterManager : MonoBehaviour
 
     void Start()
     {
-        
+        //Store playerForward
+        playerForward = player.transform.forward;
     }
 
     void Update()
@@ -68,7 +76,7 @@ public class monsterManager : MonoBehaviour
 
         ProximityMeter();
 
-        HandleMonsterPrefabs();
+        //HandleMonsterPrefabMovement();
 
         HandleMonsterLeftRight();
 
@@ -115,9 +123,39 @@ public class monsterManager : MonoBehaviour
         ui.SetText(ui.proximityText, $"{proximityMeter:F1}");
     }
 
-    void HandleMonsterPrefabs()
+    public void RotatePrefabs(Quaternion rotation)
     {
-        //Keep prefabs X and Y position, but move Z to follow the player
+        //We do this when cameraRotate code is called
+        //Simply move monster prefabs to the new angle
+        Debug.Log("Rotating Prefabs, Target Rotation: " + rotation.eulerAngles);
+
+        //Position
+        if (monsterPrefabs.Length >= 2)
+        {
+            Debug.Log("PlayerForward before rotation: " + playerForward);
+            Vector3 leftTargetPosition = new Vector3(Mathf.Round(monsterPrefabVerticalOffset * playerForward.x), monsterPrefabLateralOffset * playerForward.y, Mathf.Round(monsterPrefabVerticalOffset * playerForward.z));
+            Vector3 rightTargetPosition = new Vector3(Mathf.Round(-monsterPrefabVerticalOffset * playerForward.x), monsterPrefabLateralOffset * playerForward.y, Mathf.Round(-monsterPrefabVerticalOffset * playerForward.z));
+
+            //We have to rotate the inital positions based on the new playerForward
+            monsterPrefabs[0].transform.position = player.transform.position + leftTargetPosition;
+            monsterPrefabs[1].transform.position = player.transform.position + rightTargetPosition;
+
+            Debug.Log("Left Prefab leftTargetPosition: " + leftTargetPosition + ", World Position: " + monsterPrefabs[0].transform.position);
+            Debug.Log("Right Prefab rightTargetPosition: " + rightTargetPosition + ", World Position: " + monsterPrefabs[1].transform.position);
+        }
+        //Rotation
+        foreach (GameObject prefab in monsterPrefabs)
+        {
+            if (prefab != null)
+            {
+                prefab.transform.rotation = rotation;
+            }
+        }
+    }
+
+    void HandleMonsterPrefabMovement()
+    {
+        //Only move the prefabs in the direction of playerForward
         foreach (GameObject prefab in monsterPrefabs)
         {
             if (prefab != null)
@@ -125,7 +163,19 @@ public class monsterManager : MonoBehaviour
                 Vector3 targetPosition;
                 targetPosition.x = prefab.transform.position.x;
                 targetPosition.y = prefab.transform.position.y;
-                targetPosition.z = player.transform.position.z - monsterPrefabDistance;
+                targetPosition.z = player.transform.position.z;
+
+                //Determine movement direction based on playerForward
+                if(Mathf.Abs(playerForward.x) > 0.5f)
+                {
+                    //Moving in x direction
+                    targetPosition.x = player.transform.position.x + (playerForward.x > 0 ? -monsterPrefabDistance : monsterPrefabDistance);
+                }
+                else if (Mathf.Abs(playerForward.z) > 0.5f)
+                {
+                    //Moving in z direction
+                    targetPosition.z = player.transform.position.z + (playerForward.z > 0 ? -monsterPrefabDistance : monsterPrefabDistance);
+                }
                 prefab.transform.position = targetPosition;
             }
         }
@@ -134,12 +184,16 @@ public class monsterManager : MonoBehaviour
         if (monsterSide == MonsterSide.Left)
         {
             monsterPrefabs[0].GetComponent<MeshRenderer>().enabled = true;
+            monsterPrefabs[0].transform.GetChild(0).GetComponent<MeshRenderer>().enabled = true;
             monsterPrefabs[1].GetComponent<MeshRenderer>().enabled = false;
+            monsterPrefabs[1].transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
         }
         else
         {
             monsterPrefabs[0].GetComponent<MeshRenderer>().enabled = false;
+            monsterPrefabs[0].transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
             monsterPrefabs[1].GetComponent<MeshRenderer>().enabled = true;
+            monsterPrefabs[1].transform.GetChild(0).GetComponent<MeshRenderer>().enabled = true;
         }
     }
 
@@ -189,5 +243,11 @@ public class monsterManager : MonoBehaviour
         ui.SetSlider(ui.sameTrackSlider, sameTrackMeter / sameTrackMax);
         ui.SetText(ui.sameTrackText, $"{sameTrackMeter:F1}");
         
+    }
+
+    public void StorePlayerForward()
+    {
+        Debug.Log("Storing Player Forward: " + player.transform.forward);
+        playerForward = player.transform.forward;
     }
 }
