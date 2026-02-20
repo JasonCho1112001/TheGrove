@@ -32,8 +32,8 @@ public class uiManager : MonoBehaviour
     public GameObject dEnabledText;
     public GameObject dDisabledText;
 
-    public TextMeshProUGUI monsterSideValue;
-    public TextMeshProUGUI monsterTimerValue;
+    public Image DDR1;
+    public Image DDR2;
 
     void Awake()
     {

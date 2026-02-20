@@ -16,19 +16,6 @@ public class monsterManager : MonoBehaviour
     public float proximityIncreaseRate = 10f;
     public float proximityDecreaseRate = 5f;
 
-    [Header("--Monster Left Right Management--")]
-    public MonsterSide monsterSide = MonsterSide.Left;
-    public enum MonsterSide { Left, Right }
-    public float monsterIntervalMin = 2.5f;
-    public float monsterIntervalMax = 7.5f;
-    private float monsterTimer;
-
-    
-    
-    [Header("--Monster Prefab Management--")]
-    public GameObject[] monsterPrefabs;
-    public float monsterPrefabDistance = 25f;
-
     //References
     //Automatically found
     [Header("--Automatically Found--")]
@@ -39,37 +26,21 @@ public class monsterManager : MonoBehaviour
     [Header("--Manually Assigned--")]
     public GameObject player;
     public GameObject friendGroup;
-    //public GameObject monsterPrefab;
-    
 
     void Awake()
     {
         gameManager = FindFirstObjectByType<gameManager>();
         ui = FindFirstObjectByType<uiManager>();
-        monsterTimer = monsterIntervalMin;
     }
 
     void Start()
     {
-        
+        //ui.EnableGroup(GameObject.Find("Movement Stats"), false);
     }
 
     void Update()
     {
-        DistanceFromFriends();
-
-        ProximityMeter();
-
-        HandleMonsterPrefabs();
-
-        HandleMonsterLeftRight();
-
-        //Constant UI
-        ui.SetText(ui.monsterTimerValue, $"{monsterTimer:F2}");
-    }
-
-    void DistanceFromFriends()
-    {
+        //Distance from friends
         if (player != null && friendGroup != null)
         {
             distanceFromFriends = Vector3.Distance(player.transform.position, friendGroup.transform.position);
@@ -77,11 +48,9 @@ public class monsterManager : MonoBehaviour
             ui.SetSlider(ui.distanceSlider, distanceFromFriends / maxDistanceFromFriends);
             ui.SetText(ui.distanceText, $"{distanceFromFriends:F1} / {maxDistanceFromFriends}");
         }
-    }
 
-    void ProximityMeter()
-    {
-        if (distanceFromFriends > maxDistanceFromFriends)
+        //Proximity meter
+        if (distanceFromFriends < maxDistanceFromFriends)
         {
             proximityMeter += proximityIncreaseRate * Time.deltaTime;
             //Initiate proximity attack if meter is full
@@ -103,46 +72,5 @@ public class monsterManager : MonoBehaviour
         //UI
         ui.SetSlider(ui.proximitySlider, proximityMeter / proximityMax);
         ui.SetText(ui.proximityText, $"{proximityMeter:F1} / {proximityMax}");
-    }
-
-    void HandleMonsterPrefabs()
-    {
-        //Keep prefabs X and Y position, but move Z to follow the player
-        foreach (GameObject prefab in monsterPrefabs)
-        {
-            if (prefab != null)
-            {
-                Vector3 targetPosition;
-                targetPosition.x = prefab.transform.position.x;
-                targetPosition.y = prefab.transform.position.y;
-                targetPosition.z = player.transform.position.z - monsterPrefabDistance;
-                prefab.transform.position = targetPosition;
-            }
-        }
-
-        //Disable and enable meshrenderer based on monsterSide
-        if (monsterSide == MonsterSide.Left)
-        {
-            monsterPrefabs[0].GetComponent<MeshRenderer>().enabled = true;
-            monsterPrefabs[1].GetComponent<MeshRenderer>().enabled = false;
-        }
-        else
-        {
-            monsterPrefabs[0].GetComponent<MeshRenderer>().enabled = false;
-            monsterPrefabs[1].GetComponent<MeshRenderer>().enabled = true;
-        }
-    }
-
-    void HandleMonsterLeftRight()
-    {
-        //Randomly switch monster side every monsterInterval seconds
-        monsterTimer -= Time.deltaTime;
-        if (monsterTimer <= 0f)
-        {
-            monsterTimer = Random.Range(monsterIntervalMin, monsterIntervalMax);
-            monsterSide = (monsterSide == MonsterSide.Left) ? MonsterSide.Right : MonsterSide.Left;
-            //UI
-            ui.SetText(ui.monsterSideValue, $"{monsterSide}");
-        }
     }
 }

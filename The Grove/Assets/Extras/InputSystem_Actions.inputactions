@@ -104,15 +104,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "LookInput",
-                    "type": "Button",
-                    "id": "e9d79d47-c6bb-43cb-a6bf-cb3800bfc8d2",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -520,17 +511,6 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "RightInput",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "568d9c61-43b7-4151-a5b8-d4a205f51489",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "LookInput",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
