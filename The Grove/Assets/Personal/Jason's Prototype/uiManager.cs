@@ -76,6 +76,7 @@ public class uiManager : MonoBehaviour
                 if (kc.wasPressedThisFrame)
                 {
                     ToggleGroup(groups[i - 1]);
+                    Debug.Log("Shift is pressed");
                 }
             }
         }
