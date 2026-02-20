@@ -55,6 +55,8 @@ public class rowBoatInput : MonoBehaviour
     public float horizontalSpeed = 2f; // How much the left/right bias influences horizontal movement
     public float maxHorizontalRange = 5f; // Maximum horizontal distance from the center line
     public Vector3 centerLine;
+    public PlayerSide playerSide = PlayerSide.Left;
+    public enum PlayerSide { Left, Right }
 
     //References
     private Rigidbody rb;
@@ -331,6 +333,23 @@ public class rowBoatInput : MonoBehaviour
         {
             rightForceVector = transform.right * leftRightBias * horizontalSpeed;
         }
+
+        //Set playerside
+        if (horizontalOffset.x < -0.25f)
+        {
+            playerSide = PlayerSide.Left;
+            ui.SetText(ui.playerSideValue, playerSide.ToString());
+        }
+        else if (horizontalOffset.x > 0.25f)
+        {
+            playerSide = PlayerSide.Right;
+            ui.SetText(ui.playerSideValue, playerSide.ToString());
+        }
+        else
+        {
+            //Leave it as last side when at the center
+        }
+
         rb.AddForce(forwardForceVector + rightForceVector, ForceMode.Acceleration);
 
         //Cap speed
@@ -345,6 +364,11 @@ public class rowBoatInput : MonoBehaviour
         float targetValue = horizontalVelocity.magnitude / maxSpeed;
         float currentValue = ui.movementSlider.value;
         ui.SetSlider(ui.movementSlider, Mathf.Lerp(currentValue, targetValue, Time.deltaTime * 5f));
+    }
+
+    public int GetPlayerSide()
+    {
+        return (playerSide == PlayerSide.Left) ? -1 : 1;
     }
 }
 

@@ -34,6 +34,9 @@ public class uiManager : MonoBehaviour
 
     public TextMeshProUGUI monsterSideValue;
     public TextMeshProUGUI monsterTimerValue;
+    public TextMeshProUGUI playerSideValue;
+    public Slider sameTrackSlider;
+    public TextMeshProUGUI sameTrackText;
 
     void Awake()
     {

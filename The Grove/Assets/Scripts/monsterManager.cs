@@ -23,7 +23,11 @@ public class monsterManager : MonoBehaviour
     public float monsterIntervalMax = 7.5f;
     private float monsterTimer;
 
-    
+    [Header("--Same Track Attack--")]
+    public float sameTrackMeter = 0f;
+    public float sameTrackMax = 100f;
+    public float sameTrackIncreaseRate = 10f;
+    public float sameTrackDecreaseRate = 5f;
     
     [Header("--Monster Prefab Management--")]
     public GameObject[] monsterPrefabs;
@@ -34,7 +38,8 @@ public class monsterManager : MonoBehaviour
     [Header("--Automatically Found--")]
     public gameManager gameManager;
     public uiManager ui;
-
+    public rowBoatInput playerInput;
+    
     //Manually assigned
     [Header("--Manually Assigned--")]
     public GameObject player;
@@ -47,6 +52,9 @@ public class monsterManager : MonoBehaviour
         gameManager = FindFirstObjectByType<gameManager>();
         ui = FindFirstObjectByType<uiManager>();
         monsterTimer = monsterIntervalMin;
+
+        if (player != null) playerInput = player.GetComponent<rowBoatInput>(); else Debug.LogError("Player GameObject not assigned in monsterManager");
+        
     }
 
     void Start()
@@ -64,6 +72,8 @@ public class monsterManager : MonoBehaviour
 
         HandleMonsterLeftRight();
 
+        CheckSameTrackAttack();
+
         //Constant UI
         ui.SetText(ui.monsterTimerValue, $"{monsterTimer:F2}");
     }
@@ -75,7 +85,7 @@ public class monsterManager : MonoBehaviour
             distanceFromFriends = Vector3.Distance(player.transform.position, friendGroup.transform.position);
             //UI
             ui.SetSlider(ui.distanceSlider, distanceFromFriends / maxDistanceFromFriends);
-            ui.SetText(ui.distanceText, $"{distanceFromFriends:F1} / {maxDistanceFromFriends}");
+            ui.SetText(ui.distanceText, $"{distanceFromFriends:F1}");
         }
     }
 
@@ -102,7 +112,7 @@ public class monsterManager : MonoBehaviour
         }
         //UI
         ui.SetSlider(ui.proximitySlider, proximityMeter / proximityMax);
-        ui.SetText(ui.proximityText, $"{proximityMeter:F1} / {proximityMax}");
+        ui.SetText(ui.proximityText, $"{proximityMeter:F1}");
     }
 
     void HandleMonsterPrefabs()
@@ -141,8 +151,43 @@ public class monsterManager : MonoBehaviour
         {
             monsterTimer = Random.Range(monsterIntervalMin, monsterIntervalMax);
             monsterSide = (monsterSide == MonsterSide.Left) ? MonsterSide.Right : MonsterSide.Left;
+            //Audio
+            if (audioManager.instance != null)
+            {
+                //TODO: Make the emitter the prefab that's enabled
+                audioManager.instance.Play("TripSound", gameObject);
+            }
             //UI
             ui.SetText(ui.monsterSideValue, $"{monsterSide}");
         }
+    }
+
+    void CheckSameTrackAttack()
+    {
+        //If player is on the same side as the monster, increase meter
+        if ((monsterSide == MonsterSide.Left && playerInput.GetPlayerSide() == -1) ||
+            (monsterSide == MonsterSide.Right && playerInput.GetPlayerSide() == 1))
+        {
+            sameTrackMeter += sameTrackIncreaseRate * Time.deltaTime;
+            if (sameTrackMeter >= sameTrackMax)
+            {
+                sameTrackMeter = 0f;
+                //Do Same Track Attack
+                Debug.Log("Same Track Attack!");
+            }
+        }
+        else
+        {
+            sameTrackMeter -= sameTrackDecreaseRate * Time.deltaTime;
+            if (sameTrackMeter < 0f)
+            {
+                sameTrackMeter = 0f;
+            }
+        }
+
+        //UI
+        ui.SetSlider(ui.sameTrackSlider, sameTrackMeter / sameTrackMax);
+        ui.SetText(ui.sameTrackText, $"{sameTrackMeter:F1}");
+        
     }
 }
