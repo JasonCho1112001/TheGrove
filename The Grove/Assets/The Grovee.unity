@@ -256,6 +256,54 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1649788899
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1649788901}
+  - component: {fileID: 1649788900}
+  m_Layer: 0
+  m_Name: BlurUIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1649788900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649788899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f28bea8d2207242b15b0a009c857c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BlurToggle
+  blurFeature: {fileID: -3475539709067676786, guid: f288ae1f4751b564a96ac7587541f7a2, type: 2}
+  toggleKey: 32
+  transitionSeconds: 0.35
+  blurredIntensity: 1
+--- !u!4 &1649788901
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649788899}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 74.85946, y: 35.88102, z: -1.66263}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1740274019
 GameObject:
   m_ObjectHideFlags: 0
@@ -647,3 +695,4 @@ SceneRoots:
   - {fileID: 2091711586}
   - {fileID: 1740274023}
   - {fileID: 1863493879}
+  - {fileID: 1649788901}

@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-using Unified.UniversalBlur.Runtime; // <-- from the package
+using Unified.UniversalBlur.Runtime; // <-- Package
 using UnityEngine.InputSystem;
 
 public class BlurToggle : MonoBehaviour
@@ -8,7 +8,7 @@ public class BlurToggle : MonoBehaviour
     [SerializeField] private UniversalBlurFeature blurFeature;
 
     [Header("Controls")]
-    [SerializeField] private KeyCode toggleKey = KeyCode.B;
+    [SerializeField] private KeyCode toggleKey = KeyCode.Space;
     [SerializeField, Min(0.01f)] private float transitionSeconds = 0.35f;
     [SerializeField, Range(0f, 1f)] private float blurredIntensity = 1f; // 1 = full blur, 0 = none
 
