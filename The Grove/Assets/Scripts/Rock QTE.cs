@@ -73,6 +73,7 @@ public class RockQTE : MonoBehaviour
     {
         if (other.gameObject.tag == rock.tag)
         {
+            Debug.Log("Rock QTE Started");
             isRockQTEActive = true;
             cameraTilt.TiltCamera();
         }
