@@ -5,6 +5,9 @@ public class monsterManager : MonoBehaviour
 {
     //Variables
 
+    [Header("--Switches--")]
+    public bool disableJumpscare = false;
+
     //Distance Detection
     [Header("--Distance Detection--")]
     public float distanceFromFriends = 0f;
@@ -263,6 +266,12 @@ public class monsterManager : MonoBehaviour
     
     void ProximityAttack()
     {
+        if (disableJumpscare)
+        {
+            Debug.Log("Proximity Attack Triggered, but jumpscare is disabled.");
+            return;
+        }
+
         Debug.Log("Proximity Attack!");
         jumpscareScreen.SetActive(true);
 
@@ -275,6 +284,12 @@ public class monsterManager : MonoBehaviour
 
     void SameTrackAttack()
     {
+        if (disableJumpscare)
+        {
+            Debug.Log("Same Track Attack Triggered, but jumpscare is disabled.");
+            return;
+        }
+        
         Debug.Log("Same Track Attack!");
         audioManager.instance.Play("JumpscareSound", gameObject);
         jumpscareScreen.SetActive(true);

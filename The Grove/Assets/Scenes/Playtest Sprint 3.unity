@@ -7248,6 +7248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7014718b36d5f8149be8a167349d10b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  disableJumpscare: 1
   distanceFromFriends: 0
   maxDistanceFromFriends: 30
   proximityMeter: 0
@@ -18158,18 +18159,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3742664595662352594, guid: e6330720af381b640b113d89923d2d1e, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4347205711263258403, guid: e6330720af381b640b113d89923d2d1e, type: 3}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6040684908889961666, guid: e6330720af381b640b113d89923d2d1e, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 867195e95e2a2bb459ed259b36c9e582, type: 2}
     - target: {fileID: 330941189618582669, guid: d9eae2185becdf1478902292602a2eda, type: 3}
       propertyPath: m_LocalPosition.x
       value: 24.77
@@ -18218,6 +18207,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3742664595662352594, guid: e6330720af381b640b113d89923d2d1e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4347205711263258403, guid: e6330720af381b640b113d89923d2d1e, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6040684908889961666, guid: e6330720af381b640b113d89923d2d1e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 867195e95e2a2bb459ed259b36c9e582, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -94243,6 +94244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7014718b36d5f8149be8a167349d10b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  disableJumpscare: 0
   distanceFromFriends: 0
   maxDistanceFromFriends: 70
   proximityMeter: 0
