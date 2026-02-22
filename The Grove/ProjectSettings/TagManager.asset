@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Left Camera Rotate
+  - Right Camera Rotate
+  - Friend
+  - Rotate Trigger
   layers:
   - Default
   - TransparentFX

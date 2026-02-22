@@ -146,28 +146,20 @@ public class rowBoatInput : MonoBehaviour
     // TODO: Make the camera turns smoother and not instant.
     void OnTriggerEnter(Collider other)
     {
-        //TODO: Calculate the new centerLine
-        if (other.CompareTag("Left Camera Rotate"))
+        if (other.CompareTag("Rotate Trigger"))
         {
-            Quaternion targetRotation = Quaternion.Euler(0f, -90f, 0f);
-            Debug.Log("Player Rotate Left");
-            transform.rotation = targetRotation;
-
-            //Monster Manager
-            //monsterManager.StorePlayerForward();
-            //monsterManager.RotatePrefabs(targetRotation);
+            Transform myRotatePoint = other.transform.parent.GetChild(1).transform;
+            if(myRotatePoint.name == "Rotation Point")
+            {
+                transform.rotation = myRotatePoint.rotation;
+                centerLine = myRotatePoint.position; // Update center line to the new position after rotation
+                Debug.Log("Player entered rotation trigger, rotating player to match new camera angle. Rotation point: " + myRotatePoint.name);
+            }
+            else
+            {
+                Debug.LogError("Rotation Trigger's second child is not named 'Rotation Point'. Please check the setup of the rotation trigger.");
+            }
         }
-        if (other.CompareTag("Right Camera Rotate"))
-        {
-            Debug.Log("Player Rotate Right");
-            Quaternion targetRotation = Quaternion.Euler(0f, 90f, 0f);
-            transform.rotation = targetRotation;
-
-            //Monster Manager
-            //monsterManager.StorePlayerForward();
-            //monsterManager.RotatePrefabs(targetRotation);
-        }
-        
     }
     
     void LookStart(InputAction.CallbackContext ctx)
@@ -362,12 +354,43 @@ public class rowBoatInput : MonoBehaviour
         Vector3 forwardForceVector = transform.forward * minimumForce + transform.forward * forwardForce * movementMultiplier;
         Vector3 rightForceVector = Vector3.zero;
 
+        //Determine what "forward" is based on playerForward
+        //It's simply the 1 value in playerForward
+        //if Mathf.Abs(playerForward.x) > 0, then forward is in the x direction,
+            //Therefore horizontalOffset is based on z
+        //if Mathf.Abs(playerForward.z) > 0, then forward is in the z direction)
+            //Therefore horizontalOffset is based on x
+        
+
         //Apply leftRightmovement Only if we are within horizontal range
         Vector3 horizontalOffset = transform.position - centerLine;
-        if (Mathf.Abs(horizontalOffset.x) < maxHorizontalRange || Mathf.Sign(horizontalOffset.x) != Mathf.Sign(leftRightBias))
+
+        //TODO: Refart
+        //Player is moving in the x direction, so horizontal offset is based on z
+        if(Mathf.Abs(monsterManager.playerForward.x) > 0.5f)
         {
-            rightForceVector = transform.right * leftRightBias * horizontalSpeed;
+            if (Mathf.Abs(horizontalOffset.z) < maxHorizontalRange || Mathf.Sign(horizontalOffset.z) != Mathf.Sign(leftRightBias))
+            {
+                rightForceVector = transform.right * leftRightBias * horizontalSpeed;
+            } 
+            else
+            {
+                //Debug.Log("Max horizontal range reached, no additional horizontal force applied. Current horizontal offset: " + horizontalOffset.z);
+            }
         }
+        //Player is moving in the z direction, so horizontal offset is based on x
+        else if (Mathf.Abs(monsterManager.playerForward.z) > 0.5f)
+        {
+            if (Mathf.Abs(horizontalOffset.x) < maxHorizontalRange || Mathf.Sign(horizontalOffset.x) != Mathf.Sign(leftRightBias))
+            {
+                rightForceVector = transform.right * leftRightBias * horizontalSpeed;
+            } 
+            else
+            {
+                //Debug.Log("Max horizontal range reached, no additional horizontal force applied. Current horizontal offset: " + horizontalOffset.x);
+            }
+        }
+        
 
         //Set playerside
         if (horizontalOffset.x < -0.25f)
