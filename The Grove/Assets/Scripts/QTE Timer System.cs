@@ -8,14 +8,13 @@ public class QTETimerSystem : MonoBehaviour
     [Header("UI Manager Reference")]
     public uiManager uI;
 
-    private bool isTimerRunning = false;
-    private float remainingTime;
+    public bool isTimerRunning = false;
+    public float remainingTime;
 
-    void Start()
+    void Awake()
     {
         ResetTimer();
         UpdateUI();
-        StartTimer();
     }
 
     void Update()
@@ -30,7 +29,6 @@ public class QTETimerSystem : MonoBehaviour
 
     public void StartTimer()
     {
-        ResetTimer();
         isTimerRunning = true;
     }
 
@@ -38,10 +36,12 @@ public class QTETimerSystem : MonoBehaviour
     {
         remainingTime = 0f;
         isTimerRunning = false;
+        ResetTimer();
     }
 
     public void ResetTimer() 
     {
+        isTimerRunning = false;
         remainingTime = timerDuration;
         UpdateUI();
     }

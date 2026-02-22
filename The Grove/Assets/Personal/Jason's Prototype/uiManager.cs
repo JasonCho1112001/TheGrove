@@ -30,6 +30,9 @@ public class uiManager : MonoBehaviour
     public Slider timerSlider;
     public TextMeshProUGUI timerText;
 
+    public Slider angleSlider;
+    public TextMeshProUGUI angleText;
+
     public GameObject aDisabledText;
     public GameObject aEnabledText;
     public GameObject dEnabledText;
