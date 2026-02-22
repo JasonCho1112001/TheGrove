@@ -28,6 +28,8 @@ public class monsterManager : MonoBehaviour
     public float sameTrackMax = 100f;
     public float sameTrackIncreaseRate = 10f;
     public float sameTrackDecreaseRate = 5f;
+    public float jumpScareDelay = 0.4f;
+    
     
     [Header("--Monster Prefab Management--")]
     public GameObject[] monsterPrefabs;
@@ -51,6 +53,7 @@ public class monsterManager : MonoBehaviour
     [Header("--Manually Assigned--")]
     public GameObject player;
     public GameObject friendGroup;
+    public GameObject jumpscareScreen;
     //public GameObject monsterPrefab;
     
 
@@ -84,6 +87,12 @@ public class monsterManager : MonoBehaviour
 
         //Constant UI
         ui.SetText(ui.monsterTimerValue, $"{monsterTimer:F2}");
+
+        //Temporary input to test proximity attack
+        if (Keyboard.current.leftShiftKey.isPressed && Keyboard.current.pKey.wasPressedThisFrame)
+        {
+            ProximityAttack();
+        }
     }
 
     void DistanceFromFriends()
@@ -107,7 +116,8 @@ public class monsterManager : MonoBehaviour
             {
                 proximityMeter = 0f;
                 //Do Proximity Attack
-                Debug.Log("Proximity Attack!");
+                ProximityAttack();
+                
             }
         }
         else
@@ -227,7 +237,7 @@ public class monsterManager : MonoBehaviour
             {
                 sameTrackMeter = 0f;
                 //Do Same Track Attack
-                Debug.Log("Same Track Attack!");
+                SameTrackAttack();
             }
         }
         else
@@ -249,5 +259,24 @@ public class monsterManager : MonoBehaviour
     {
         Debug.Log("Storing Player Forward: " + player.transform.forward);
         playerForward = player.transform.forward;
+    }
+    
+    void ProximityAttack()
+    {
+        Debug.Log("Proximity Attack!");
+        jumpscareScreen.SetActive(true);
+
+        //play the audio with a slight delay
+        Invoke("PlayJumpscareSound", jumpScareDelay);
+
+        audioManager.instance.Play("JumpscareSound", gameObject);
+        
+    }
+
+    void SameTrackAttack()
+    {
+        Debug.Log("Same Track Attack!");
+        audioManager.instance.Play("JumpscareSound", gameObject);
+        jumpscareScreen.SetActive(true);
     }
 }
