@@ -165,51 +165,7 @@ public class monsterManager : MonoBehaviour
             }
         }
     }
-
-    void HandleMonsterPrefabMovement()
-    {
-        //Only move the prefabs in the direction of playerForward
-        foreach (GameObject prefab in monsterPrefabs)
-        {
-            if (prefab != null)
-            {
-                Vector3 targetPosition;
-                targetPosition.x = prefab.transform.position.x;
-                targetPosition.y = prefab.transform.position.y;
-                targetPosition.z = player.transform.position.z;
-
-                //Determine movement direction based on playerForward
-                if(Mathf.Abs(playerForward.x) > 0.5f)
-                {
-                    //Moving in x direction
-                    targetPosition.x = player.transform.position.x + (playerForward.x > 0 ? -monsterPrefabDistance : monsterPrefabDistance);
-                }
-                else if (Mathf.Abs(playerForward.z) > 0.5f)
-                {
-                    //Moving in z direction
-                    targetPosition.z = player.transform.position.z + (playerForward.z > 0 ? -monsterPrefabDistance : monsterPrefabDistance);
-                }
-                prefab.transform.position = targetPosition;
-            }
-        }
-
-        //Disable and enable meshrenderer based on monsterSide
-        if (monsterSide == MonsterSide.Left)
-        {
-            monsterPrefabs[0].GetComponent<MeshRenderer>().enabled = true;
-            monsterPrefabs[0].transform.GetChild(0).GetComponent<MeshRenderer>().enabled = true;
-            monsterPrefabs[1].GetComponent<MeshRenderer>().enabled = false;
-            monsterPrefabs[1].transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
-        }
-        else
-        {
-            monsterPrefabs[0].GetComponent<MeshRenderer>().enabled = false;
-            monsterPrefabs[0].transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
-            monsterPrefabs[1].GetComponent<MeshRenderer>().enabled = true;
-            monsterPrefabs[1].transform.GetChild(0).GetComponent<MeshRenderer>().enabled = true;
-        }
-    }
-
+    
     void HandleMonsterLeftRight()
     {
         //Randomly switch monster side every monsterInterval seconds
@@ -226,6 +182,19 @@ public class monsterManager : MonoBehaviour
             }
             //UI
             ui.SetText(ui.monsterSideValue, $"{monsterSide}");
+        }
+
+        //Disable and enable meshrenderer based on monsterSide
+        if (monsterPrefabs.Length >= 2)
+        {
+            if (monsterSide == MonsterSide.Left)
+            {
+                EnableMonsterMesh(MonsterSide.Left);
+            }
+            else
+            {
+                EnableMonsterMesh(MonsterSide.Right);
+            }
         }
     }
 
@@ -293,5 +262,23 @@ public class monsterManager : MonoBehaviour
         Debug.Log("Same Track Attack!");
         audioManager.instance.Play("JumpscareSound", gameObject);
         jumpscareScreen.SetActive(true);
+    }
+
+    void EnableMonsterMesh(MonsterSide sideToEnable)
+    {
+        //Currently hardcoding what meshes to disable
+        if (monsterPrefabs.Length >= 2)
+        {
+            if (sideToEnable == MonsterSide.Left)
+            {
+                monsterPrefabs[0].SetActive(true);
+                monsterPrefabs[1].SetActive(false);
+            }
+            else
+            {
+                monsterPrefabs[0].SetActive(false);
+                monsterPrefabs[1].SetActive(true);
+            }
+        }
     }
 }
