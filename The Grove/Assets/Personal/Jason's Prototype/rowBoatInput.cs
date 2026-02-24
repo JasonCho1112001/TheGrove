@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEditor;
@@ -16,6 +17,11 @@ public class rowBoatInput : MonoBehaviour
     private InputAction leftAction;
     private InputAction rightAction;
     private InputAction lookAction;
+    private bool isLeftHeld = false;
+    private bool isRightHeld = false;
+
+    private Coroutine holdCoroutine;
+    public float holdThreshold = 0.5f; // Time in seconds to consider an input as a hold
 
     //Stats
     [Header("--Stats--")]
@@ -54,6 +60,7 @@ public class rowBoatInput : MonoBehaviour
     //Moving Left or Right
     [Header("--Moving Left or Right--")]
     public int leftRightBias = 0; // -1 for left, 1 for right, 0 for neutral
+    public float leftRightMovement = 0f;
     public int lastDirectionInput = 0; // -1 for left, 1 for right, 0 for neutral
     public float horizontalSpeed = 2f; // How much the left/right bias influences horizontal movement
     public float maxHorizontalRange = 5f; // Maximum horizontal distance from the center line
@@ -61,6 +68,9 @@ public class rowBoatInput : MonoBehaviour
     public PlayerSide playerSide = PlayerSide.Left;
     public enum PlayerSide { Left, Right }
     public Vector3 horizontalOffset;
+    public float leftRightTimer = 0f;
+    public float leftRightMultiplier = 5f;
+    public float forwardDuringLeftRightMultiplier = 3f; // How much forward force is applied when moving left/right
 
     [Header("--Handle View Bobbing--")]
     public float viewBobbingDisplacementIntensity = 0.1f;
@@ -68,6 +78,8 @@ public class rowBoatInput : MonoBehaviour
     public float viewBobbingRollIntensity = 1f;
     public float viewBobbingRollSpeed = 5f;
     private Vector3 originalCameraPosition;
+    private float originalCameraXRotation;
+    private Quaternion originalCameraRotation;
     private Vector3 targetCameraPosition;
 
     //References
@@ -99,7 +111,9 @@ public class rowBoatInput : MonoBehaviour
     {
         centerLine = transform.position;
         originalCameraPosition = cam.transform.localPosition;
+        originalCameraRotation = cam.transform.localRotation;
         targetCameraPosition = originalCameraPosition;
+        originalCameraXRotation = cam.transform.localEulerAngles.x;
     }
 
     void Update()
@@ -113,6 +127,7 @@ public class rowBoatInput : MonoBehaviour
         //Looking
         HandleLookingCamera();
         HandleViewBobbing();
+        HandleLeftRightHold();
 
         //Agitation UI
         float targetValue = cadence / 5f; // Assuming 5 inputs per second is the max for full agitation meter
@@ -124,12 +139,12 @@ public class rowBoatInput : MonoBehaviour
     void OnEnable()
     {
         leftAction.Enable(); 
-        leftAction.performed += LeftStep;
-        leftAction.canceled += ctx => ui.EnableText(ui.aEnabledText, false); // Disable A enabled text on button release
+        leftAction.started += OnLeftStarted;
+        leftAction.canceled += OnLeftCanceled;
 
         rightAction.Enable();
-        rightAction.performed += RightStep;
-        rightAction.canceled += ctx => ui.EnableText(ui.dEnabledText, false); // Disable D enabled text on button release
+        rightAction.started += OnRightStarted;
+        rightAction.canceled += OnRightCanceled;
 
         lookAction.Enable();
         lookAction.performed += LookStart;
@@ -141,112 +156,92 @@ public class rowBoatInput : MonoBehaviour
     void OnDisable()
     {
         leftAction.Disable(); 
-        leftAction.performed -= LeftStep;
-        leftAction.canceled -= ctx => ui.EnableText(ui.aEnabledText, false);
+        leftAction.started -= OnLeftStarted;
+        leftAction.canceled -= OnLeftCanceled;
 
         rightAction.Disable();
-        rightAction.performed -= RightStep;
-        rightAction.canceled -= ctx => ui.EnableText(ui.dEnabledText, false);
+        rightAction.started -= OnRightStarted;
+        rightAction.canceled -= OnRightCanceled;
 
         lookAction.Disable();
         lookAction.performed -= LookStart;
         lookAction.canceled -= ctx => LookStop();
     }
 
-    // Tyvin: This rotates the player when they enter a camera rotate trigger zone.
-    // TODO: Make the camera turns smoother and not instant.
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Rotate Trigger"))
-        {
-            Transform myRotatePoint = other.transform.parent.GetChild(1).transform;
-            if(myRotatePoint.name == "Rotation Point")
-            {
-                transform.rotation = myRotatePoint.rotation;
-                centerLine = myRotatePoint.position; // Update center line to the new position after rotation
-                Debug.Log("Player entered rotation trigger, rotating player to match new camera angle. Rotation point: " + myRotatePoint.name);
-            }
-            else
-            {
-                Debug.LogError("Rotation Trigger's second child is not named 'Rotation Point'. Please check the setup of the rotation trigger.");
-            }
-        }
-        monsterManager.StorePlayerForward();
-    }
-    
-    void LookStart(InputAction.CallbackContext ctx)
-    {
-        isLooking = true;
-    }
-
-    void LookStop()
-    {
-        isLooking = false;
-    }
-
-    void HandleViewBobbing()
-    {
-        float bobbingAmount = 0f;
-        float rollAmount = 0f;
-
-        if (isLooking) return; // Don't bob when looking
-        if (currentState == MovementState.Idle) return; // Don't bob when idle
-        if (currentState == MovementState.Walking)
-        {
-            bobbingAmount = Mathf.Sin(Time.time * viewBobbingDisplacementSpeed) * viewBobbingDisplacementIntensity;
-            rollAmount = Mathf.Sin(Time.time * viewBobbingRollSpeed) * viewBobbingRollIntensity;
-        }
-        else if (currentState == MovementState.Jogging)
-        {
-            bobbingAmount = Mathf.Sin(Time.time * viewBobbingDisplacementSpeed * 1.5f) * viewBobbingDisplacementIntensity * 1.5f;
-            rollAmount = Mathf.Sin(Time.time * viewBobbingRollSpeed * 1.5f) * viewBobbingRollIntensity * 1.5f;
-        }
-        else if (currentState == MovementState.Sprinting)
-        {
-            bobbingAmount = Mathf.Sin(Time.time * viewBobbingDisplacementSpeed * 3f) * viewBobbingDisplacementIntensity * 3f;
-            rollAmount = Mathf.Sin(Time.time * viewBobbingRollSpeed * 3f) * viewBobbingRollIntensity * 3f;
-        }
-        cam.transform.localRotation = Quaternion.Euler(0f, 0f, rollAmount);
-        cam.transform.localPosition = new Vector3(cam.transform.localPosition.x, cam.transform.localPosition.y + bobbingAmount, cam.transform.localPosition.z);
-    }
-
-    void HandleLookingCamera()
-    {
-        if (isLooking)
-        {
-            //Rotate the camera toward the -forward direction of the character
-            Vector3 targetDirection = -transform.forward ;
-            Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
-            cam.transform.rotation = Quaternion.Slerp(cam.transform.rotation, targetRotation, Time.deltaTime * lookSpeed);
-
-            //Stop movement while looking
-            cadence = 0f;
-        }
-        else
-        {
-            //Rotate it back to forward
-            Vector3 targetDirection = transform.forward;
-            Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
-            cam.transform.rotation = Quaternion.Slerp(cam.transform.rotation, targetRotation, Time.deltaTime * lookSpeed);
-        }
-    }
-
-    void LeftStep(InputAction.CallbackContext ctx)
+    void OnLeftStarted(InputAction.CallbackContext ctx)
     {
         RecordInputTimestamps();
         ui.EnableText(ui.aEnabledText, true);
+        HandleLeftRightMovement(-1);
         InvokeFootstepAudio();
 
-        HandleLeftRightBias(-1);
+        isLeftHeld = true;
+        holdCoroutine = StartCoroutine(HoldWatcher());
     }
 
-    void RightStep(InputAction.CallbackContext ctx)
+    void OnRightStarted(InputAction.CallbackContext ctx)
     {
         RecordInputTimestamps();
         ui.EnableText(ui.dEnabledText, true);
+        HandleLeftRightMovement(1);
         InvokeFootstepAudio();
 
-        HandleLeftRightBias(1);
+        
+        isRightHeld = true;
+        holdCoroutine = StartCoroutine(HoldWatcher());
+    }
+
+    void OnLeftCanceled(InputAction.CallbackContext ctx)
+    {
+        ui.EnableText(ui.aEnabledText, false);
+        StopCoroutine(holdCoroutine);
+        leftRightMovement = 0f;
+        isLeftHeld = false;
+        leftRightTimer = 0f;
+    }
+
+    void OnRightCanceled(InputAction.CallbackContext ctx)
+    {
+        ui.EnableText(ui.dEnabledText, false);
+        StopCoroutine(holdCoroutine);
+        leftRightMovement = 0f;
+        isRightHeld = false;
+        leftRightTimer = 0f;
+    }
+
+    private IEnumerator HoldWatcher()
+    {
+        yield return new WaitForSeconds(holdThreshold);
+        if (leftAction.ReadValue<float>() > 0.5f)
+        {
+            OnLeftHeld();
+        }
+        else if (rightAction.ReadValue<float>() > 0.5f)
+        {
+            OnRightHeld();
+        }
+    }
+
+    void OnLeftHeld()
+    {
+        //Debug.Log("Left Held");
+    }
+
+    void OnRightHeld()
+    {
+        //Debug.Log("Right Held");
+    }
+
+    void HandleLeftRightHold()
+    {
+        if (isLeftHeld)
+        {
+            HandleLeftRightMovement(-1);
+        }
+        else if (isRightHeld)
+        {
+            HandleLeftRightMovement(1);
+        }
     }
 
     void HandleLeftRightBias(int leftRight)
@@ -267,6 +262,18 @@ public class rowBoatInput : MonoBehaviour
 
         lastDirectionInput = leftRight;
     }
+
+    void HandleLeftRightMovement(int direction)
+    {
+        leftRightTimer += Time.deltaTime;
+        if (leftRightTimer > holdThreshold)
+        {
+            leftRightMovement += direction * Time.deltaTime * leftRightMultiplier;
+            //Keep leftRightMovement between -10 and 10
+            leftRightMovement = Mathf.Clamp(leftRightMovement, -10f, 10f);
+        }
+    }
+
     void InvokeFootstepAudio()
     {
         // Audio
@@ -405,10 +412,10 @@ public class rowBoatInput : MonoBehaviour
 
         //TODO: Refart
         //Player is moving in the x direction, so horizontal offset is based on z
-        if(leftRightBias != 0)
+        if(leftRightMovement != 0)
         {
-            forwardForceVector = 0.5f * (transform.forward * minimumForce + transform.forward * forwardForce * movementMultiplier);
-            rightForceVector = transform.right * leftRightBias * horizontalSpeed;
+            forwardForceVector = transform.forward * minimumForce * forwardDuringLeftRightMultiplier;
+            rightForceVector = transform.right * leftRightMovement * horizontalSpeed;
         }
         
         
@@ -429,6 +436,7 @@ public class rowBoatInput : MonoBehaviour
             //Leave it as last side when at the center
         }
 
+        //Add the actual force
         rb.AddForce(forwardForceVector + rightForceVector, ForceMode.Acceleration);
 
         //Cap speed
@@ -444,6 +452,87 @@ public class rowBoatInput : MonoBehaviour
         float currentValue = ui.movementSlider.value;
         ui.SetSlider(ui.movementSlider, Mathf.Lerp(currentValue, targetValue, Time.deltaTime * 5f));
     }
+
+    // Tyvin: This rotates the player when they enter a camera rotate trigger zone.
+    // TODO: Make the camera turns smoother and not instant.
+    
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Rotate Trigger"))
+        {
+            Transform myRotatePoint = other.transform.parent.GetChild(1).transform;
+            if(myRotatePoint.name == "Rotation Point")
+            {
+                transform.rotation = myRotatePoint.rotation;
+                centerLine = myRotatePoint.position; // Update center line to the new position after rotation
+                Debug.Log("Player entered rotation trigger, rotating player to match new camera angle. Rotation point: " + myRotatePoint.name);
+            }
+            else
+            {
+                Debug.LogError("Rotation Trigger's second child is not named 'Rotation Point'. Please check the setup of the rotation trigger.");
+            }
+        }
+        monsterManager.StorePlayerForward();
+        //Rotate the original CameraRotation to match the new angle
+        originalCameraRotation = Quaternion.Euler(originalCameraXRotation, transform.eulerAngles.y, 0f);
+    }
+    
+    void LookStart(InputAction.CallbackContext ctx)
+    {
+        isLooking = true;
+    }
+
+    void LookStop()
+    {
+        isLooking = false;
+    }
+
+    void HandleViewBobbing()
+    {
+        float bobbingAmount = 0f;
+        float rollAmount = 0f;
+
+        if (isLooking) return; // Don't bob when looking
+        if (currentState == MovementState.Idle) return; // Don't bob when idle
+        if (currentState == MovementState.Walking)
+        {
+            bobbingAmount = Mathf.Sin(Time.time * viewBobbingDisplacementSpeed) * viewBobbingDisplacementIntensity;
+            rollAmount = Mathf.Sin(Time.time * viewBobbingRollSpeed) * viewBobbingRollIntensity;
+        }
+        else if (currentState == MovementState.Jogging)
+        {
+            bobbingAmount = Mathf.Sin(Time.time * viewBobbingDisplacementSpeed * 1.5f) * viewBobbingDisplacementIntensity * 1.5f;
+            rollAmount = Mathf.Sin(Time.time * viewBobbingRollSpeed * 1.5f) * viewBobbingRollIntensity * 1.5f;
+        }
+        else if (currentState == MovementState.Sprinting)
+        {
+            bobbingAmount = Mathf.Sin(Time.time * viewBobbingDisplacementSpeed * 3f) * viewBobbingDisplacementIntensity * 3f;
+            rollAmount = Mathf.Sin(Time.time * viewBobbingRollSpeed * 3f) * viewBobbingRollIntensity * 3f;
+        }
+        targetCameraPosition = new Vector3(originalCameraPosition.x, originalCameraPosition.y + bobbingAmount, originalCameraPosition.z);
+        cam.transform.localPosition = targetCameraPosition;
+        cam.transform.localRotation = cam.transform.localRotation * Quaternion.Euler(0f, 0f, rollAmount);
+    }
+
+    void HandleLookingCamera()
+    {
+        if (isLooking)
+        {
+            //Rotate the camera toward the -forward direction of the character
+            Vector3 targetDirection = -transform.forward ;
+            Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
+            cam.transform.rotation = Quaternion.Slerp(cam.transform.rotation, targetRotation, Time.deltaTime * lookSpeed);
+
+            //Stop movement while looking
+            cadence = 0f;
+        }
+        else
+        {
+            //Rotate it back to forward
+            cam.transform.rotation = Quaternion.Slerp(cam.transform.rotation, originalCameraRotation, Time.deltaTime * lookSpeed);
+        }
+    }
+
 
     public int GetPlayerSide()
     {
