@@ -90,10 +90,10 @@ public class staminaSystem : MonoBehaviour
 void ManageAudio()
     {   
         // Breathing: Starts at Stamina Stage 2 continues to Stage 3
-        bool shouldBreathe = (currentStaminaState == StaminaState.Stage2 || currentStaminaState == StaminaState.Stage3);
+        bool shouldBreathe = currentStaminaState == StaminaState.Stage2 || currentStaminaState == StaminaState.Stage3;
 
         // Heartbeat: Starts at Stamina Stage 3
-        bool shouldHeartbeat = (currentStaminaState == StaminaState.Stage3);
+        bool shouldHeartbeat = currentStaminaState == StaminaState.Stage3;
 
         // Breathing Execution
         if (shouldBreathe)
