@@ -174,12 +174,16 @@ public class monsterManager : MonoBehaviour
         {
             monsterTimer = Random.Range(monsterIntervalMin, monsterIntervalMax);
             monsterSide = (monsterSide == MonsterSide.Left) ? MonsterSide.Right : MonsterSide.Left;
-            //Audio
-            if (audioManager.instance != null)
+            //Audio: Play a sound specifically from the new active side of the monster prefab's location in the woods
+            if (audioManager.instance != null && monsterPrefabs.Length >= 2)
             {
-                //TODO: Make the emitter the prefab that's enabled
-                audioManager.instance.Play("TripSound", gameObject);
+                // Determine which side the monster is
+                GameObject activeEmitter = (monsterSide == MonsterSide.Left) ? monsterPrefabs[0] : monsterPrefabs[1];
+                
+                // Play the sound specifically from the active emitter's position
+                audioManager.instance.Play("MonsterMove", activeEmitter);
             }
+            
             //UI
             ui.SetText(ui.monsterSideValue, $"{monsterSide}");
         }
