@@ -58,7 +58,7 @@ public class staminaSystem : MonoBehaviour
             currentStaminaState = StaminaState.Exhausted;
         }
 
-        // Play breathing if in Stage 3 (Low) or Exhausted
+        // Play breathing if in Stage 2
         if (currentStaminaState == StaminaState.Stage2 || currentStaminaState == StaminaState.Stage3)
         {
             // Only call Play if we aren't already breathing
@@ -89,13 +89,13 @@ public class staminaSystem : MonoBehaviour
 
 void ManageAudio()
     {   
-        // Breathing: Starts at Stamina Stage 2
-        bool shouldBreathe = (currentStaminaState == StaminaState.Stage2);
+        // Breathing: Starts at Stamina Stage 2 continues to Stage 3
+        bool shouldBreathe = (currentStaminaState == StaminaState.Stage2 || currentStaminaState == StaminaState.Stage3);
 
         // Heartbeat: Starts at Stamina Stage 3
         bool shouldHeartbeat = (currentStaminaState == StaminaState.Stage3);
 
-        // Breathign Execution
+        // Breathing Execution
         if (shouldBreathe)
         {
             if (!isBreathing)
