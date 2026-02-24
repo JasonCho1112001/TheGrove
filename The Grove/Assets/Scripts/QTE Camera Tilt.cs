@@ -38,7 +38,7 @@ public class QTECameraTilt : MonoBehaviour
     private void Awake()
     {
         initialX = transform.localEulerAngles.x;
-        initialX = transform.localEulerAngles.z;
+        initialZ = transform.localEulerAngles.z;
 
         if (timer == null)
         {

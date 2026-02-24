@@ -3,6 +3,7 @@ using UnityEngine;
 public class hideOnStart : MonoBehaviour
 {
     public bool hide = true;
+    public bool hideChildren = true;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -12,9 +13,12 @@ public class hideOnStart : MonoBehaviour
             GetComponent<MeshRenderer>().enabled = false;
         }
 
-        foreach (MeshRenderer meshRenderer in GetComponentsInChildren<MeshRenderer>())
+        if (hideChildren)
         {
-            meshRenderer.enabled = false;
+            foreach (MeshRenderer meshRenderer in GetComponentsInChildren<MeshRenderer>())
+            {
+                meshRenderer.enabled = false;
+            }
         }
     }
 
