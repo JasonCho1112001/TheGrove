@@ -60,7 +60,15 @@ public class rowBoatInput : MonoBehaviour
     public Vector3 centerLine;
     public PlayerSide playerSide = PlayerSide.Left;
     public enum PlayerSide { Left, Right }
+    public Vector3 horizontalOffset;
 
+    [Header("--Handle View Bobbing--")]
+    public float viewBobbingDisplacementIntensity = 0.1f;
+    public float viewBobbingDisplacementSpeed = 5f;
+    public float viewBobbingRollIntensity = 1f;
+    public float viewBobbingRollSpeed = 5f;
+    private Vector3 originalCameraPosition;
+    private Vector3 targetCameraPosition;
 
     //References
     private Rigidbody rb;
@@ -90,6 +98,8 @@ public class rowBoatInput : MonoBehaviour
     void Start()
     {
         centerLine = transform.position;
+        originalCameraPosition = cam.transform.localPosition;
+        targetCameraPosition = originalCameraPosition;
     }
 
     void Update()
@@ -102,6 +112,7 @@ public class rowBoatInput : MonoBehaviour
 
         //Looking
         HandleLookingCamera();
+        HandleViewBobbing();
 
         //Agitation UI
         float targetValue = cadence / 5f; // Assuming 5 inputs per second is the max for full agitation meter
@@ -160,6 +171,7 @@ public class rowBoatInput : MonoBehaviour
                 Debug.LogError("Rotation Trigger's second child is not named 'Rotation Point'. Please check the setup of the rotation trigger.");
             }
         }
+        monsterManager.StorePlayerForward();
     }
     
     void LookStart(InputAction.CallbackContext ctx)
@@ -170,6 +182,32 @@ public class rowBoatInput : MonoBehaviour
     void LookStop()
     {
         isLooking = false;
+    }
+
+    void HandleViewBobbing()
+    {
+        float bobbingAmount = 0f;
+        float rollAmount = 0f;
+
+        if (isLooking) return; // Don't bob when looking
+        if (currentState == MovementState.Idle) return; // Don't bob when idle
+        if (currentState == MovementState.Walking)
+        {
+            bobbingAmount = Mathf.Sin(Time.time * viewBobbingDisplacementSpeed) * viewBobbingDisplacementIntensity;
+            rollAmount = Mathf.Sin(Time.time * viewBobbingRollSpeed) * viewBobbingRollIntensity;
+        }
+        else if (currentState == MovementState.Jogging)
+        {
+            bobbingAmount = Mathf.Sin(Time.time * viewBobbingDisplacementSpeed * 1.5f) * viewBobbingDisplacementIntensity * 1.5f;
+            rollAmount = Mathf.Sin(Time.time * viewBobbingRollSpeed * 1.5f) * viewBobbingRollIntensity * 1.5f;
+        }
+        else if (currentState == MovementState.Sprinting)
+        {
+            bobbingAmount = Mathf.Sin(Time.time * viewBobbingDisplacementSpeed * 3f) * viewBobbingDisplacementIntensity * 3f;
+            rollAmount = Mathf.Sin(Time.time * viewBobbingRollSpeed * 3f) * viewBobbingRollIntensity * 3f;
+        }
+        cam.transform.localRotation = Quaternion.Euler(0f, 0f, rollAmount);
+        cam.transform.localPosition = new Vector3(cam.transform.localPosition.x, cam.transform.localPosition.y + bobbingAmount, cam.transform.localPosition.z);
     }
 
     void HandleLookingCamera()
@@ -363,33 +401,16 @@ public class rowBoatInput : MonoBehaviour
         
 
         //Apply leftRightmovement Only if we are within horizontal range
-        Vector3 horizontalOffset = transform.position - centerLine;
+        horizontalOffset = transform.position - centerLine;
 
         //TODO: Refart
         //Player is moving in the x direction, so horizontal offset is based on z
-        if(Mathf.Abs(monsterManager.playerForward.x) > 0.5f)
+        if(leftRightBias != 0)
         {
-            if (Mathf.Abs(horizontalOffset.z) < maxHorizontalRange || Mathf.Sign(horizontalOffset.z) != Mathf.Sign(leftRightBias))
-            {
-                rightForceVector = transform.right * leftRightBias * horizontalSpeed;
-            } 
-            else
-            {
-                //Debug.Log("Max horizontal range reached, no additional horizontal force applied. Current horizontal offset: " + horizontalOffset.z);
-            }
+            forwardForceVector = 0.5f * (transform.forward * minimumForce + transform.forward * forwardForce * movementMultiplier);
+            rightForceVector = transform.right * leftRightBias * horizontalSpeed;
         }
-        //Player is moving in the z direction, so horizontal offset is based on x
-        else if (Mathf.Abs(monsterManager.playerForward.z) > 0.5f)
-        {
-            if (Mathf.Abs(horizontalOffset.x) < maxHorizontalRange || Mathf.Sign(horizontalOffset.x) != Mathf.Sign(leftRightBias))
-            {
-                rightForceVector = transform.right * leftRightBias * horizontalSpeed;
-            } 
-            else
-            {
-                //Debug.Log("Max horizontal range reached, no additional horizontal force applied. Current horizontal offset: " + horizontalOffset.x);
-            }
-        }
+        
         
 
         //Set playerside
@@ -427,6 +448,35 @@ public class rowBoatInput : MonoBehaviour
     public int GetPlayerSide()
     {
         return (playerSide == PlayerSide.Left) ? -1 : 1;
+    }
+
+    public void OnDrawGizmos()
+    {
+        //Draw Three lines to represent the max horizontal range from the center line and the center line
+        Gizmos.color = Color.blue;
+        if(monsterManager == null) return;
+
+        int myX = (int)Mathf.Round(monsterManager.playerForward.x);
+        int myZ = (int)Mathf.Round(monsterManager.playerForward.z);
+        
+        if(myX == 1 || myX == -1)
+        {
+            //Center line
+            Gizmos.DrawLine(centerLine, centerLine + new Vector3(myX * 50f, 0f, 0f));
+            //Side lines
+            Gizmos.DrawLine(centerLine + new Vector3(0f, 0f, -maxHorizontalRange), centerLine + new Vector3(myX * 50f, 0f, -maxHorizontalRange));
+            Gizmos.DrawLine(centerLine + new Vector3(0f, 0f, maxHorizontalRange), centerLine + new Vector3(myX * 50f, 0f, maxHorizontalRange));
+        }
+        else if(myZ == 1 || myZ == -1)
+        {
+            //Center line
+            Gizmos.DrawLine(centerLine, centerLine + new Vector3(0f, 0f, myZ * 50f));
+            //Side lines
+            Gizmos.DrawLine(centerLine + new Vector3(-maxHorizontalRange, 0f, 0f), centerLine + new Vector3(-maxHorizontalRange, 0f, myZ * 50f));
+            Gizmos.DrawLine(centerLine + new Vector3(maxHorizontalRange, 0f, 0f), centerLine + new Vector3(maxHorizontalRange, 0f, myZ * 50f));
+            
+        }
+        
     }
 }
 
