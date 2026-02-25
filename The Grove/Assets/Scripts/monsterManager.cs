@@ -5,9 +5,6 @@ public class monsterManager : MonoBehaviour
 {
     //Variables
 
-    [Header("--Switches--")]
-    public bool disableJumpscare = false;
-
     //Distance Detection
     [Header("--Distance Detection--")]
     public float distanceFromFriends = 0f;
@@ -31,8 +28,6 @@ public class monsterManager : MonoBehaviour
     public float sameTrackMax = 100f;
     public float sameTrackIncreaseRate = 10f;
     public float sameTrackDecreaseRate = 5f;
-    public float jumpScareDelay = 0.4f;
-    
     
     [Header("--Monster Prefab Management--")]
     public GameObject[] monsterPrefabs;
@@ -42,8 +37,6 @@ public class monsterManager : MonoBehaviour
     public float monsterPrefabVerticalOffset = 0f;
     public float monsterPrefabLateralOffset = 0f;
     public Vector3 playerForward;
-
-    public GameObject[] monsterEyes;
 
 
 
@@ -58,7 +51,6 @@ public class monsterManager : MonoBehaviour
     [Header("--Manually Assigned--")]
     public GameObject player;
     public GameObject friendGroup;
-    public GameObject jumpscareScreen;
     //public GameObject monsterPrefab;
     
 
@@ -90,16 +82,8 @@ public class monsterManager : MonoBehaviour
 
         CheckSameTrackAttack();
 
-        MonsterEyes();
-
         //Constant UI
         ui.SetText(ui.monsterTimerValue, $"{monsterTimer:F2}");
-
-        //Temporary input to test proximity attack
-        if (Keyboard.current.leftShiftKey.isPressed && Keyboard.current.pKey.wasPressedThisFrame)
-        {
-            ProximityAttack();
-        }
     }
 
     void DistanceFromFriends()
@@ -123,8 +107,7 @@ public class monsterManager : MonoBehaviour
             {
                 proximityMeter = 0f;
                 //Do Proximity Attack
-                ProximityAttack();
-                
+                Debug.Log("Proximity Attack!");
             }
         }
         else
@@ -169,7 +152,51 @@ public class monsterManager : MonoBehaviour
             }
         }
     }
-    
+
+    void HandleMonsterPrefabMovement()
+    {
+        //Only move the prefabs in the direction of playerForward
+        foreach (GameObject prefab in monsterPrefabs)
+        {
+            if (prefab != null)
+            {
+                Vector3 targetPosition;
+                targetPosition.x = prefab.transform.position.x;
+                targetPosition.y = prefab.transform.position.y;
+                targetPosition.z = player.transform.position.z;
+
+                //Determine movement direction based on playerForward
+                if(Mathf.Abs(playerForward.x) > 0.5f)
+                {
+                    //Moving in x direction
+                    targetPosition.x = player.transform.position.x + (playerForward.x > 0 ? -monsterPrefabDistance : monsterPrefabDistance);
+                }
+                else if (Mathf.Abs(playerForward.z) > 0.5f)
+                {
+                    //Moving in z direction
+                    targetPosition.z = player.transform.position.z + (playerForward.z > 0 ? -monsterPrefabDistance : monsterPrefabDistance);
+                }
+                prefab.transform.position = targetPosition;
+            }
+        }
+
+        //Disable and enable meshrenderer based on monsterSide
+        if (monsterSide == MonsterSide.Left)
+        {
+            monsterPrefabs[0].GetComponent<MeshRenderer>().enabled = true;
+            monsterPrefabs[0].transform.GetChild(0).GetComponent<MeshRenderer>().enabled = true;
+            monsterPrefabs[1].GetComponent<MeshRenderer>().enabled = false;
+            monsterPrefabs[1].transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
+        }
+        else
+        {
+            monsterPrefabs[0].GetComponent<MeshRenderer>().enabled = false;
+            monsterPrefabs[0].transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
+            monsterPrefabs[1].GetComponent<MeshRenderer>().enabled = true;
+            monsterPrefabs[1].transform.GetChild(0).GetComponent<MeshRenderer>().enabled = true;
+        }
+    }
+
     void HandleMonsterLeftRight()
     {
         //Randomly switch monster side every monsterInterval seconds
@@ -178,31 +205,14 @@ public class monsterManager : MonoBehaviour
         {
             monsterTimer = Random.Range(monsterIntervalMin, monsterIntervalMax);
             monsterSide = (monsterSide == MonsterSide.Left) ? MonsterSide.Right : MonsterSide.Left;
-            //Audio: Play a sound specifically from the new active side of the monster prefab's location in the woods
-            if (audioManager.instance != null && monsterPrefabs.Length >= 2)
+            //Audio
+            if (audioManager.instance != null)
             {
-                // Determine which side the monster is
-                GameObject activeEmitter = (monsterSide == MonsterSide.Left) ? monsterPrefabs[0] : monsterPrefabs[1];
-                
-                // Play the sound specifically from the active emitter's position
-                audioManager.instance.Play("MonsterMove", activeEmitter);
+                //TODO: Make the emitter the prefab that's enabled
+                audioManager.instance.Play("TripSound", gameObject);
             }
-            
             //UI
             ui.SetText(ui.monsterSideValue, $"{monsterSide}");
-        }
-
-        //Disable and enable meshrenderer based on monsterSide
-        if (monsterPrefabs.Length >= 2)
-        {
-            if (monsterSide == MonsterSide.Left)
-            {
-                EnableMonsterMesh(MonsterSide.Left);
-            }
-            else
-            {
-                EnableMonsterMesh(MonsterSide.Right);
-            }
         }
     }
 
@@ -217,7 +227,7 @@ public class monsterManager : MonoBehaviour
             {
                 sameTrackMeter = 0f;
                 //Do Same Track Attack
-                SameTrackAttack();
+                Debug.Log("Same Track Attack!");
             }
         }
         else
@@ -239,72 +249,5 @@ public class monsterManager : MonoBehaviour
     {
         Debug.Log("Storing Player Forward: " + player.transform.forward);
         playerForward = player.transform.forward;
-    }
-    
-    //TODO: refactor
-    void MonsterEyes()
-    {
-        //Monster eyes are red if player is on the same track as the monster, otherwise they are white
-        //Angry eyes: 1, 3, 5, 7
-        bool sameSide = (monsterSide == MonsterSide.Left && playerInput.GetPlayerSide() == -1) || (monsterSide == MonsterSide.Right && playerInput.GetPlayerSide() == 1);
-        monsterEyes[1].SetActive(sameSide);
-        monsterEyes[3].SetActive(sameSide);
-        monsterEyes[5].SetActive(sameSide);
-        monsterEyes[7].SetActive(sameSide);
-
-        //Neutral eyes: 0, 2, 4, 6
-        monsterEyes[0].SetActive(!sameSide);
-        monsterEyes[2].SetActive(!sameSide);
-        monsterEyes[4].SetActive(!sameSide);
-        monsterEyes[6].SetActive(!sameSide);
-    }
-
-    void ProximityAttack()
-    {
-        if (disableJumpscare)
-        {
-            Debug.Log("Proximity Attack Triggered, but jumpscare is disabled.");
-            return;
-        }
-
-        Debug.Log("Proximity Attack!");
-        jumpscareScreen.SetActive(true);
-
-        //play the audio with a slight delay
-        Invoke("PlayJumpscareSound", jumpScareDelay);
-
-        audioManager.instance.Play("JumpscareSound", gameObject);
-        
-    }
-
-    void SameTrackAttack()
-    {
-        if (disableJumpscare)
-        {
-            Debug.Log("Same Track Attack Triggered, but jumpscare is disabled.");
-            return;
-        }
-        
-        Debug.Log("Same Track Attack!");
-        audioManager.instance.Play("JumpscareSound", gameObject);
-        jumpscareScreen.SetActive(true);
-    }
-
-    void EnableMonsterMesh(MonsterSide sideToEnable)
-    {
-        //Currently hardcoding what meshes to disable
-        if (monsterPrefabs.Length >= 2)
-        {
-            if (sideToEnable == MonsterSide.Left)
-            {
-                monsterPrefabs[0].SetActive(true);
-                monsterPrefabs[1].SetActive(false);
-            }
-            else
-            {
-                monsterPrefabs[0].SetActive(false);
-                monsterPrefabs[1].SetActive(true);
-            }
-        }
     }
 }
