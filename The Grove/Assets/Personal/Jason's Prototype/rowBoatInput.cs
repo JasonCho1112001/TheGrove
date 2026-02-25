@@ -385,42 +385,8 @@ public class rowBoatInput : MonoBehaviour
         //Deplete stamina based on movement state
         stamina.DepleteStamina(movementMultiplier); // Deplete more stamina at higher movement states
 
-        //UI
-        ui.SetText(ui.movementText, currentState.ToString());
-
-        //How moving left or right works:
-        //Left input adds to leftRightBias, right input adds to it. This bias then influences the direction of the forward force applied to the rigidbody in ManageRigidBodyForce, creating a curved movement path when bias is not neutral. Bias slowly returns to neutral over opposite steps.
-        
-    }
-
-    void ManageRigidBodyForce()
-    {
-        //Apply forward force based on movement state and left/right bias
-        Vector3 forwardForceVector = transform.forward * minimumForce + transform.forward * forwardForce * movementMultiplier;
-        Vector3 rightForceVector = Vector3.zero;
-
-        //Determine what "forward" is based on playerForward
-        //It's simply the 1 value in playerForward
-        //if Mathf.Abs(playerForward.x) > 0, then forward is in the x direction,
-            //Therefore horizontalOffset is based on z
-        //if Mathf.Abs(playerForward.z) > 0, then forward is in the z direction)
-            //Therefore horizontalOffset is based on x
-        
-
-        //Apply leftRightmovement Only if we are within horizontal range
-        horizontalOffset = transform.position - centerLine;
-
-        //TODO: Refart
-        //Player is moving in the x direction, so horizontal offset is based on z
-        if(leftRightMovement != 0)
-        {
-            forwardForceVector = transform.forward * minimumForce * forwardDuringLeftRightMultiplier;
-            rightForceVector = transform.right * leftRightMovement * horizontalSpeed;
-        }
-        
-        
-
         //Set playerside
+        horizontalOffset = transform.position - centerLine;
         if (horizontalOffset.x < -0.25f)
         {
             playerSide = PlayerSide.Left;
@@ -434,6 +400,27 @@ public class rowBoatInput : MonoBehaviour
         else
         {
             //Leave it as last side when at the center
+        }
+
+        //UI
+        ui.SetText(ui.movementText, currentState.ToString());
+
+        //How moving left or right works:
+        //Left input adds to leftRightBias, right input adds to it. This bias then influences the direction of the forward force applied to the rigidbody in ManageRigidBodyForce, creating a curved movement path when bias is not neutral. Bias slowly returns to neutral over opposite steps.
+        
+    }
+
+    void ManageRigidBodyForce()
+    {
+        //Apply forward force based on movement state and left/right bias
+        Vector3 forwardForceVector = transform.forward * minimumForce + transform.forward * forwardForce * movementMultiplier;
+        Vector3 rightForceVector = Vector3.zero;
+        
+        //Left Right Movement
+        if(leftRightMovement != 0)
+        {
+            forwardForceVector = transform.forward * minimumForce * forwardDuringLeftRightMultiplier;
+            rightForceVector = transform.right * leftRightMovement * horizontalSpeed;
         }
 
         //Add the actual force
