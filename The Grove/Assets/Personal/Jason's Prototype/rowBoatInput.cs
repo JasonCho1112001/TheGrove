@@ -81,6 +81,7 @@ public class rowBoatInput : MonoBehaviour
     private float originalCameraXRotation;
     private Quaternion originalCameraRotation;
     private Vector3 targetCameraPosition;
+    public float leftRightViewBobbingIntensity = 0.5f;
 
     //References
     private Rigidbody rb;
@@ -320,6 +321,12 @@ public class rowBoatInput : MonoBehaviour
 
     void ManageCadenceTimer()
     {
+        //Pause the timer if player is holding for left right
+        if(isLeftHeld || isRightHeld)
+        {
+            return;
+        }
+
         if (cadenceTimer > 0f)
         {
             cadenceTimer -= Time.deltaTime;
@@ -401,13 +408,6 @@ public class rowBoatInput : MonoBehaviour
         {
             //Leave it as last side when at the center
         }
-
-        //UI
-        ui.SetText(ui.movementText, currentState.ToString());
-
-        //How moving left or right works:
-        //Left input adds to leftRightBias, right input adds to it. This bias then influences the direction of the forward force applied to the rigidbody in ManageRigidBodyForce, creating a curved movement path when bias is not neutral. Bias slowly returns to neutral over opposite steps.
-        
     }
 
     void ManageRigidBodyForce()
@@ -438,6 +438,7 @@ public class rowBoatInput : MonoBehaviour
         float targetValue = horizontalVelocity.magnitude / maxSpeed;
         float currentValue = ui.movementSlider.value;
         ui.SetSlider(ui.movementSlider, Mathf.Lerp(currentValue, targetValue, Time.deltaTime * 5f));
+        ui.SetText(ui.movementText, currentState.ToString() + ": " + horizontalVelocity.magnitude.ToString("F0") ); 
     }
 
     // Tyvin: This rotates the player when they enter a camera rotate trigger zone.
@@ -496,6 +497,13 @@ public class rowBoatInput : MonoBehaviour
             bobbingAmount = Mathf.Sin(Time.time * viewBobbingDisplacementSpeed * 3f) * viewBobbingDisplacementIntensity * 3f;
             rollAmount = Mathf.Sin(Time.time * viewBobbingRollSpeed * 3f) * viewBobbingRollIntensity * 3f;
         }
+
+        //Apply roll when player is moving left or right
+        if(leftRightMovement != 0)
+        {
+            rollAmount -= leftRightMovement * viewBobbingRollIntensity * leftRightViewBobbingIntensity;
+        }
+
         targetCameraPosition = new Vector3(originalCameraPosition.x, originalCameraPosition.y + bobbingAmount, originalCameraPosition.z);
         cam.transform.localPosition = targetCameraPosition;
         cam.transform.localRotation = cam.transform.localRotation * Quaternion.Euler(0f, 0f, rollAmount);
