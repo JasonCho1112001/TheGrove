@@ -38,7 +38,7 @@ public class QTECameraTilt : MonoBehaviour
     private void Awake()
     {
         initialX = transform.localEulerAngles.x;
-        initialX = transform.localEulerAngles.z;
+        initialZ = transform.localEulerAngles.z;
 
         if (timer == null)
         {
@@ -64,27 +64,9 @@ public class QTECameraTilt : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (isTripping)
-        {
-            tripTimer += Time.deltaTime;
-            if (tripTimer > tripDuration) EndTripAnim();
-
-            float shake = Mathf.Sin(tripTimer * shakeFrequency) * shakeStrength * tripTimer;
-            float targetZ = shake;
-            float targetX = tripLurch;
-            currentX = Mathf.SmoothDamp(currentX, targetX, ref velocityX, smoothTime);
-            currentZ = Mathf.SmoothDamp(currentZ, targetZ, ref velocityZ, smoothTime);
-
-            transform.localRotation = Quaternion.Euler(
-                currentX,
-                0f,
-                currentZ
-            );
-        }
-        else
-        {
-            tripTimer = 0f;
-        }
+        //Deleted misleading excess code :)
+        //UI
+        playerRockInput.uI.SetText(playerRockInput.uI.timerText, $"{timer.remainingTime:F2}");
     }
 
     public void TiltCamera()

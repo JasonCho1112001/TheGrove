@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7421482570260759667}
   - component: {fileID: 2611379885260443358}
   - component: {fileID: 1720277628709011255}
+  - component: {fileID: 1781553547788496314}
   m_Layer: 0
   m_Name: Player Cube
   m_TagString: Untagged
@@ -124,3 +125,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 933c6b950dd6bef438e6339487080160, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  leftInput: {fileID: -6971403200060296834, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  rightInput: {fileID: -5705695804407081969, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  lookInput: {fileID: 3361303849181377952, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  forwardForce: 15
+  maxSpeed: 12.5
+  stepAudioCooldown: 0.25
+  cadenceDelayTime: 0
+  currentState: 0
+  movementMultipliers:
+  - 0
+  - 1
+  - 2
+  - 4
+  movementMultiplier: 0
+  minimumForce: 1
+  inputTimestamps:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  cadence: 0
+  cadenceTimerMax: 1
+  cadenceTimer: 1
+  isLooking: 0
+  lookSpeed: 3.5
+  leftRightBias: 0
+  lastDirectionInput: 0
+  horizontalSpeed: 2
+  maxHorizontalRange: 2.5
+  centerLine: {x: 0, y: 0, z: 0}
+  playerSide: 0
+  horizontalOffset: {x: 0, y: 0, z: 0}
+  viewBobbingDisplacementIntensity: 0.0005
+  viewBobbingDisplacementSpeed: 5
+  viewBobbingRollIntensity: 1
+  viewBobbingRollSpeed: 5
+--- !u!114 &1781553547788496314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5580083070350078335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 946310fa34cba2544ad0614df4a8f202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  maxStamina: 100
+  currentStamina: 100
+  staminaRegenRate: 7.5
+  staminaDepletionRate: 5
+  staminaRegenDelay: 2
+  restingStaminaRegenRate: 20
+  currentStaminaState: 0

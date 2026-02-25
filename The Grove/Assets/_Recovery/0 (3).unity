@@ -169,6 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fe9b664c3171b24b9d8f930111a54e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIDragHandle
+  canvasRect: {fileID: 42832985}
 --- !u!114 &42832987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,31 +263,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e98ef2c6e7ed5f47ba012bd70b7e009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  defaultBackground: {fileID: 0}
-  groups: []
   agitationSlider: {fileID: 388993440}
   agitationText: {fileID: 842575213}
-  movementSlider: {fileID: 0}
-  movementText: {fileID: 0}
-  staminaSlider: {fileID: 0}
-  staminaText: {fileID: 0}
-  distanceSlider: {fileID: 0}
-  distanceText: {fileID: 0}
-  proximitySlider: {fileID: 0}
-  proximityText: {fileID: 0}
-  timerSlider: {fileID: 0}
-  timerText: {fileID: 0}
-  angleSlider: {fileID: 0}
-  angleText: {fileID: 0}
-  aDisabledText: {fileID: 0}
-  aEnabledText: {fileID: 0}
-  dEnabledText: {fileID: 0}
-  dDisabledText: {fileID: 0}
-  monsterSideValue: {fileID: 0}
-  monsterTimerValue: {fileID: 0}
-  playerSideValue: {fileID: 0}
-  sameTrackSlider: {fileID: 0}
-  sameTrackText: {fileID: 0}
 --- !u!114 &43954297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5787,31 +5765,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e98ef2c6e7ed5f47ba012bd70b7e009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  defaultBackground: {fileID: 0}
-  groups: []
   agitationSlider: {fileID: 388993440}
   agitationText: {fileID: 842575213}
-  movementSlider: {fileID: 0}
-  movementText: {fileID: 0}
-  staminaSlider: {fileID: 0}
-  staminaText: {fileID: 0}
-  distanceSlider: {fileID: 0}
-  distanceText: {fileID: 0}
-  proximitySlider: {fileID: 0}
-  proximityText: {fileID: 0}
-  timerSlider: {fileID: 0}
-  timerText: {fileID: 0}
-  angleSlider: {fileID: 0}
-  angleText: {fileID: 0}
-  aDisabledText: {fileID: 0}
-  aEnabledText: {fileID: 0}
-  dEnabledText: {fileID: 0}
-  dDisabledText: {fileID: 0}
-  monsterSideValue: {fileID: 0}
-  monsterTimerValue: {fileID: 0}
-  playerSideValue: {fileID: 0}
-  sameTrackSlider: {fileID: 0}
-  sameTrackText: {fileID: 0}
 --- !u!114 &122731579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5904,6 +5859,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab9ca6bd16535c24eb8fe32e6ab85742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NavMeshFriends
+  exitPath: {fileID: 175455503}
+  safeRoomTriggerScripts: []
 --- !u!4 &157686302
 Transform:
   m_ObjectHideFlags: 0
@@ -5981,7 +5938,7 @@ Terrain:
   m_GameObject: {fileID: 165464989}
   m_Enabled: 1
   serializedVersion: 6
-  m_TerrainData: {fileID: 0}
+  m_TerrainData: {fileID: 15600000, guid: 9b121cd2a6812194cb9689c7e34a8469, type: 2}
   m_TreeDistance: 5000
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
@@ -7825,6 +7782,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab9ca6bd16535c24eb8fe32e6ab85742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NavMeshFriends
+  exitPath: {fileID: 1923762875}
+  safeRoomTriggerScripts: []
 --- !u!195 &493763667
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -8104,7 +8063,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.23333333
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: ff078b2e8fffbb449a7eb57415dbca4d, type: 2}
   m_BuildHeightMesh: 0
@@ -13286,7 +13245,7 @@ Terrain:
   m_GameObject: {fileID: 676821111}
   m_Enabled: 1
   serializedVersion: 6
-  m_TerrainData: {fileID: 0}
+  m_TerrainData: {fileID: 15600000, guid: 92a1b9aa1c923ce4abeb5a68c7e935f6, type: 2}
   m_TreeDistance: 5000
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
@@ -13444,6 +13403,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab9ca6bd16535c24eb8fe32e6ab85742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NavMeshFriends
+  exitPath: {fileID: 1923762875}
+  safeRoomTriggerScripts: []
 --- !u!195 &687192248
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -13581,8 +13542,6 @@ MonoBehaviour:
   staminaRegenRate: 5
   staminaDepletionRate: 10
   staminaRegenDelay: 2
-  restingStaminaRegenRate: 20
-  currentStaminaState: 0
 --- !u!54 &715105489
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -19021,7 +18980,7 @@ Terrain:
   m_GameObject: {fileID: 853130876}
   m_Enabled: 1
   serializedVersion: 6
-  m_TerrainData: {fileID: 0}
+  m_TerrainData: {fileID: 15600000, guid: 2afb6268e081c534e896a679ba27546f, type: 2}
   m_TreeDistance: 5000
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
@@ -19081,6 +19040,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3619e3c3e74dcb64086a0e6c1ae35d6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QTEDrag
+  tempQTEInfoText: {fileID: 87686843}
+  tempQTETimerText: {fileID: 227044567}
+  startDuration: 10
+  canvasRect: {fileID: 122731577}
+  draggableRect: {fileID: 42832985}
+  destinationRect: {fileID: 417550608}
+  successDistance: 50
 --- !u!4 &875238644
 Transform:
   m_ObjectHideFlags: 0
@@ -19316,6 +19282,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab9ca6bd16535c24eb8fe32e6ab85742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NavMeshFriends
+  exitPath: {fileID: 1923762875}
+  safeRoomTriggerScripts: []
 --- !u!195 &893170050
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -19592,6 +19560,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5efee5e1ab878074aa21cf8e6a0eaa14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::rowBoatInputModified
+  leftInput: {fileID: 0}
+  rightInput: {fileID: 0}
+  forwardForce: 2.5
+  sidewaysForce: 100
+  playerCamera: {fileID: 0}
+  sens: 10
+  x: 0
+  y: 0
+  balanceState: 0
+  currentState: 0
+  agitationMeter: 0
+  agitationDecayRate: 150
+  passiveAgitationDecayRate: 25
+  startFirstRotation: 0
 --- !u!65 &984515869
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21502,6 +21484,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8acdb2687ecaf84e9d17d12a860b316, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerControlWithDraggable
+  quickTimeEventScript: {fileID: 875238643}
+  rowBoatInput: {fileID: 1645687854}
+  isFrozen: 0
 --- !u!114 &1645687854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21516,36 +21501,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::rowBoatInput
   leftInput: {fileID: -6971403200060296834, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   rightInput: {fileID: -5705695804407081969, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  lookInput: {fileID: 0}
   forwardForce: 2.5
-  maxSpeed: 5
-  stepAudioCooldown: 0.4
-  cadenceDelayTime: 0
+  balanceState: 0
   currentState: 0
-  movementMultipliers:
-  - 0
-  - 1
-  - 2
-  - 4
-  movementMultiplier: 0
-  minimumForce: 5
-  inputTimestamps:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  cadence: 0
-  cadenceTimerMax: 2
-  cadenceTimer: 2
-  isLooking: 0
-  lookSpeed: 5
-  leftRightBias: 0
-  lastDirectionInput: 0
-  horizontalSpeed: 2
-  maxHorizontalRange: 5
-  centerLine: {x: 0, y: 0, z: 0}
-  playerSide: 0
+  agitationMeter: 0
+  agitationDecayRate: 150
+  passiveAgitationDecayRate: 25
 --- !u!114 &1645687856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21558,6 +21519,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e59370b6b6f1d84bb580f7b4165bcc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseCamera
+  playerCamera: {fileID: 1269044937}
+  sens: 50
+  x: 0
+  y: 0
 --- !u!1 &1685205750
 GameObject:
   m_ObjectHideFlags: 0
@@ -21713,7 +21678,7 @@ Terrain:
   m_GameObject: {fileID: 1698738670}
   m_Enabled: 1
   serializedVersion: 6
-  m_TerrainData: {fileID: 0}
+  m_TerrainData: {fileID: 15600000, guid: 99cb4366f8704b348b1f00ffae78648b, type: 2}
   m_TreeDistance: 5000
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
@@ -21789,7 +21754,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.23333333
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 1ad0d1ffd7b03a44bbd708d89d81747b, type: 2}
   m_BuildHeightMesh: 0
@@ -21945,31 +21910,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e98ef2c6e7ed5f47ba012bd70b7e009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::uiManager
-  defaultBackground: {fileID: 0}
-  groups: []
   agitationSlider: {fileID: 388993440}
   agitationText: {fileID: 842575213}
-  movementSlider: {fileID: 0}
-  movementText: {fileID: 0}
-  staminaSlider: {fileID: 0}
-  staminaText: {fileID: 0}
-  distanceSlider: {fileID: 0}
-  distanceText: {fileID: 0}
-  proximitySlider: {fileID: 0}
-  proximityText: {fileID: 0}
-  timerSlider: {fileID: 0}
-  timerText: {fileID: 0}
-  angleSlider: {fileID: 0}
-  angleText: {fileID: 0}
-  aDisabledText: {fileID: 0}
-  aEnabledText: {fileID: 0}
-  dEnabledText: {fileID: 0}
-  dDisabledText: {fileID: 0}
-  monsterSideValue: {fileID: 0}
-  monsterTimerValue: {fileID: 0}
-  playerSideValue: {fileID: 0}
-  sameTrackSlider: {fileID: 0}
-  sameTrackText: {fileID: 0}
 --- !u!1 &1779692417
 GameObject:
   m_ObjectHideFlags: 0
@@ -22270,7 +22212,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 952927396564969168, guid: 3d24ea3ab93ab714bbd31c206893da19, type: 3}
   m_PrefabInstance: {fileID: 1816359499}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1328100514}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab9ca6bd16535c24eb8fe32e6ab85742, type: 3}
@@ -23173,6 +23115,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab9ca6bd16535c24eb8fe32e6ab85742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NavMeshFriends
+  exitPath: {fileID: 1923762875}
+  safeRoomTriggerScripts: []
 --- !u!195 &1952613717
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -23457,6 +23401,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5efee5e1ab878074aa21cf8e6a0eaa14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::rowBoatInputModified
+  leftInput: {fileID: -6971403200060296834, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  rightInput: {fileID: -5705695804407081969, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  forwardForce: 4
+  sidewaysForce: 6
+  playerCamera: {fileID: 303896648}
+  sens: 66.53
+  x: 0
+  y: 0
+  balanceState: 0
+  currentState: 0
+  agitationMeter: 0
+  agitationDecayRate: 150
+  passiveAgitationDecayRate: 25
+  startFirstRotation: 0
 --- !u!136 &1986549746
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -23569,7 +23527,7 @@ Terrain:
   m_GameObject: {fileID: 1990688702}
   m_Enabled: 1
   serializedVersion: 6
-  m_TerrainData: {fileID: 0}
+  m_TerrainData: {fileID: 15600000, guid: f2e19738dd6875b4e8165573e24744b8, type: 2}
   m_TreeDistance: 5000
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
