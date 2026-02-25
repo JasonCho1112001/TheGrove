@@ -888,6 +888,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48c2dca7bf38cfd4a98352f81b3eef51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::audioManager
+  masterVolume: 1
   duckingVolume: 0.3
   duckingDuration: 3
   sounds:
@@ -7272,6 +7273,15 @@ MonoBehaviour:
   monsterPrefabVerticalOffset: 0
   monsterPrefabLateralOffset: 0
   playerForward: {x: 0, y: 0, z: 0}
+  monsterEyes:
+  - {fileID: 2085937630}
+  - {fileID: 1004293193}
+  - {fileID: 1742657909}
+  - {fileID: 485148349}
+  - {fileID: 1603515147}
+  - {fileID: 143101651}
+  - {fileID: 962756395}
+  - {fileID: 2090625263}
   gameManager: {fileID: 1781748407}
   ui: {fileID: 1210427473}
   playerInput: {fileID: 1866825971}
@@ -9359,6 +9369,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 142369456}
   m_CullTransparentMesh: 1
+--- !u!1 &143101651 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7357377505105500898, guid: d9eae2185becdf1478902292602a2eda, type: 3}
+  m_PrefabInstance: {fileID: 555764521}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &148918003
 GameObject:
   m_ObjectHideFlags: 0
@@ -19345,6 +19360,11 @@ Transform:
   - {fileID: 1996809813}
   m_Father: {fileID: 235437064}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &485148349 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3835455572171007758, guid: d9eae2185becdf1478902292602a2eda, type: 3}
+  m_PrefabInstance: {fileID: 1425242893}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &487180857
 GameObject:
   m_ObjectHideFlags: 0
@@ -44568,6 +44588,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3355593193174434181, guid: d9eae2185becdf1478902292602a2eda, type: 3}
   m_PrefabInstance: {fileID: 1425242893}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &962756395 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1321155530160249601, guid: d9eae2185becdf1478902292602a2eda, type: 3}
+  m_PrefabInstance: {fileID: 555764521}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &963524085
 GameObject:
   m_ObjectHideFlags: 0
@@ -45309,6 +45334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48c2dca7bf38cfd4a98352f81b3eef51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::audioManager
+  masterVolume: 1
   duckingVolume: 0.3
   duckingDuration: 3
   sounds:
@@ -45535,6 +45561,11 @@ Transform:
   - {fileID: 1946360805}
   m_Father: {fileID: 1232004314}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1004293193 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7357377505105500898, guid: d9eae2185becdf1478902292602a2eda, type: 3}
+  m_PrefabInstance: {fileID: 1425242893}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1006166789
 GameObject:
   m_ObjectHideFlags: 0
@@ -67812,6 +67843,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1583945686}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1603515147 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8760066367041526044, guid: d9eae2185becdf1478902292602a2eda, type: 3}
+  m_PrefabInstance: {fileID: 555764521}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1605758276
 GameObject:
   m_ObjectHideFlags: 0
@@ -76791,6 +76827,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1742241394}
   m_CullTransparentMesh: 1
+--- !u!1 &1742657909 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1321155530160249601, guid: d9eae2185becdf1478902292602a2eda, type: 3}
+  m_PrefabInstance: {fileID: 1425242893}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1742726408
 GameObject:
   m_ObjectHideFlags: 0
@@ -96547,6 +96588,7 @@ MonoBehaviour:
   monsterPrefabVerticalOffset: 0
   monsterPrefabLateralOffset: 0
   playerForward: {x: 0, y: 0, z: 0}
+  monsterEyes: []
   gameManager: {fileID: 472232500}
   ui: {fileID: 2029895941}
   playerInput: {fileID: 1836735927}
@@ -97925,6 +97967,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 52137860}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2085937630 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8760066367041526044, guid: d9eae2185becdf1478902292602a2eda, type: 3}
+  m_PrefabInstance: {fileID: 1425242893}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2087869321
 GameObject:
   m_ObjectHideFlags: 0
@@ -97984,6 +98031,11 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!1 &2090625263 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3835455572171007758, guid: d9eae2185becdf1478902292602a2eda, type: 3}
+  m_PrefabInstance: {fileID: 555764521}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2097413705
 GameObject:
   m_ObjectHideFlags: 0
