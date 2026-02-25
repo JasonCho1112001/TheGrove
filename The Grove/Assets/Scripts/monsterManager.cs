@@ -43,6 +43,8 @@ public class monsterManager : MonoBehaviour
     public float monsterPrefabLateralOffset = 0f;
     public Vector3 playerForward;
 
+    public GameObject[] monsterEyes;
+
 
 
     //References
@@ -87,6 +89,8 @@ public class monsterManager : MonoBehaviour
         HandleMonsterLeftRight();
 
         CheckSameTrackAttack();
+
+        MonsterEyes();
 
         //Constant UI
         ui.SetText(ui.monsterTimerValue, $"{monsterTimer:F2}");
@@ -237,6 +241,24 @@ public class monsterManager : MonoBehaviour
         playerForward = player.transform.forward;
     }
     
+    //TODO: refactor
+    void MonsterEyes()
+    {
+        //Monster eyes are red if player is on the same track as the monster, otherwise they are white
+        //Angry eyes: 1, 3, 5, 7
+        bool sameSide = (monsterSide == MonsterSide.Left && playerInput.GetPlayerSide() == -1) || (monsterSide == MonsterSide.Right && playerInput.GetPlayerSide() == 1);
+        monsterEyes[1].SetActive(sameSide);
+        monsterEyes[3].SetActive(sameSide);
+        monsterEyes[5].SetActive(sameSide);
+        monsterEyes[7].SetActive(sameSide);
+
+        //Neutral eyes: 0, 2, 4, 6
+        monsterEyes[0].SetActive(!sameSide);
+        monsterEyes[2].SetActive(!sameSide);
+        monsterEyes[4].SetActive(!sameSide);
+        monsterEyes[6].SetActive(!sameSide);
+    }
+
     void ProximityAttack()
     {
         if (disableJumpscare)
