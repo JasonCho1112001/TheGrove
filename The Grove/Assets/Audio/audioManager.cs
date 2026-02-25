@@ -22,9 +22,6 @@ public class audioManager : MonoBehaviour
 {
     public static audioManager instance; 
 
-    [Header("Master Volume")]
-    [Range(0f, 1f)] public float masterVolume = 1f;
-    
     [Header("Ducking Settings")]
     [Range(0f, 1f)] public float duckingVolume = 0.3f;
     public float duckingDuration = 3.0f;
@@ -41,13 +38,6 @@ public class audioManager : MonoBehaviour
         else { Destroy(gameObject); return; }
         
         DontDestroyOnLoad(gameObject);
-        AudioListener.volume = masterVolume;
-    }
-
-    public void SetMasterVolume(float volume)
-    {
-        masterVolume = Mathf.Clamp01(volume);
-        AudioListener.volume = masterVolume;
     }
 
     public void Play(string name, GameObject emitter = null)
@@ -110,7 +100,7 @@ public class audioManager : MonoBehaviour
     {
         foreach (SoundEvent s in sounds)
         {
-            if (s.category == SoundCategory.Friend)
+            if (s.category == SoundCategory.Friend || s.category == SoundCategory.Ambience)
             {
                 if(s.source != null) s.source.volume = s.volume * duckingVolume; 
             }
@@ -120,7 +110,7 @@ public class audioManager : MonoBehaviour
 
         foreach (SoundEvent s in sounds)
         {
-            if (s.category == SoundCategory.Friend)
+            if (s.category == SoundCategory.Friend || s.category == SoundCategory.Ambience)
             {
                 if(s.source != null) s.source.volume = s.volume;
             }
