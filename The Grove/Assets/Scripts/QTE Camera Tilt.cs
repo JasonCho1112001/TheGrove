@@ -64,9 +64,28 @@ public class QTECameraTilt : MonoBehaviour
 
     private void LateUpdate()
     {
-        //Deleted misleading excess code :)
-        //UI
-        playerRockInput.uI.SetText(playerRockInput.uI.timerText, $"{timer.remainingTime:F2}");
+        // Player Trip Fail Code
+        if (isTripping)
+        {
+            tripTimer += Time.deltaTime;
+            if (tripTimer > tripDuration) EndTripAnim();
+
+            float shake = Mathf.Sin(tripTimer * shakeFrequency) * shakeStrength * tripTimer;
+            float targetZ = shake;
+            float targetX = tripLurch;
+            currentX = Mathf.SmoothDamp(currentX, targetX, ref velocityX, smoothTime);
+            currentZ = Mathf.SmoothDamp(currentZ, targetZ, ref velocityZ, smoothTime);
+
+            transform.localRotation = Quaternion.Euler(
+                currentX,
+                0f,
+                currentZ
+            );
+        }
+        else
+        {
+            tripTimer = 0f;
+        }
     }
 
     public void TiltCamera()
@@ -121,6 +140,7 @@ public class QTECameraTilt : MonoBehaviour
         else
         {
             playerInput.enabled = true;
+            playerInput.ResetPlayerMovement();
             playerRockInput.ResetCurrentZ();
             timer.ResetTimer();
         }

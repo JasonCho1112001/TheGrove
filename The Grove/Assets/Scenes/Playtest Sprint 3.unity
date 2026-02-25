@@ -779,7 +779,7 @@ MonoBehaviour:
   playerInput: {fileID: 1866825971}
   playerRockInput: {fileID: 1866825985}
   isTripping: 0
-  tripDuration: 0.05
+  tripDuration: 0.5
   tripLurch: 17
   shakeFrequency: 10
   shakeStrength: 30
@@ -13682,6 +13682,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 919118388216598148, guid: 6b2385e9e00540143ba2680af83d8b70, type: 3}
+      propertyPath: m_TagString
+      value: Rock
+      objectReference: {fileID: 0}
     - target: {fileID: 4053603954979942282, guid: 6b2385e9e00540143ba2680af83d8b70, type: 3}
       propertyPath: m_Name
       value: Rock QTE Obstacle (3)
@@ -18776,18 +18780,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3742664595662352594, guid: e6330720af381b640b113d89923d2d1e, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4347205711263258403, guid: e6330720af381b640b113d89923d2d1e, type: 3}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6040684908889961666, guid: e6330720af381b640b113d89923d2d1e, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 867195e95e2a2bb459ed259b36c9e582, type: 2}
     - target: {fileID: 341404557766343495, guid: 0834e2fd1893fb948a0ae7d041091b98, type: 3}
       propertyPath: m_LocalPosition.x
       value: 24.15
@@ -18836,6 +18828,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3742664595662352594, guid: e6330720af381b640b113d89923d2d1e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4347205711263258403, guid: e6330720af381b640b113d89923d2d1e, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6040684908889961666, guid: e6330720af381b640b113d89923d2d1e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 867195e95e2a2bb459ed259b36c9e582, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -31113,7 +31117,9 @@ MonoBehaviour:
   cameraTilt: {fileID: 1499051526}
   timer: {fileID: 678147398}
   depletedStamina: 25
+  qTECooldownDuration: 2
   isRockQTEActive: 0
+  isCooldownActive: 0
 --- !u!114 &707984906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75794,8 +75800,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc1a6bf3152187e47a2cbda21e2d9070, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QTETimerSystem
-  timerDuration: 1
-  uI: {fileID: 716172787}
+  timerDuration: 3
+  uI: {fileID: 1210427473}
   isTimerRunning: 0
   remainingTime: 0
 --- !u!1 &1716031999
@@ -80588,7 +80594,9 @@ MonoBehaviour:
   cameraTilt: {fileID: 12933229}
   timer: {fileID: 1712332736}
   depletedStamina: 25
+  qTECooldownDuration: 2
   isRockQTEActive: 0
+  isCooldownActive: 0
 --- !u!114 &1866825985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80622,7 +80630,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   cameraTransform: {fileID: 12933224}
-  playerStrength: 6
+  playerStrength: 10
   maxAngle: 35
   uI: {fileID: 1210427473}
   smoothTime: 0.15
