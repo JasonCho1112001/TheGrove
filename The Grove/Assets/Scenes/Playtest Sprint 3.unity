@@ -7284,6 +7284,7 @@ MonoBehaviour:
   gameManager: {fileID: 1781748407}
   ui: {fileID: 1210427473}
   playerInput: {fileID: 1866825971}
+  rockQTE: {fileID: 1866825981}
   player: {fileID: 1866825968}
   friendGroup: {fileID: 1060652391}
   jumpscareScreen: {fileID: 1701918630}
@@ -97485,6 +97486,7 @@ MonoBehaviour:
   gameManager: {fileID: 472232500}
   ui: {fileID: 2029895941}
   playerInput: {fileID: 1836735927}
+  rockQTE: {fileID: 0}
   player: {fileID: 1836735921}
   friendGroup: {fileID: 0}
   jumpscareScreen: {fileID: 0}

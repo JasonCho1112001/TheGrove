@@ -25,7 +25,7 @@ public class monsterManager : MonoBehaviour
     public float monsterIntervalMin = 2.5f;
     public float monsterIntervalMax = 7.5f;
     private float monsterTimer;
-    
+
     [Header("--Same Track Attack--")]
     public float sameTrackMeter = 0f;
     public float sameTrackMax = 100f;
@@ -53,6 +53,7 @@ public class monsterManager : MonoBehaviour
     public gameManager gameManager;
     public uiManager ui;
     public rowBoatInput playerInput;
+    public RockQTE rockQTE;
     
     //Manually assigned
     [Header("--Manually Assigned--")]
@@ -69,7 +70,7 @@ public class monsterManager : MonoBehaviour
         monsterTimer = monsterIntervalMin;
 
         if (player != null) playerInput = player.GetComponent<rowBoatInput>(); else Debug.LogError("Player GameObject not assigned in monsterManager");
-        
+        if (rockQTE != null) rockQTE = player.GetComponent<RockQTE>(); else Debug.LogError("RockQTE script not assigned in monsterManager");
     }
 
     void Start()
@@ -80,6 +81,12 @@ public class monsterManager : MonoBehaviour
 
     void Update()
     {
+        //Temp: Pause all logic when rockQTE is active
+        if (rockQTE != null && rockQTE.isRockQTEActive)
+        {
+            return;
+        }
+
         DistanceFromFriends();
 
         ProximityMeter();
