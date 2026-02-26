@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8048153511002612751}
   m_Layer: 0
   m_Name: Rock Placeholder
-  m_TagString: Rock
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,8 +101,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.1295769, y: 0.5236168, z: 1}
-  m_Center: {x: -0.09999697, y: 0.24210207, z: 0}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &7831325336842849228
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -16,10 +16,7 @@ public class RockQTE : MonoBehaviour
 
     private PlayerRockQTEInput playerInput;
     private staminaSystem playerStamina;
-    private float qTECooldownTimer = 0f;
-    public float qTECooldownDuration = 2f;
     public bool isRockQTEActive = false;
-    public bool isCooldownActive = false;
 
     private void Awake()
     {
@@ -70,24 +67,13 @@ public class RockQTE : MonoBehaviour
             playerStamina.currentStamina -= depletedStamina;
             playerInput.InitiateTiltDirection();
         }
-
-        if (isCooldownActive)
-        {
-            qTECooldownTimer += Time.deltaTime;
-            if (qTECooldownTimer > qTECooldownDuration) isCooldownActive = false;
-        }
-        else
-        {
-            qTECooldownTimer = 0f;
-        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == rock.tag && !isCooldownActive)
+        if (other.gameObject.tag == rock.tag)
         {
             Debug.Log("Rock QTE Started");
-            isCooldownActive = true;
             isRockQTEActive = true;
             cameraTilt.TiltCamera();
         }

@@ -8,7 +8,6 @@ TagManager:
   - Right Camera Rotate
   - Friend
   - Rotate Trigger
-  - Rock
   layers:
   - Default
   - TransparentFX
