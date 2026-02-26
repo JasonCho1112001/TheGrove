@@ -25,7 +25,7 @@ public class monsterManager : MonoBehaviour
     public float monsterIntervalMin = 2.5f;
     public float monsterIntervalMax = 7.5f;
     private float monsterTimer;
-
+    
     [Header("--Same Track Attack--")]
     public float sameTrackMeter = 0f;
     public float sameTrackMax = 100f;

@@ -76,6 +76,9 @@ public class RockQTE : MonoBehaviour
             Debug.Log("Rock QTE Started");
             isRockQTEActive = true;
             cameraTilt.TiltCamera();
+
+            //Disable the collider to prevent multiple triggers
+            other.enabled = false;
         }
     }
 

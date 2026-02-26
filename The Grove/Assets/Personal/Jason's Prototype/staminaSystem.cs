@@ -1,5 +1,7 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
 
 public class staminaSystem : MonoBehaviour
 {
@@ -12,6 +14,11 @@ public class staminaSystem : MonoBehaviour
     public float restingStaminaRegenRate = 20f;
     private bool isBreathing = false;
     private bool isHeartBeating = false;    
+
+    // NEW: exhaustion controls
+    public float exhaustionDuration = 5f;
+    public float fadeDuration = 1f;
+    private bool isExhausted = false;
 
     public enum StaminaState { Stage1, Stage2, Stage3, Exhausted}
     public StaminaState currentStaminaState = StaminaState.Stage1;
@@ -56,6 +63,7 @@ public class staminaSystem : MonoBehaviour
         {
             //Exhausted - Very Low Stamina
             currentStaminaState = StaminaState.Exhausted;
+            InitiateExhaustion();
         }
 
         // Play breathing if in Stage 2
@@ -87,7 +95,85 @@ public class staminaSystem : MonoBehaviour
         ui.SetText(ui.staminaText, currentStaminaState.ToString());
     }
 
-void ManageAudio()
+    void InitiateExhaustion()
+    {
+        // Prevent multiple concurrent exhaustion routines
+        if (isExhausted) return;
+        StartCoroutine(ExhaustionCoroutine());
+    }
+
+    private IEnumerator ExhaustionCoroutine()
+    {
+        isExhausted = true;
+        Debug.Log("Player is exhausted!");
+
+        // Disable player input/component to prevent movement
+        if (input != null)
+        {
+            input.enabled = false;
+        }
+
+        // Attempt to fade screen to black if a UI Image named "FadePanel" exists
+        Image fadeImage = null;
+        GameObject fadeObj = GameObject.Find("FadePanel");
+        if (fadeObj != null) fadeImage = fadeObj.GetComponent<Image>();
+
+        // Fade to black
+        if (fadeImage != null)
+        {
+            Color c = fadeImage.color;
+            for (float t = 0f; t <= 1f; t += Time.unscaledDeltaTime / Mathf.Max(0.0001f, fadeDuration))
+            {
+                c.a = Mathf.Lerp(0f, 1f, t);
+                fadeImage.color = c;
+                yield return null;
+            }
+            c.a = 1f;
+            fadeImage.color = c;
+        }
+
+        // Wait out exhaustion
+        float elapsed = 0f;
+        while (elapsed < exhaustionDuration)
+        {
+            elapsed += Time.unscaledDeltaTime;
+            yield return null;
+        }
+
+        // Restore stamina and UI
+        currentStamina = maxStamina * 0.5f; // Restore to 50% stamina after exhaustion
+        float targetValue = currentStamina / maxStamina;
+        if (ui != null)
+        {
+            ui.SetSlider(ui.staminaSlider, targetValue);
+        }
+
+        // Fade back in
+        if (fadeImage != null)
+        {
+            Color c = fadeImage.color;
+            for (float t = 0f; t <= 1f; t += Time.unscaledDeltaTime / Mathf.Max(0.0001f, fadeDuration))
+            {
+                c.a = Mathf.Lerp(1f, 0f, t);
+                fadeImage.color = c;
+                yield return null;
+            }
+            c.a = 0f;
+            fadeImage.color = c;
+        }
+
+        // Re-enable input/component
+        if (input != null)
+        {
+            input.enabled = true;
+            input.ResetMovement();
+        }
+
+        // Ensure stamina state updates next frame
+        isExhausted = false;
+    }
+
+    void ManageAudio()
     {   
         // Breathing: Starts at Stamina Stage 2 continues to Stage 3
         bool shouldBreathe = currentStaminaState == StaminaState.Stage2 || currentStaminaState == StaminaState.Stage3;
