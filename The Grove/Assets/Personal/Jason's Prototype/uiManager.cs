@@ -43,6 +43,7 @@ public class uiManager : MonoBehaviour
     public TextMeshProUGUI playerSideValue;
     public Slider sameTrackSlider;
     public TextMeshProUGUI sameTrackText;
+    public TextMeshProUGUI jumpscareText;
 
     void Awake()
     {

@@ -26,6 +26,9 @@ public class staminaSystem : MonoBehaviour
     private rowBoatInput input;
     private uiManager ui;
 
+    //Temp: Manually Assigned
+    public RockQTE rockQTE;
+
     void Awake()
     {
         ui = FindFirstObjectByType<uiManager>();
@@ -67,7 +70,7 @@ public class staminaSystem : MonoBehaviour
         }
 
         // Play breathing if in Stage 2
-        if (currentStaminaState == StaminaState.Stage2 || currentStaminaState == StaminaState.Stage3)
+        if (currentStaminaState == StaminaState.Stage2 || currentStaminaState == StaminaState.Stage3 || currentStaminaState == StaminaState.Exhausted)
         {
             // Only call Play if we aren't already breathing
             if (!isBreathing)
@@ -176,10 +179,10 @@ public class staminaSystem : MonoBehaviour
     void ManageAudio()
     {   
         // Breathing: Starts at Stamina Stage 2 continues to Stage 3
-        bool shouldBreathe = currentStaminaState == StaminaState.Stage2 || currentStaminaState == StaminaState.Stage3;
+        bool shouldBreathe = currentStaminaState == StaminaState.Stage2 || currentStaminaState == StaminaState.Stage3 || currentStaminaState == StaminaState.Exhausted;
 
         // Heartbeat: Starts at Stamina Stage 3
-        bool shouldHeartbeat = currentStaminaState == StaminaState.Stage3;
+        bool shouldHeartbeat = currentStaminaState == StaminaState.Stage3 || currentStaminaState == StaminaState.Exhausted;
 
         // Breathing Execution
         if (shouldBreathe)
@@ -232,6 +235,12 @@ public class staminaSystem : MonoBehaviour
 
     void RestingRegen()
     {
+        //When to not do resting regen
+        if (currentStaminaState == StaminaState.Exhausted || rockQTE.isRockQTEActive)
+        {
+            return;
+        }
+
         if (input.currentState == rowBoatInput.MovementState.Idle)
         {
             currentStamina += restingStaminaRegenRate * Time.deltaTime;
@@ -249,7 +258,7 @@ public class staminaSystem : MonoBehaviour
 
     public void PassiveStaminaRegen()
     {
-        if (input.currentState == rowBoatInput.MovementState.Idle)
+        if (input.currentState == rowBoatInput.MovementState.Idle || StaminaState.Exhausted == currentStaminaState || rockQTE.isRockQTEActive)
         {
             return; // No passive regen if idle, handled by resting regen
         }

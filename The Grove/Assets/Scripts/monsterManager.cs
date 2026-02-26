@@ -276,6 +276,7 @@ public class monsterManager : MonoBehaviour
 
         Debug.Log("Proximity Attack!");
         jumpscareScreen.SetActive(true);
+        ui.SetText(ui.jumpscareText, "The monster has caught you from being too far from your friends!");
 
         //play the audio with a slight delay
         Invoke("PlayJumpscareSound", jumpScareDelay);
@@ -295,6 +296,7 @@ public class monsterManager : MonoBehaviour
         Debug.Log("Same Track Attack!");
         audioManager.instance.Play("JumpscareSound", gameObject);
         jumpscareScreen.SetActive(true);
+        ui.SetText(ui.jumpscareText, "The monster has caught you from being too close to its side!");
     }
 
     void EnableMonsterMesh(MonsterSide sideToEnable)
