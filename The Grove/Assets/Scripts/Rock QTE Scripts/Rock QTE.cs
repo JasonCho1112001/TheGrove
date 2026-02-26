@@ -62,7 +62,7 @@ public class RockQTE : MonoBehaviour
             cameraTilt.TiltCamera();
         }
 
-        if ((Mathf.Abs(playerInput.currentZ) >= playerInput.maxAngle - .01f) && isRockQTEActive)
+        if ((Mathf.Abs(playerInput.currentZ) >= playerInput.maxAngle - 5f) && isRockQTEActive)
         {
             isRockQTEActive = false;
             cameraTilt.TiltCamera();

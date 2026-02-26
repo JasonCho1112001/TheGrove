@@ -779,10 +779,10 @@ MonoBehaviour:
   playerInput: {fileID: 1866825971}
   playerRockInput: {fileID: 1866825985}
   isTripping: 0
-  tripDuration: 0.05
-  tripLurch: 17
+  tripDuration: 0.8
+  tripLurch: 30
   shakeFrequency: 10
-  shakeStrength: 30
+  shakeStrength: 20
   smoothTime: 0.12
 --- !u!1 &26594780
 GameObject:
@@ -31463,7 +31463,9 @@ MonoBehaviour:
   cameraTilt: {fileID: 1499051526}
   timer: {fileID: 678147398}
   depletedStamina: 25
+  qTECooldownDuration: 2
   isRockQTEActive: 0
+  isCooldownActive: 0
 --- !u!114 &707984906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76833,7 +76835,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QTETimerSystem
   timerDuration: 3
-  uI: {fileID: 716172787}
+  uI: {fileID: 1210427473}
   isTimerRunning: 0
   remainingTime: 0
 --- !u!1 &1716031999
@@ -81624,7 +81626,9 @@ MonoBehaviour:
   cameraTilt: {fileID: 12933229}
   timer: {fileID: 1712332736}
   depletedStamina: 25
+  qTECooldownDuration: 2
   isRockQTEActive: 0
+  isCooldownActive: 0
 --- !u!114 &1866825985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81658,7 +81662,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   cameraTransform: {fileID: 12933224}
-  playerStrength: 6
+  playerStrength: 14
   maxAngle: 35
   uI: {fileID: 1210427473}
   smoothTime: 0.15
