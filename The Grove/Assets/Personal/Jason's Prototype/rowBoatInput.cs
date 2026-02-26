@@ -592,6 +592,33 @@ public class rowBoatInput : MonoBehaviour
         }
         
     }
+    public void ResetPlayerMovement()
+    {
+        // Stops all movement
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
+
+        leftRightMovement = 0f;
+        leftRightBias = 0;
+        lastDirectionInput = 0;
+        leftRightTimer = 0f;
+        isLeftHeld = false;
+        isRightHeld = false;
+
+        if (holdCoroutine != null)
+        {
+            StopCoroutine(holdCoroutine);
+            holdCoroutine = null;
+        }
+
+        cadence = 0f;
+        cadenceTimer = 0f;
+        currentState = MovementState.Idle;
+        movementMultiplier = 0f;
+    }
 }
 
     
