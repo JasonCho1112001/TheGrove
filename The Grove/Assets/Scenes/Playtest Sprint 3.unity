@@ -19233,6 +19233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01640b717cad9814aac8291d97bde85e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::gameManager
+  restartInput: {fileID: 0}
 --- !u!4 &472232501
 Transform:
   m_ObjectHideFlags: 0
@@ -32091,6 +32092,7 @@ MonoBehaviour:
   sameTrackSlider: {fileID: 0}
   sameTrackText: {fileID: 0}
   jumpscareText: {fileID: 0}
+  recDot: {fileID: 0}
 --- !u!4 &716172788
 Transform:
   m_ObjectHideFlags: 0
@@ -51933,6 +51935,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01640b717cad9814aac8291d97bde85e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::gameManager
+  restartInput: {fileID: 0}
 --- !u!1 &1190279054
 GameObject:
   m_ObjectHideFlags: 0
@@ -52444,6 +52447,7 @@ MonoBehaviour:
   sameTrackSlider: {fileID: 1616649364}
   sameTrackText: {fileID: 302798237}
   jumpscareText: {fileID: 777502768}
+  recDot: {fileID: 87007864}
 --- !u!1 &1211241894
 GameObject:
   m_ObjectHideFlags: 0
@@ -79245,6 +79249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01640b717cad9814aac8291d97bde85e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::gameManager
+  restartInput: {fileID: 0}
 --- !u!4 &1781748408
 Transform:
   m_ObjectHideFlags: 0
@@ -97217,6 +97222,7 @@ MonoBehaviour:
   sameTrackSlider: {fileID: 1115875718}
   sameTrackText: {fileID: 2123846174}
   jumpscareText: {fileID: 0}
+  recDot: {fileID: 0}
 --- !u!1 &2034250138
 GameObject:
   m_ObjectHideFlags: 0
