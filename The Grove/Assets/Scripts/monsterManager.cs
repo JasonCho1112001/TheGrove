@@ -32,6 +32,8 @@ public class monsterManager : MonoBehaviour
     public float sameTrackIncreaseRate = 10f;
     public float sameTrackDecreaseRate = 5f;
     public float jumpScareDelay = 0.4f;
+    private bool wasInDanger = false;
+    
     
     
     [Header("--Monster Prefab Management--")]
@@ -219,6 +221,8 @@ public class monsterManager : MonoBehaviour
         if ((monsterSide == MonsterSide.Left && playerInput.GetPlayerSide() == -1) ||
             (monsterSide == MonsterSide.Right && playerInput.GetPlayerSide() == 1))
         {
+            wasInDanger = true;
+
             sameTrackMeter += sameTrackIncreaseRate * Time.deltaTime;
             if (sameTrackMeter >= sameTrackMax)
             {
@@ -229,6 +233,16 @@ public class monsterManager : MonoBehaviour
         }
         else
         {
+            // trigger safe lane audio cue if player just moved out of danger
+            if (wasInDanger)
+            {
+                wasInDanger = false;
+                if (audioManager.instance != null && player != null)
+                {
+                    audioManager.instance.Play("SafeLane", player);
+                }
+            }
+
             sameTrackMeter -= sameTrackDecreaseRate * Time.deltaTime;
             if (sameTrackMeter < 0f)
             {
@@ -239,7 +253,6 @@ public class monsterManager : MonoBehaviour
         //UI
         ui.SetSlider(ui.sameTrackSlider, sameTrackMeter / sameTrackMax);
         ui.SetText(ui.sameTrackText, $"{sameTrackMeter:F1}");
-        
     }
 
     public void StorePlayerForward()
