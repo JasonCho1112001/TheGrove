@@ -21,6 +21,8 @@ public class uiManager : MonoBehaviour
     public Slider staminaSlider;
     public TextMeshProUGUI staminaText;
 
+    public Slider playerStaminaSlider;
+
     public Slider distanceSlider;
     public TextMeshProUGUI distanceText;
 
@@ -72,6 +74,10 @@ public class uiManager : MonoBehaviour
         if (recDot == null)
         {
             throw new System.Exception("recDot not assigned in inspector");
+        }
+        if (playerStaminaSlider == null)
+        {
+            throw new System.Exception("Player Stamina Slider not assigned in inspector");
         }
 
         //Disable defaultBackground
