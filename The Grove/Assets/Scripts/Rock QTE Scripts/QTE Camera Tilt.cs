@@ -38,6 +38,8 @@ public class QTECameraTilt : MonoBehaviour
     private float velocityX;
     private float velocityZ;
 
+    private readonly string trip = "PlayerTrip";
+
     private void Awake()
     {
         initialX = transform.localEulerAngles.x;
@@ -151,7 +153,7 @@ public class QTECameraTilt : MonoBehaviour
     public void StartTripAnim()
     {
         isTripping = true;
-        sound.Play("PlayerTrip");
+        sound.Play(trip);
     }
 
     public void EndTripAnim()

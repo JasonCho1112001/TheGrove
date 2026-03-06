@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RockQTE : MonoBehaviour
@@ -11,6 +12,9 @@ public class RockQTE : MonoBehaviour
     [Header("Timer Script")]
     public QTETimerSystem timer;
 
+    [Header("Audio Manager Script")]
+    public audioManager soundManager;
+
     [Header("Stamina Depletion Settings")]
     public float depletedStamina = 1f;
 
@@ -20,6 +24,8 @@ public class RockQTE : MonoBehaviour
     public float qTECooldownDuration = 2f;
     public bool isRockQTEActive = false;
     public bool isCooldownActive = false;
+
+    private readonly string balanceSound = "PlayerBalancing";
 
     private void Awake()
     {
@@ -34,6 +40,10 @@ public class RockQTE : MonoBehaviour
         if (timer == null)
         {
             throw new System.Exception("Timer script not assigned in inspector");
+        }
+        if (soundManager == null)
+        {
+            throw new System.Exception("Audio Manager script not assigned in inspector");
         }
 
         playerInput = GetComponent<PlayerRockQTEInput>();
@@ -59,12 +69,14 @@ public class RockQTE : MonoBehaviour
         if ((timer.remainingTime <= 0.01f) && isRockQTEActive)
         {
             isRockQTEActive = false;
+            soundManager.Stop(balanceSound);
             cameraTilt.TiltCamera();
         }
 
         if ((Mathf.Abs(playerInput.currentZ) >= playerInput.maxAngle - 5f) && isRockQTEActive)
         {
             isRockQTEActive = false;
+            soundManager.Stop(balanceSound);
             cameraTilt.TiltCamera();
             cameraTilt.StartTripAnim();
             playerStamina.currentStamina -= depletedStamina;
@@ -89,6 +101,7 @@ public class RockQTE : MonoBehaviour
             Debug.Log("Rock QTE Started");
             isCooldownActive = true;
             isRockQTEActive = true;
+            soundManager.Play(balanceSound);
             cameraTilt.TiltCamera();
 
             //Disable the collider to prevent multiple triggers

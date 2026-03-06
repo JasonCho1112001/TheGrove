@@ -31538,6 +31538,7 @@ MonoBehaviour:
   rock: {fileID: 1941039437}
   cameraTilt: {fileID: 1499051526}
   timer: {fileID: 678147398}
+  soundManager: {fileID: 0}
   depletedStamina: 25
   qTECooldownDuration: 2
   isRockQTEActive: 0
@@ -46225,6 +46226,15 @@ MonoBehaviour:
     volume: 0.78
     pitch: 1.56
     loop: 0
+    spatialBlend: 1
+    maxDistance: 0
+    category: 0
+    source: {fileID: 0}
+  - soundName: PlayerBalancing
+    clip: {fileID: 8300000, guid: 8600d815fbbe36849852d89de7bd355a, type: 3}
+    volume: 0.1
+    pitch: 0.8
+    loop: 1
     spatialBlend: 1
     maxDistance: 0
     category: 0
@@ -81914,6 +81924,7 @@ MonoBehaviour:
   rock: {fileID: 1941039437}
   cameraTilt: {fileID: 12933229}
   timer: {fileID: 1712332736}
+  soundManager: {fileID: 991115924}
   depletedStamina: 25
   qTECooldownDuration: 2
   isRockQTEActive: 0
