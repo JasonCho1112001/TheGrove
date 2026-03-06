@@ -81940,7 +81940,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   cameraTransform: {fileID: 12933224}
-  playerStrength: 14
+  playerStrength: 90
   maxAngle: 35
   uI: {fileID: 1210427473}
   smoothTime: 0.15
