@@ -778,6 +778,7 @@ MonoBehaviour:
   rockQTE: {fileID: 1866825981}
   playerInput: {fileID: 1866825971}
   playerRockInput: {fileID: 1866825985}
+  sound: {fileID: 991115924}
   isTripping: 0
   tripDuration: 0.8
   tripLurch: 30
@@ -46219,6 +46220,15 @@ MonoBehaviour:
     maxDistance: 0
     category: 0
     source: {fileID: 0}
+  - soundName: PlayerTrip
+    clip: {fileID: 8300000, guid: 7651f9a03cca3604f8d08045e3397e7e, type: 3}
+    volume: 0.78
+    pitch: 1.56
+    loop: 0
+    spatialBlend: 1
+    maxDistance: 0
+    category: 0
+    source: {fileID: 0}
 --- !u!4 &991115925
 Transform:
   m_ObjectHideFlags: 0
@@ -61658,6 +61668,7 @@ MonoBehaviour:
   rockQTE: {fileID: 707984905}
   playerInput: {fileID: 707984902}
   playerRockInput: {fileID: 707984904}
+  sound: {fileID: 0}
   isTripping: 0
   tripDuration: 0.5
   tripLurch: 17
