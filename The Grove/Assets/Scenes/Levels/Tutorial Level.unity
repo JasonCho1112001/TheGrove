@@ -3686,7 +3686,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &107990462
 Transform:
   m_ObjectHideFlags: 0
@@ -3702,6 +3702,7 @@ Transform:
   m_Children:
   - {fileID: 321755890}
   - {fileID: 1489836822}
+  - {fileID: 2089983834}
   - {fileID: 2107715391}
   - {fileID: 585964360}
   - {fileID: 1092698462}
@@ -5582,7 +5583,7 @@ GameObject:
   - component: {fileID: 176356654}
   - component: {fileID: 176356655}
   m_Layer: 0
-  m_Name: Press/Hold A Trigger
+  m_Name: Press A/D Trigger
   m_TagString: Tutorial
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7903,6 +7904,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock QTE Obstacle (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4053603954979942282, guid: 6b2385e9e00540143ba2680af83d8b70, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7006866137531167814, guid: 6b2385e9e00540143ba2680af83d8b70, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7006866137531167814, guid: 6b2385e9e00540143ba2680af83d8b70, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 7006866137531167814, guid: 6b2385e9e00540143ba2680af83d8b70, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.95
+      objectReference: {fileID: 0}
     - target: {fileID: 7959226514077352688, guid: 6b2385e9e00540143ba2680af83d8b70, type: 3}
       propertyPath: m_LocalScale.x
       value: 2
@@ -9188,6 +9205,10 @@ PrefabInstance:
     - target: {fileID: 4053603954979942282, guid: 6b2385e9e00540143ba2680af83d8b70, type: 3}
       propertyPath: m_Name
       value: Rock QTE Obstacle (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4053603954979942282, guid: 6b2385e9e00540143ba2680af83d8b70, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7959226514077352688, guid: 6b2385e9e00540143ba2680af83d8b70, type: 3}
       propertyPath: m_LocalScale.x
@@ -11066,7 +11087,6 @@ GameObject:
   m_Component:
   - component: {fileID: 321755890}
   - component: {fileID: 321755889}
-  - component: {fileID: 321755891}
   m_Layer: 0
   m_Name: Invisible Barrier Starting Field
   m_TagString: Untagged
@@ -11110,22 +11130,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 107990462}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!208 &321755891
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 321755888}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.965, y: 0.5, z: 0.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1 &331135797
 GameObject:
   m_ObjectHideFlags: 0
@@ -17429,7 +17433,6 @@ GameObject:
   m_Component:
   - component: {fileID: 585964360}
   - component: {fileID: 585964359}
-  - component: {fileID: 585964361}
   m_Layer: 0
   m_Name: Invisible Barrier Finish Field
   m_TagString: Untagged
@@ -17473,22 +17476,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 107990462}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!208 &585964361
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 585964358}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1 &588620412
 GameObject:
   m_ObjectHideFlags: 0
@@ -33118,7 +33105,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1092698462}
   - component: {fileID: 1092698461}
-  - component: {fileID: 1092698463}
   m_Layer: 0
   m_Name: Invisible Barrier Middle Hill
   m_TagString: Untagged
@@ -33162,22 +33148,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 107990462}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!208 &1092698463
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1092698460}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1 &1097376051
 GameObject:
   m_ObjectHideFlags: 0
@@ -41629,7 +41599,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '<mark=#000000aa>Hold A or D to Avoid Falling During QTE</mark>
+  m_text: '<mark=#000000aa>Hold A or D to Adjust Camera After Colliding Rock</mark>
 
 '
   m_isRightToLeft: 0
@@ -43785,7 +43755,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <mark=#000000aa>Press/Hold D To Move Right</mark>
+  m_text: <mark=#000000aa>Press/Hold A or D To Move Left or Right</mark>
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -45191,7 +45161,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1489836822}
   - component: {fileID: 1489836821}
-  - component: {fileID: 1489836823}
   m_Layer: 0
   m_Name: Invisible Barrier Player Block Behind
   m_TagString: Untagged
@@ -45218,7 +45187,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.2607918, y: 1, z: 4.62}
+  m_Size: {x: 2.13, y: 1, z: 3.15}
   m_Center: {x: -1.1303972, y: 0, z: 0.28351238}
 --- !u!4 &1489836822
 Transform:
@@ -45235,22 +45204,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 107990462}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!208 &1489836823
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1489836820}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 1.71, y: 1.04, z: 2.23}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: -1.12, y: 0, z: 0.43}
-  m_TimeToStationary: 0.5
 --- !u!1 &1490952918
 GameObject:
   m_ObjectHideFlags: 0
@@ -46394,6 +46347,71 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1515811140}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1525372416
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 695742213667827720, guid: 7f50785d4de384f4cbf8de1e77106b91, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.4012787
+      objectReference: {fileID: 0}
+    - target: {fileID: 695742213667827720, guid: 7f50785d4de384f4cbf8de1e77106b91, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 695742213667827720, guid: 7f50785d4de384f4cbf8de1e77106b91, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.499999
+      objectReference: {fileID: 0}
+    - target: {fileID: 695742213667827720, guid: 7f50785d4de384f4cbf8de1e77106b91, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 120.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 695742213667827720, guid: 7f50785d4de384f4cbf8de1e77106b91, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.84634453
+      objectReference: {fileID: 0}
+    - target: {fileID: 695742213667827720, guid: 7f50785d4de384f4cbf8de1e77106b91, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 695742213667827720, guid: 7f50785d4de384f4cbf8de1e77106b91, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.532636
+      objectReference: {fileID: 0}
+    - target: {fileID: 695742213667827720, guid: 7f50785d4de384f4cbf8de1e77106b91, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 695742213667827720, guid: 7f50785d4de384f4cbf8de1e77106b91, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 695742213667827720, guid: 7f50785d4de384f4cbf8de1e77106b91, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -64.367
+      objectReference: {fileID: 0}
+    - target: {fileID: 695742213667827720, guid: 7f50785d4de384f4cbf8de1e77106b91, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7249984875472172139, guid: 7f50785d4de384f4cbf8de1e77106b91, type: 3}
+      propertyPath: m_Name
+      value: Rotate Trigger Block V2 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7249984875472172139, guid: 7f50785d4de384f4cbf8de1e77106b91, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7f50785d4de384f4cbf8de1e77106b91, type: 3}
 --- !u!1 &1531277565
 GameObject:
   m_ObjectHideFlags: 0
@@ -56543,7 +56561,7 @@ GameObject:
   - component: {fileID: 1874896296}
   - component: {fileID: 1874896295}
   m_Layer: 5
-  m_Name: Press/Hold A UI
+  m_Name: Press A/D UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56588,7 +56606,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <mark=#000000aa>Press/Hold A To Move Left</mark>
+  m_text: <mark=#000000aa>Press A and D to Move Straight</mark>
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -64055,6 +64073,59 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!1 &2089983833
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2089983834}
+  - component: {fileID: 2089983835}
+  m_Layer: 0
+  m_Name: Invisible Barrier Player Block Behind (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2089983834
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089983833}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.39924493, z: -0, w: 0.91684437}
+  m_LocalPosition: {x: 86.0495, y: -0.24432993, z: -2.7512436}
+  m_LocalScale: {x: 20, y: 20, z: 30}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 107990462}
+  m_LocalEulerAnglesHint: {x: 0, y: -47.062, z: 0}
+--- !u!65 &2089983835
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089983833}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.71, y: 1, z: 1.07}
+  m_Center: {x: -1, y: 0, z: 0.38}
 --- !u!1 &2090625263 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3835455572171007758, guid: d9eae2185becdf1478902292602a2eda, type: 3}
@@ -64072,7 +64143,7 @@ GameObject:
   - component: {fileID: 2097107347}
   - component: {fileID: 2097107348}
   m_Layer: 0
-  m_Name: Press/Hold D Trigger
+  m_Name: Press/Hold A D Trigger
   m_TagString: Tutorial
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64554,7 +64625,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2107715391}
   - component: {fileID: 2107715390}
-  - component: {fileID: 2107715392}
   m_Layer: 0
   m_Name: Invisible Barrier (3)
   m_TagString: Untagged
@@ -64598,22 +64668,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 107990462}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!208 &2107715392
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2107715389}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 5.55}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 5.18}
-  m_TimeToStationary: 0.5
 --- !u!1 &2108034475
 GameObject:
   m_ObjectHideFlags: 0
@@ -65643,6 +65697,71 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2134636105}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &2137118892
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 695742213667827720, guid: 7f50785d4de384f4cbf8de1e77106b91, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.4012787
+      objectReference: {fileID: 0}
+    - target: {fileID: 695742213667827720, guid: 7f50785d4de384f4cbf8de1e77106b91, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 19.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 695742213667827720, guid: 7f50785d4de384f4cbf8de1e77106b91, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.499999
+      objectReference: {fileID: 0}
+    - target: {fileID: 695742213667827720, guid: 7f50785d4de384f4cbf8de1e77106b91, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 111.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 695742213667827720, guid: 7f50785d4de384f4cbf8de1e77106b91, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.91997373
+      objectReference: {fileID: 0}
+    - target: {fileID: 695742213667827720, guid: 7f50785d4de384f4cbf8de1e77106b91, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 695742213667827720, guid: 7f50785d4de384f4cbf8de1e77106b91, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.39198017
+      objectReference: {fileID: 0}
+    - target: {fileID: 695742213667827720, guid: 7f50785d4de384f4cbf8de1e77106b91, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 695742213667827720, guid: 7f50785d4de384f4cbf8de1e77106b91, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 695742213667827720, guid: 7f50785d4de384f4cbf8de1e77106b91, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -46.156
+      objectReference: {fileID: 0}
+    - target: {fileID: 695742213667827720, guid: 7f50785d4de384f4cbf8de1e77106b91, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7249984875472172139, guid: 7f50785d4de384f4cbf8de1e77106b91, type: 3}
+      propertyPath: m_Name
+      value: Rotate Trigger Block V2 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7249984875472172139, guid: 7f50785d4de384f4cbf8de1e77106b91, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7f50785d4de384f4cbf8de1e77106b91, type: 3}
 --- !u!1 &2137742112
 GameObject:
   m_ObjectHideFlags: 0
@@ -66159,11 +66278,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 695742213667827720, guid: 7f50785d4de384f4cbf8de1e77106b91, type: 3}
       propertyPath: m_LocalScale.x
-      value: 4.9726
+      value: 1.4012787
       objectReference: {fileID: 0}
     - target: {fileID: 695742213667827720, guid: 7f50785d4de384f4cbf8de1e77106b91, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 22.6
+      value: 26.27
       objectReference: {fileID: 0}
     - target: {fileID: 695742213667827720, guid: 7f50785d4de384f4cbf8de1e77106b91, type: 3}
       propertyPath: m_LocalPosition.y
@@ -66171,11 +66290,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 695742213667827720, guid: 7f50785d4de384f4cbf8de1e77106b91, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 112.8
+      value: 99.9
       objectReference: {fileID: 0}
     - target: {fileID: 695742213667827720, guid: 7f50785d4de384f4cbf8de1e77106b91, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9368542
+      value: 0.9866643
       objectReference: {fileID: 0}
     - target: {fileID: 695742213667827720, guid: 7f50785d4de384f4cbf8de1e77106b91, type: 3}
       propertyPath: m_LocalRotation.x
@@ -66183,7 +66302,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 695742213667827720, guid: 7f50785d4de384f4cbf8de1e77106b91, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.34972036
+      value: -0.1627686
       objectReference: {fileID: 0}
     - target: {fileID: 695742213667827720, guid: 7f50785d4de384f4cbf8de1e77106b91, type: 3}
       propertyPath: m_LocalRotation.z
@@ -66195,7 +66314,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 695742213667827720, guid: 7f50785d4de384f4cbf8de1e77106b91, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -40.94
+      value: -18.735
       objectReference: {fileID: 0}
     - target: {fileID: 695742213667827720, guid: 7f50785d4de384f4cbf8de1e77106b91, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -66236,6 +66355,8 @@ SceneRoots:
   - {fileID: 1149592039}
   - {fileID: 1409640314}
   - {fileID: 8750254595265860779}
+  - {fileID: 2137118892}
+  - {fileID: 1525372416}
   - {fileID: 1257405321}
   - {fileID: 629351870}
   - {fileID: 736354945}
