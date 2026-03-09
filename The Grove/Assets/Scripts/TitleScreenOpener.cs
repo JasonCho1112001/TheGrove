@@ -1,16 +1,19 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TitleScreenOpener : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private Image fadeOverlay;      // Black overlay image
+    [SerializeField] private Image fadeOverlay;
     [SerializeField] private CanvasGroup camcorderUI;
     [SerializeField] private CanvasGroup titleGroup;
+    [SerializeField] private string nextScene = "Main Menu";
 
     [Header("Timing")]
     [SerializeField] private float fadeOutSeconds = 1f;
+    [SerializeField] private float waitBeforeLoad = 5f;
 
     private void Awake()
     {
@@ -39,7 +42,13 @@ public class TitleScreenOpener : MonoBehaviour
         camcorderUI.alpha = 1f;
 
         // Instantly show title
-        titleGroup.alpha = 2f;
+        titleGroup.alpha = 1f;
+
+        // Wait 5 seconds
+        yield return new WaitForSeconds(waitBeforeLoad);
+
+        // Load the main menu scene
+        SceneManager.LoadScene(nextScene);
     }
 
     private IEnumerator FadeOverlay()
