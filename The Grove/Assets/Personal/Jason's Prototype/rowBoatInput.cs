@@ -451,7 +451,7 @@ public class rowBoatInput : MonoBehaviour
             Transform myRotatePoint = other.transform.parent.GetChild(1).transform;
             if(myRotatePoint.name == "Rotation Point")
             {
-                transform.rotation = myRotatePoint.rotation;
+                transform.rotation = myRotatePoint.rotation * Quaternion.Euler(0f, 30f, 0f); // Tyvin: Temp fix for now to have the turn be 30 degrees.
                 centerLine = myRotatePoint.position; // Update center line to the new position after rotation
                 Debug.Log("Player entered rotation trigger, rotating player to match new camera angle. Rotation point: " + myRotatePoint.name);
             }
