@@ -275,10 +275,6 @@ MonoBehaviour:
   distanceText: {fileID: 0}
   proximitySlider: {fileID: 0}
   proximityText: {fileID: 0}
-  timerSlider: {fileID: 0}
-  timerText: {fileID: 0}
-  angleSlider: {fileID: 0}
-  angleText: {fileID: 0}
   aDisabledText: {fileID: 0}
   aEnabledText: {fileID: 0}
   dEnabledText: {fileID: 0}
@@ -5800,10 +5796,6 @@ MonoBehaviour:
   distanceText: {fileID: 0}
   proximitySlider: {fileID: 0}
   proximityText: {fileID: 0}
-  timerSlider: {fileID: 0}
-  timerText: {fileID: 0}
-  angleSlider: {fileID: 0}
-  angleText: {fileID: 0}
   aDisabledText: {fileID: 0}
   aEnabledText: {fileID: 0}
   dEnabledText: {fileID: 0}
@@ -21560,7 +21552,6 @@ MonoBehaviour:
   leftInput: {fileID: -6971403200060296834, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   rightInput: {fileID: -5705695804407081969, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   lookInput: {fileID: 0}
-  holdThreshold: 0.5
   forwardForce: 2.5
   maxSpeed: 5
   stepAudioCooldown: 0.4
@@ -21585,21 +21576,11 @@ MonoBehaviour:
   isLooking: 0
   lookSpeed: 5
   leftRightBias: 0
-  leftRightMovement: 0
   lastDirectionInput: 0
   horizontalSpeed: 2
   maxHorizontalRange: 5
   centerLine: {x: 0, y: 0, z: 0}
   playerSide: 0
-  horizontalOffset: {x: 0, y: 0, z: 0}
-  leftRightTimer: 0
-  leftRightMultiplier: 5
-  forwardDuringLeftRightMultiplier: 3
-  viewBobbingDisplacementIntensity: 0.1
-  viewBobbingDisplacementSpeed: 5
-  viewBobbingRollIntensity: 1
-  viewBobbingRollSpeed: 5
-  leftRightViewBobbingIntensity: 0.5
 --- !u!114 &1645687856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22015,10 +21996,6 @@ MonoBehaviour:
   distanceText: {fileID: 0}
   proximitySlider: {fileID: 0}
   proximityText: {fileID: 0}
-  timerSlider: {fileID: 0}
-  timerText: {fileID: 0}
-  angleSlider: {fileID: 0}
-  angleText: {fileID: 0}
   aDisabledText: {fileID: 0}
   aEnabledText: {fileID: 0}
   dEnabledText: {fileID: 0}
