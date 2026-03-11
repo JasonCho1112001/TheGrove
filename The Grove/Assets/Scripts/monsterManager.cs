@@ -233,7 +233,7 @@ public class monsterManager : MonoBehaviour
         }
         else
         {
-            // trigger safe lane audio cue if player just moved out of danger
+            // trigger safe lane audio cue if player is out of danger
             if (wasInDanger)
             {
                 wasInDanger = false;
