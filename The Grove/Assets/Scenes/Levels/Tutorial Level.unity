@@ -2773,6 +2773,7 @@ MonoBehaviour:
   gameManager: {fileID: 1781748407}
   ui: {fileID: 1210427473}
   playerInput: {fileID: 1866825971}
+  rockQTE: {fileID: 0}
   player: {fileID: 1866825968}
   friendGroup: {fileID: 1060652391}
   jumpscareScreen: {fileID: 1701918630}
@@ -21439,7 +21440,10 @@ MonoBehaviour:
   staminaDepletionRate: 5
   staminaRegenDelay: 2
   restingStaminaRegenRate: 20
+  exhaustionDuration: 5
+  fadeDuration: 1
   currentStaminaState: 0
+  rockQTE: {fileID: 0}
 --- !u!54 &707984908
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -21842,7 +21846,10 @@ MonoBehaviour:
   staminaDepletionRate: 10
   staminaRegenDelay: 2
   restingStaminaRegenRate: 20
+  exhaustionDuration: 5
+  fadeDuration: 1
   currentStaminaState: 0
+  rockQTE: {fileID: 0}
 --- !u!54 &715105489
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -21934,6 +21941,8 @@ MonoBehaviour:
   playerSideValue: {fileID: 0}
   sameTrackSlider: {fileID: 0}
   sameTrackText: {fileID: 0}
+  jumpscareText: {fileID: 0}
+  recDot: {fileID: 0}
 --- !u!4 &716172788
 Transform:
   m_ObjectHideFlags: 0
@@ -36688,6 +36697,8 @@ MonoBehaviour:
   playerSideValue: {fileID: 651557171}
   sameTrackSlider: {fileID: 1616649364}
   sameTrackText: {fileID: 302798237}
+  jumpscareText: {fileID: 0}
+  recDot: {fileID: 0}
 --- !u!1 &1211241894
 GameObject:
   m_ObjectHideFlags: 0
@@ -55433,7 +55444,10 @@ MonoBehaviour:
   staminaDepletionRate: 5
   staminaRegenDelay: 2
   restingStaminaRegenRate: 20
+  exhaustionDuration: 5
+  fadeDuration: 1
   currentStaminaState: 0
+  rockQTE: {fileID: 0}
 --- !u!54 &1836735926
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -62171,6 +62185,8 @@ MonoBehaviour:
   playerSideValue: {fileID: 493040332}
   sameTrackSlider: {fileID: 1115875718}
   sameTrackText: {fileID: 2123846174}
+  jumpscareText: {fileID: 0}
+  recDot: {fileID: 0}
 --- !u!1 &2034250138
 GameObject:
   m_ObjectHideFlags: 0
@@ -62587,6 +62603,7 @@ MonoBehaviour:
   gameManager: {fileID: 472232500}
   ui: {fileID: 2029895941}
   playerInput: {fileID: 1836735927}
+  rockQTE: {fileID: 0}
   player: {fileID: 1836735921}
   friendGroup: {fileID: 0}
   jumpscareScreen: {fileID: 0}
@@ -64631,58 +64648,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1720277628709011255, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
-      propertyPath: maxSpeed
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1720277628709011255, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
-      propertyPath: balanceState
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1720277628709011255, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
-      propertyPath: forwardForce
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1720277628709011255, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
-      propertyPath: leftRightMultiplier
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 1720277628709011255, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
-      propertyPath: viewBobbingIntensity
-      value: 0.00125
-      objectReference: {fileID: 0}
-    - target: {fileID: 1720277628709011255, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
-      propertyPath: viewBobbingRollIntensity
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 1720277628709011255, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
-      propertyPath: passiveAgitationDecayRate
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 1720277628709011255, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
-      propertyPath: monsterManagers.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1720277628709011255, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
-      propertyPath: 'monsterManagers.Array.data[0]'
-      value: 
-      objectReference: {fileID: 76804121}
-    - target: {fileID: 1720277628709011255, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
-      propertyPath: 'monsterManagers.Array.data[1]'
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1720277628709011255, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
-      propertyPath: 'monsterManagers.Array.data[2]'
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1720277628709011255, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
-      propertyPath: 'monsterManagers.Array.data[3]'
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1720277628709011255, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
-      propertyPath: forwardDuringLeftRightMultiplier
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 2611379885260443358, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
       propertyPath: m_Enabled
       value: 0

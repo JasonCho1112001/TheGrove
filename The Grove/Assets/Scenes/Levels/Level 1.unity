@@ -7266,12 +7266,12 @@ MonoBehaviour:
   monsterEyes:
   - {fileID: 421180773}
   - {fileID: 447718559}
-  - {fileID: 342853639}
+  - {fileID: 0}
   - {fileID: 547539777}
   - {fileID: 1233871759}
   - {fileID: 502602362}
   - {fileID: 1388717236}
-  - {fileID: 1056941764}
+  - {fileID: 0}
   gameManager: {fileID: 1781748407}
   ui: {fileID: 1210427473}
   playerInput: {fileID: 1866825971}
@@ -19045,18 +19045,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3742664595662352594, guid: e6330720af381b640b113d89923d2d1e, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4347205711263258403, guid: e6330720af381b640b113d89923d2d1e, type: 3}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6040684908889961666, guid: e6330720af381b640b113d89923d2d1e, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 867195e95e2a2bb459ed259b36c9e582, type: 2}
     - target: {fileID: 3742664595662352594, guid: e6330720af381b640b113d89923d2d1e, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -45911,8 +45899,6 @@ GameObject:
   m_Component:
   - component: {fileID: 991115925}
   - component: {fileID: 991115924}
-  - component: {fileID: 991115926}
-  - component: {fileID: 991115927}
   m_Layer: 0
   m_Name: Audio Manager
   m_TagString: Untagged
@@ -47535,11 +47521,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1675085091760496143, guid: 06853aef684511e489cb78ff194739fc, type: 3}
   m_PrefabInstance: {fileID: 1051322906}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1055817546 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3835455572171007758, guid: d9eae2185becdf1478902292602a2eda, type: 3}
-  m_PrefabInstance: {fileID: 555764521}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1057723547
 GameObject:
@@ -82027,66 +82008,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 933c6b950dd6bef438e6339487080160, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
---- !u!54 &1866825972
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1866825968}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 5
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!4 &1866825976 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3406567487494607262, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
   m_PrefabInstance: {fileID: 2110629710}
   m_PrefabAsset: {fileID: 0}
---- !u!136 &1866825980
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1866825968}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2.2245207
-  m_Direction: 1
-  m_Center: {x: 0.0000038147127, y: 0.13741708, z: -2.1423638e-10}
---- !u!114 &1866825981
+--- !u!114 &1866825981 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 2106265208591782930, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
+  m_PrefabInstance: {fileID: 2110629710}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1866825968}
   m_Enabled: 1
@@ -82094,18 +82024,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 358e84acc8fd55e4ebcb06b8a844941d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RockQTE
-  rock: {fileID: 1941039437}
-  cameraTilt: {fileID: 12933229}
-  timer: {fileID: 1712332736}
-  depletedStamina: 25
-  qTECooldownDuration: 2
-  isRockQTEActive: 0
-  isCooldownActive: 0
---- !u!114 &1866825985
+--- !u!114 &1866825985 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 1355846132146268151, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
+  m_PrefabInstance: {fileID: 2110629710}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1866825968}
   m_Enabled: 0
@@ -82113,49 +82035,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f572b0641c8499479efc41f9b1b2237, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerRockQTEInput
-  leftInput: {fileID: -6971403200060296834, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  rightInput: {fileID: -5705695804407081969, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  leftAction:
-    m_Name: Left
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 16802959-bc66-4dd8-94c8-37c48d06e216
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  rightAction:
-    m_Name: Right
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: ab8ab3dc-5d73-446f-a472-144ec57fd8da
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  cameraTransform: {fileID: 12933224}
-  playerStrength: 14
-  maxAngle: 35
-  uI: {fileID: 1210427473}
-  smoothTime: 0.15
-  TiltEnabled: 0
-  TiltDirection: -1
-  TiltStrength: 28
-  currentZ: 0
---- !u!114 &1866825990
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1866825968}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11091e5cafd94404b805c1e1a5c4ee2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::hideOnStart
-  hide: 1
-  hideChildren: 1
 --- !u!1 &1871333026
 GameObject:
   m_ObjectHideFlags: 0
@@ -100343,37 +100222,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1720277628709011255, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
-      propertyPath: maxSpeed
-      value: 9
-      objectReference: {fileID: 0}
+    - target: {fileID: 1355846132146268151, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
+      propertyPath: uI
+      value: 
+      objectReference: {fileID: 1210427473}
+    - target: {fileID: 1355846132146268151, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
+      propertyPath: cameraTransform
+      value: 
+      objectReference: {fileID: 12933224}
     - target: {fileID: 1720277628709011255, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
       propertyPath: balanceState
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1720277628709011255, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
-      propertyPath: forwardForce
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1720277628709011255, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
-      propertyPath: holdThreshold
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1720277628709011255, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
-      propertyPath: leftRightMultiplier
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 1720277628709011255, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
       propertyPath: viewBobbingIntensity
       value: 0.00125
-      objectReference: {fileID: 0}
-    - target: {fileID: 1720277628709011255, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
-      propertyPath: viewBobbingRollSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1720277628709011255, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
-      propertyPath: viewBobbingRollIntensity
-      value: 0.125
       objectReference: {fileID: 0}
     - target: {fileID: 1720277628709011255, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
       propertyPath: passiveAgitationDecayRate
@@ -100382,10 +100245,6 @@ PrefabInstance:
     - target: {fileID: 1720277628709011255, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
       propertyPath: monsterManagers.Array.size
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1720277628709011255, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
-      propertyPath: leftRightViewBobbingIntensity
-      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 1720277628709011255, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
       propertyPath: 'monsterManagers.Array.data[0]'
@@ -100403,18 +100262,22 @@ PrefabInstance:
       propertyPath: 'monsterManagers.Array.data[3]'
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 1720277628709011255, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
-      propertyPath: forwardDuringLeftRightMultiplier
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 1781553547788496314, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
       propertyPath: rockQTE
       value: 
       objectReference: {fileID: 1866825981}
-    - target: {fileID: 1781553547788496314, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
-      propertyPath: exhaustionDuration
-      value: 7.5
-      objectReference: {fileID: 0}
+    - target: {fileID: 2106265208591782930, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
+      propertyPath: rock
+      value: 
+      objectReference: {fileID: 1941039437}
+    - target: {fileID: 2106265208591782930, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
+      propertyPath: timer
+      value: 
+      objectReference: {fileID: 1712332736}
+    - target: {fileID: 2106265208591782930, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
+      propertyPath: cameraTilt
+      value: 
+      objectReference: {fileID: 12933229}
     - target: {fileID: 2611379885260443358, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -100460,6 +100323,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5580083070350078335, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+    - target: {fileID: 5580083070350078335, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
       propertyPath: m_Name
       value: Player Cube
       objectReference: {fileID: 0}
@@ -100482,23 +100349,8 @@ PrefabInstance:
       addedObject: {fileID: 1097431861}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5580083070350078335, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
-      insertIndex: 4
-      addedObject: {fileID: 1866825972}
-    - targetCorrespondingSourceObject: {fileID: 5580083070350078335, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
-      insertIndex: -1
+      insertIndex: 7
       addedObject: {fileID: 1866825969}
-    - targetCorrespondingSourceObject: {fileID: 5580083070350078335, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1866825980}
-    - targetCorrespondingSourceObject: {fileID: 5580083070350078335, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1866825981}
-    - targetCorrespondingSourceObject: {fileID: 5580083070350078335, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1866825985}
-    - targetCorrespondingSourceObject: {fileID: 5580083070350078335, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1866825990}
   m_SourcePrefab: {fileID: 100100000, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
 --- !u!1 &2112880961
 GameObject:
