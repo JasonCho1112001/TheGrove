@@ -53,6 +53,7 @@ public class monsterManager : MonoBehaviour
     public gameManager gameManager;
     public uiManager ui;
     public rowBoatInput playerInput;
+    public RockQTE rockQTE;
     
     //Manually assigned
     [Header("--Manually Assigned--")]
@@ -69,7 +70,7 @@ public class monsterManager : MonoBehaviour
         monsterTimer = monsterIntervalMin;
 
         if (player != null) playerInput = player.GetComponent<rowBoatInput>(); else Debug.LogError("Player GameObject not assigned in monsterManager");
-        
+        if (rockQTE != null) rockQTE = player.GetComponent<RockQTE>(); else Debug.LogError("RockQTE script not assigned in monsterManager");
     }
 
     void Start()
@@ -80,6 +81,12 @@ public class monsterManager : MonoBehaviour
 
     void Update()
     {
+        //Temp: Pause all logic when rockQTE is active
+        if (rockQTE != null && rockQTE.isRockQTEActive)
+        {
+            return;
+        }
+
         DistanceFromFriends();
 
         ProximityMeter();
@@ -269,6 +276,7 @@ public class monsterManager : MonoBehaviour
 
         Debug.Log("Proximity Attack!");
         jumpscareScreen.SetActive(true);
+        ui.SetText(ui.jumpscareText, "The monster has caught you from being too far from your friends!");
 
         //play the audio with a slight delay
         Invoke("PlayJumpscareSound", jumpScareDelay);
@@ -288,6 +296,7 @@ public class monsterManager : MonoBehaviour
         Debug.Log("Same Track Attack!");
         audioManager.instance.Play("JumpscareSound", gameObject);
         jumpscareScreen.SetActive(true);
+        ui.SetText(ui.jumpscareText, "The monster has caught you from being too close to its side!");
     }
 
     void EnableMonsterMesh(MonsterSide sideToEnable)

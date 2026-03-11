@@ -43,6 +43,12 @@ public class uiManager : MonoBehaviour
     public TextMeshProUGUI playerSideValue;
     public Slider sameTrackSlider;
     public TextMeshProUGUI sameTrackText;
+    public TextMeshProUGUI jumpscareText;
+
+    public GameObject recDot;
+    private float dotTimer;
+    private float dotTimeDuration = 0.5f;
+    private bool dotToggle = false;
 
     void Awake()
     {
@@ -62,6 +68,10 @@ public class uiManager : MonoBehaviour
         if (staminaText == null)
         {
             throw new System.Exception("Stamina Text not assigned in uiManager");
+        }
+        if (recDot == null)
+        {
+            throw new System.Exception("recDot not assigned in inspector");
         }
 
         //Disable defaultBackground
@@ -84,6 +94,14 @@ public class uiManager : MonoBehaviour
                     ToggleGroup(groups[i - 1]);
                 }
             }
+        }
+
+        dotTimer += Time.deltaTime;
+        if (dotTimer >= dotTimeDuration)
+        {
+            dotTimer = 0;
+            recDot.SetActive(dotToggle);
+            dotToggle = !dotToggle;
         }
     }
 

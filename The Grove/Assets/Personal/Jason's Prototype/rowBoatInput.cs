@@ -123,7 +123,7 @@ public class rowBoatInput : MonoBehaviour
         //Currently polling input in Update for movement state determination
         ManageMovement();
         ManageCadenceTimer();
-        ManageRigidBodyForce();
+        
 
         //Looking
         HandleLookingCamera();
@@ -134,6 +134,11 @@ public class rowBoatInput : MonoBehaviour
         float targetValue = cadence / 5f; // Assuming 5 inputs per second is the max for full agitation meter
         float currentValue = ui.agitationSlider.value;
         ui.SetSlider(ui.agitationSlider, Mathf.Lerp(currentValue, targetValue, Time.deltaTime * 5f));
+    }
+
+    void FixedUpdate()
+    {
+        ManageRigidBodyForce();
     }
 
 
@@ -392,22 +397,30 @@ public class rowBoatInput : MonoBehaviour
         //Deplete stamina based on movement state
         stamina.DepleteStamina(movementMultiplier); // Deplete more stamina at higher movement states
 
-        //Set playerside
-        horizontalOffset = transform.position - centerLine;
-        if (horizontalOffset.x < -0.25f)
+        //Set playerside, using playerForward from monster manager to determine if player is on left or right side of the track
+        if(monsterManager != null)
         {
-            playerSide = PlayerSide.Left;
+            Vector3 playerForward = monsterManager.playerForward;
+            if (playerForward.x >= 0.5f) // Track is oriented in the positive X direction
+            {
+                playerSide = (transform.position.z < centerLine.z) ? PlayerSide.Right : PlayerSide.Left;
+            }
+            else if (playerForward.x <= -0.5f) // Track is oriented in the negative X direction
+            {
+                playerSide = (transform.position.z < centerLine.z) ? PlayerSide.Left : PlayerSide.Right;
+            }
+            else if (playerForward.z >= 0.5f) // Track is oriented in the positive Z direction
+            {
+                playerSide = (transform.position.x < centerLine.x) ? PlayerSide.Left : PlayerSide.Right;
+            }
+            else if (playerForward.z <= -0.5f) // Track is oriented in the negative Z direction
+            {
+                playerSide = (transform.position.x < centerLine.x) ? PlayerSide.Right : PlayerSide.Left;
+            }
+
             ui.SetText(ui.playerSideValue, playerSide.ToString());
         }
-        else if (horizontalOffset.x > 0.25f)
-        {
-            playerSide = PlayerSide.Right;
-            ui.SetText(ui.playerSideValue, playerSide.ToString());
-        }
-        else
-        {
-            //Leave it as last side when at the center
-        }
+        
     }
 
     void ManageRigidBodyForce()
@@ -463,6 +476,8 @@ public class rowBoatInput : MonoBehaviour
         monsterManager.StorePlayerForward();
         //Rotate the original CameraRotation to match the new angle
         originalCameraRotation = Quaternion.Euler(originalCameraXRotation, transform.eulerAngles.y, 0f);
+
+
     }
     
     void LookStart(InputAction.CallbackContext ctx)
@@ -532,6 +547,21 @@ public class rowBoatInput : MonoBehaviour
     public int GetPlayerSide()
     {
         return (playerSide == PlayerSide.Left) ? -1 : 1;
+    }
+
+    public void ResetMovement()
+    {
+        cadence = 0f;
+        currentState = MovementState.Idle;
+        movementMultiplier = 0f;
+        leftRightBias = 0;
+        leftRightMovement = 0f;
+        lastDirectionInput = 0;
+        leftRightTimer = 0f;
+
+        //UI
+        ui.SetText(ui.movementText, currentState.ToString() + ": " + "0");
+        ui.SetSlider(ui.movementSlider, 0f);
     }
 
     public void OnDrawGizmos()
