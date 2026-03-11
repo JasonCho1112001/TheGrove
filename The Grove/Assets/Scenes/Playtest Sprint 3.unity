@@ -19233,7 +19233,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01640b717cad9814aac8291d97bde85e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::gameManager
-  restartInput: {fileID: 0}
 --- !u!4 &472232501
 Transform:
   m_ObjectHideFlags: 0
@@ -46089,8 +46088,8 @@ MonoBehaviour:
     category: 1
     source: {fileID: 0}
   - soundName: JumpscareSound
-    clip: {fileID: 8300000, guid: 185ca4899d0c36f43bd7653814213783, type: 3}
-    volume: 0.1
+    clip: {fileID: 8300000, guid: b0bbdbdc740dd3f4f880f23d102d5f58, type: 3}
+    volume: 1
     pitch: 1
     loop: 0
     spatialBlend: 0
@@ -51935,7 +51934,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01640b717cad9814aac8291d97bde85e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::gameManager
-  restartInput: {fileID: 0}
 --- !u!1 &1190279054
 GameObject:
   m_ObjectHideFlags: 0
@@ -76434,7 +76432,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1701918630}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 505fcb2eaf995314088a4334b121e1d9, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 4189173b1bf9cec4b9fe38e3aa0e2e9c, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -76446,14 +76444,16 @@ VideoPlayer:
   m_AspectRatio: 2
   m_DataSource: 0
   m_TimeUpdateMode: 2
-  m_PlaybackSpeed: 1
+  m_PlaybackSpeed: 0.75
   m_AudioOutputMode: 2
-  m_TargetAudioSources: []
-  m_DirectAudioVolumes: []
+  m_TargetAudioSources:
+  - {fileID: 0}
+  m_DirectAudioVolumes:
+  - 1
   m_Url: 
-  m_EnabledAudioTracks: 
-  m_DirectAudioMutes: 
-  m_ControlledAudioTrackCount: 0
+  m_EnabledAudioTracks: 01
+  m_DirectAudioMutes: 00
+  m_ControlledAudioTrackCount: 1
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
   m_Looping: 0
@@ -79249,7 +79249,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01640b717cad9814aac8291d97bde85e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::gameManager
-  restartInput: {fileID: 0}
 --- !u!4 &1781748408
 Transform:
   m_ObjectHideFlags: 0
@@ -99522,7 +99521,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1720277628709011255, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
       propertyPath: holdThreshold
-      value: 0.3
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1720277628709011255, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
       propertyPath: leftRightMultiplier
