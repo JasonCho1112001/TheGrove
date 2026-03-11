@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class uiManager : MonoBehaviour
 {
@@ -50,6 +52,20 @@ public class uiManager : MonoBehaviour
     private float dotTimeDuration = 0.5f;
     private bool dotToggle = false;
 
+    public Volume postProcessVolume;
+    public DepthOfField depthOfField;
+    public float myfocusDistance;
+    public float myAperture;
+    public float myFocalLength;
+    public Vignette vignette;
+    public float myVignetteIntensity;
+
+    // Vignette bobbing settings
+    public float vignetteMin = 0.6f;
+    public float vignetteMax = 0.8f;
+    public float vignetteBobbingSpeed = 2f;
+    private Coroutine vignetteCoroutine;
+
     void Awake()
     {
         if (agitationSlider == null)
@@ -76,6 +92,9 @@ public class uiManager : MonoBehaviour
 
         //Disable defaultBackground
         defaultBackground.SetActive(false);
+
+        SaveDepthOfFieldSettings();
+        SaveVignetteSettings();
     }
 
     
@@ -93,6 +112,11 @@ public class uiManager : MonoBehaviour
                 {
                     ToggleGroup(groups[i - 1]);
                 }
+            }
+
+            if(Keyboard.current.bKey.wasPressedThisFrame)
+            {
+                InitiateBlur();
             }
         }
 
@@ -155,7 +179,106 @@ public class uiManager : MonoBehaviour
         }
     }
 
-    
+    void SaveDepthOfFieldSettings()
+    {
+        if (postProcessVolume != null)
+        {
+            if (postProcessVolume.profile.TryGet<DepthOfField>(out depthOfField))
+            {
+                // Save current settings
+                myfocusDistance = depthOfField.focusDistance.value;
+                myAperture = depthOfField.aperture.value;
+                myFocalLength = depthOfField.focalLength.value;
+            }
+        }
+    }
+
+    void SaveVignetteSettings()
+    {
+        if (postProcessVolume != null)
+        {
+            if (postProcessVolume.profile.TryGet<Vignette>(out vignette))
+            {
+                // Save current settings
+                myVignetteIntensity = vignette.intensity.value;
+            }
+        }
+    }
+
+    public void InitiateBlur()
+    {
+        if (postProcessVolume != null)
+        {
+            if (postProcessVolume.profile.TryGet<DepthOfField>(out depthOfField))
+            {
+                depthOfField.focusDistance.value = myfocusDistance / 2;
+                depthOfField.aperture.value = myAperture / 2;
+                depthOfField.focalLength.value = myFocalLength * 2;
+            }
+
+        }
+    }
+
+    public void DisableBlur()
+    {
+        if (postProcessVolume != null)
+        {
+            if (postProcessVolume.profile.TryGet<DepthOfField>(out depthOfField))
+            {
+                depthOfField.focusDistance.value = myfocusDistance;
+                depthOfField.aperture.value = myAperture;
+                depthOfField.focalLength.value = myFocalLength;
+            }
+        }
+    }
+
+    public void InitiateVignette(int stage)
+    {
+        float min = vignetteMin;
+        float max = vignetteMax;
+        if(stage == 2) // Stage 2 - Vignette is not as intense
+        {
+            min = min - 0.15f;
+            max = max - 0.15f;
+        }
+        
+        // start vignette bobbing
+        if (postProcessVolume.profile.TryGet<Vignette>(out vignette))
+        {
+            if (vignetteCoroutine != null) StopCoroutine(vignetteCoroutine);
+            vignetteCoroutine = StartCoroutine(VignetteBobbing(min, max));
+        }
+    } 
+    public void DisableVignette()
+    {
+        // stop vignette bobbing and restore saved intensity
+        if (vignetteCoroutine != null)
+        {
+            StopCoroutine(vignetteCoroutine);
+            vignetteCoroutine = null;
+        }
+
+        if (postProcessVolume.profile.TryGet<Vignette>(out vignette))
+        {
+            vignette.intensity.value = myVignetteIntensity;
+        }
+    }
+
+    private System.Collections.IEnumerator VignetteBobbing(float min, float max)
+    {
+        // Ensure vignette reference
+        if (postProcessVolume == null || !postProcessVolume.profile.TryGet<Vignette>(out vignette))
+            yield break;
+
+        while (true)
+        {
+            Debug.Log("Bobbing vignette with settings: min=" + min + ", max=" + max + ", speed=" + vignetteBobbingSpeed);
+            float s = Mathf.Sin(Time.time * vignetteBobbingSpeed); // -1..1
+            float t = (s + 1f) * 0.5f; // 0..1
+            vignette.intensity.value = Mathf.Lerp(min, max, t);
+            yield return null;
+        }
+    }
 }
 
 

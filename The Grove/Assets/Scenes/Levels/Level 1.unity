@@ -7250,9 +7250,9 @@ MonoBehaviour:
   monsterIntervalMin: 15
   monsterIntervalMax: 30
   sameTrackMeter: 0
-  sameTrackMax: 75
+  sameTrackMax: 90
   sameTrackIncreaseRate: 10
-  sameTrackDecreaseRate: 10
+  sameTrackDecreaseRate: 15
   jumpScareDelay: 0.2
   monsterPrefabs:
   - {fileID: 961578780}
@@ -7266,12 +7266,12 @@ MonoBehaviour:
   monsterEyes:
   - {fileID: 421180773}
   - {fileID: 447718559}
-  - {fileID: 0}
+  - {fileID: 1702655454}
   - {fileID: 547539777}
   - {fileID: 1233871759}
   - {fileID: 502602362}
   - {fileID: 1388717236}
-  - {fileID: 0}
+  - {fileID: 1209361113}
   gameManager: {fileID: 1781748407}
   ui: {fileID: 1210427473}
   playerInput: {fileID: 1866825971}
@@ -32112,6 +32112,11 @@ MonoBehaviour:
   sameTrackText: {fileID: 0}
   jumpscareText: {fileID: 0}
   recDot: {fileID: 0}
+  postProcessVolume: {fileID: 0}
+  depthOfField: {fileID: 0}
+  myfocusDistance: 0
+  myAperture: 0
+  myFocalLength: 0
 --- !u!4 &716172788
 Transform:
   m_ObjectHideFlags: 0
@@ -52460,6 +52465,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1202512400}
   m_CullTransparentMesh: 1
+--- !u!1 &1209361113 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3835455572171007758, guid: d9eae2185becdf1478902292602a2eda, type: 3}
+  m_PrefabInstance: {fileID: 555764521}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1210427471
 GameObject:
   m_ObjectHideFlags: 0
@@ -52536,6 +52546,11 @@ MonoBehaviour:
   sameTrackText: {fileID: 302798237}
   jumpscareText: {fileID: 777502768}
   recDot: {fileID: 87007864}
+  postProcessVolume: {fileID: 2056388551}
+  depthOfField: {fileID: 0}
+  myfocusDistance: 0
+  myAperture: 0
+  myFocalLength: 0
 --- !u!1 &1211241894
 GameObject:
   m_ObjectHideFlags: 0
@@ -76628,6 +76643,11 @@ VideoPlayer:
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
+--- !u!1 &1702655454 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1321155530160249601, guid: d9eae2185becdf1478902292602a2eda, type: 3}
+  m_PrefabInstance: {fileID: 1425242893}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1704126296
 GameObject:
   m_ObjectHideFlags: 0
@@ -97936,6 +97956,11 @@ MonoBehaviour:
   sameTrackText: {fileID: 2123846174}
   jumpscareText: {fileID: 0}
   recDot: {fileID: 0}
+  postProcessVolume: {fileID: 0}
+  depthOfField: {fileID: 0}
+  myfocusDistance: 0
+  myAperture: 0
+  myFocalLength: 0
 --- !u!1 &2034250138
 GameObject:
   m_ObjectHideFlags: 0

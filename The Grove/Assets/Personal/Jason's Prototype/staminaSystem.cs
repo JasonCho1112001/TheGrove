@@ -51,16 +51,22 @@ public class staminaSystem : MonoBehaviour
         {
             //Stage 1 - Full Stamina
             currentStaminaState = StaminaState.Stage1;
+            ui.DisableBlur(); //TODO: Make this event driven 
+            ui.DisableVignette();
         }
         else if (currentStamina > maxStamina * 0.33f)
         {
             //Stage 2 - Moderate Stamina
             currentStaminaState = StaminaState.Stage2;
+            ui.DisableBlur();
+            ui.InitiateVignette(2);
         }
         else if (currentStamina > 1f)
         {
             //Stage 3 - Low Stamina
             currentStaminaState = StaminaState.Stage3;
+            ui.InitiateBlur();
+            ui.InitiateVignette(3);
         }
         else 
         {
