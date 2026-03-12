@@ -83,6 +83,14 @@ MonoBehaviour:
     m_Localized: "Presione A y D para moverse en l\xEDnea recta"
     m_Metadata:
       m_Items: []
+  - m_Id: 336353104187392
+    m_Localized: Accesibilidad
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336374637744128
+    m_Localized: Idiomas
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
