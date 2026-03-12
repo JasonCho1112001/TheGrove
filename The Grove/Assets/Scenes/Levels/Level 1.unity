@@ -23239,6 +23239,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 52137860}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &609334932
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 609334934}
+  - component: {fileID: 609334933}
+  m_Layer: 0
+  m_Name: Scene Change Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &609334933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609334932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f80d6b908a66b3447872eb6509bdc77d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneChange
+--- !u!4 &609334934
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609334932}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 48.18036, y: 13.46672, z: 46.81075}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &610852151
 GameObject:
   m_ObjectHideFlags: 0
@@ -32117,6 +32161,11 @@ MonoBehaviour:
   myfocusDistance: 0
   myAperture: 0
   myFocalLength: 0
+  vignette: {fileID: 0}
+  myVignetteIntensity: 0
+  vignetteMin: 0.6
+  vignetteMax: 0.8
+  vignetteBobbingSpeed: 2
 --- !u!4 &716172788
 Transform:
   m_ObjectHideFlags: 0
@@ -52551,6 +52600,11 @@ MonoBehaviour:
   myfocusDistance: 0
   myAperture: 0
   myFocalLength: 0
+  vignette: {fileID: 0}
+  myVignetteIntensity: 0
+  vignetteMin: 0.6
+  vignetteMax: 0.8
+  vignetteBobbingSpeed: 2
 --- !u!1 &1211241894
 GameObject:
   m_ObjectHideFlags: 0
@@ -97961,6 +98015,11 @@ MonoBehaviour:
   myfocusDistance: 0
   myAperture: 0
   myFocalLength: 0
+  vignette: {fileID: 0}
+  myVignetteIntensity: 0
+  vignetteMin: 0.6
+  vignetteMax: 0.8
+  vignetteBobbingSpeed: 2
 --- !u!1 &2034250138
 GameObject:
   m_ObjectHideFlags: 0
@@ -102175,3 +102234,4 @@ SceneRoots:
   - {fileID: 355052671}
   - {fileID: 629351870}
   - {fileID: 736354945}
+  - {fileID: 609334934}
