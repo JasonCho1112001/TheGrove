@@ -14,5 +14,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Playtest Sprint 3.unity
     guid: b4ce9804a55d22b45b296b4c91f960fe
+  - enabled: 1
+    path: Assets/Scenes/Game Over.unity
+    guid: 9f25aaaf040ed284883bcbd23d1f7c12
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
