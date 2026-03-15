@@ -29,11 +29,15 @@ public class staminaSystem : MonoBehaviour
     //Temp: Manually Assigned
     public RockQTE rockQTE;
 
+    // Fade script for Stamina to pop in and out
+    [SerializeField] private UniversalObjectFade uniFader;
+
     void Awake()
     {
         ui = FindFirstObjectByType<uiManager>();
         input = GetComponent<rowBoatInput>();
         currentStamina = maxStamina;
+        uniFader.FadeOut();
     }
 
     // Update is called once per frame
@@ -155,7 +159,11 @@ public class staminaSystem : MonoBehaviour
         if (ui != null)
         {
             ui.SetSlider(ui.staminaSlider, targetValue);
+            ui.SetSlider(ui.playerStaminaSlider, targetValue);
         }
+
+        // Stamina bar fade in
+        uniFader.FadeIn();
 
         // Fade back in
         if (fadeImage != null)
@@ -170,6 +178,9 @@ public class staminaSystem : MonoBehaviour
             c.a = 0f;
             fadeImage.color = c;
         }
+
+        // Stamina bar fade out
+        uniFader.FadeOut();
 
         // Re-enable input/component
         if (input != null)
@@ -259,6 +270,7 @@ public class staminaSystem : MonoBehaviour
             float targetValue = currentStamina / maxStamina;
             float currentValue = ui.staminaSlider.value;
             ui.SetSlider(ui.staminaSlider, Mathf.Lerp(currentValue, targetValue, Time.deltaTime * 5f));
+            ui.SetSlider(ui.playerStaminaSlider, Mathf.Lerp(currentValue, targetValue, Time.deltaTime * 5f));
         }
     }
 
@@ -280,6 +292,7 @@ public class staminaSystem : MonoBehaviour
             float targetValue = currentStamina / maxStamina;
             float currentValue = ui.staminaSlider.value;
             ui.SetSlider(ui.staminaSlider, Mathf.Lerp(currentValue, targetValue, Time.deltaTime * 5f));
+            ui.SetSlider(ui.playerStaminaSlider, Mathf.Lerp(currentValue, targetValue, Time.deltaTime * 5f));
         }
     }
 
@@ -295,7 +308,8 @@ public class staminaSystem : MonoBehaviour
         float targetValue = currentStamina / maxStamina;
         float currentValue = ui.staminaSlider.value;
         ui.SetSlider(ui.staminaSlider, Mathf.Lerp(currentValue, targetValue, Time.deltaTime * 5f));
-        
+        ui.SetSlider(ui.playerStaminaSlider, Mathf.Lerp(currentValue, targetValue, Time.deltaTime * 5f));
+
     }
 
     public StaminaState GetCurrentStaminaState()

@@ -19,6 +19,9 @@ public class QTECameraTilt : MonoBehaviour
     [Header("Player Rock Input Script")]
     public PlayerRockQTEInput playerRockInput;
 
+    [Header("Audio Manager Script")]
+    public audioManager sound;
+
     [Header("Camera Trip Settings")]
     public bool isTripping;
     public float tripDuration = .5f;
@@ -34,6 +37,8 @@ public class QTECameraTilt : MonoBehaviour
     private float currentZ;
     private float velocityX;
     private float velocityZ;
+
+    private readonly string trip = "PlayerTrip";
 
     private void Awake()
     {
@@ -148,6 +153,7 @@ public class QTECameraTilt : MonoBehaviour
     public void StartTripAnim()
     {
         isTripping = true;
+        sound.Play(trip);
     }
 
     public void EndTripAnim()

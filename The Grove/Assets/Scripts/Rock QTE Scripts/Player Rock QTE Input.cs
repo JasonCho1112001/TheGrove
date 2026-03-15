@@ -14,7 +14,7 @@ public class PlayerRockQTEInput : MonoBehaviour
     public GameObject cameraTransform;
 
     [Header("Rotation Settings")]
-    public float playerStrength = 6f;
+    public float playerStrength = 80f;
     public float maxAngle = 35f;
 
     [Header("UI Manager Reference")]
@@ -40,7 +40,7 @@ public class PlayerRockQTEInput : MonoBehaviour
         }
         else 
         {
-            throw new System.Exception("Player Input reference not assigned in inspector");
+            throw new System.Exception("Player left input reference not assigned in inspector");
         }
 
         if (rightInput != null)
@@ -49,7 +49,7 @@ public class PlayerRockQTEInput : MonoBehaviour
         }
         else
         {
-            throw new System.Exception("Player Input reference not assigned in inspector");
+            throw new System.Exception("Player right input reference not assigned in inspector");
         }
 
         InitiateTiltDirection();
@@ -57,6 +57,8 @@ public class PlayerRockQTEInput : MonoBehaviour
 
     private void Update()
     {
+        ActivatePlayerInput();
+
         if (!TiltEnabled) return;
 
         targetZ += TiltDirection * TiltStrength * Time.deltaTime;
@@ -72,29 +74,23 @@ public class PlayerRockQTEInput : MonoBehaviour
     {
         leftAction.Enable();
         rightAction.Enable();
-
-        leftAction.performed += LeftRotation;
-        rightAction.performed += RightRotation;
     }
 
     private void OnDisable()
     {
-        leftAction.performed -= LeftRotation;
-        rightAction.performed -= RightRotation;
-
         leftAction.Disable();
         rightAction.Disable();
     }
 
-    private void LeftRotation(InputAction.CallbackContext ctx)
+    private void LeftRotation()
     {
-        targetZ += playerStrength;
+        targetZ += playerStrength * Time.deltaTime;
         targetZ = Mathf.Clamp(targetZ, -maxAngle, maxAngle);
     }
 
-    private void RightRotation(InputAction.CallbackContext ctx)
+    private void RightRotation()
     {
-        targetZ -= playerStrength;
+        targetZ -= playerStrength * Time.deltaTime;
         targetZ = Mathf.Clamp(targetZ, -maxAngle, maxAngle);
     }
 
@@ -135,5 +131,12 @@ public class PlayerRockQTEInput : MonoBehaviour
     public void InitiateTiltDirection()
     {
         TiltDirection = Random.value < 0.5f ? -1 : 1;
+    }
+
+    private void ActivatePlayerInput()
+    {
+        if (leftAction.ReadValue<float>() > 0f) LeftRotation();
+
+        if (rightAction.ReadValue<float>() > 0f) RightRotation();
     }
 }
