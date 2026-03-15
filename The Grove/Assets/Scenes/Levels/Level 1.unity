@@ -778,6 +778,7 @@ MonoBehaviour:
   rockQTE: {fileID: 1866825981}
   playerInput: {fileID: 1866825971}
   playerRockInput: {fileID: 1866825985}
+  sound: {fileID: 991115924}
   isTripping: 0
   tripDuration: 0.8
   tripLurch: 30
@@ -12537,6 +12538,42 @@ Transform:
   - {fileID: 193259169}
   m_Father: {fileID: 1993389529}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &249289360
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 249289361}
+  m_Layer: 5
+  m_Name: Player Stamina
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &249289361
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249289360}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2128376140}
+  m_Father: {fileID: 2081932040}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -6, y: -421}
+  m_SizeDelta: {x: 411.32007, y: 564}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &252087882
 GameObject:
   m_ObjectHideFlags: 0
@@ -18613,6 +18650,81 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 438232862}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &439180099
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 439180100}
+  - component: {fileID: 439180102}
+  - component: {fileID: 439180101}
+  m_Layer: 5
+  m_Name: Fill
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &439180100
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439180099}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1721620658}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 10, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &439180101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439180099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0.735849, b: 0.21024406, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &439180102
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439180099}
+  m_CullTransparentMesh: 1
 --- !u!1 &439753638
 GameObject:
   m_ObjectHideFlags: 0
@@ -31866,6 +31978,7 @@ MonoBehaviour:
   rock: {fileID: 1941039437}
   cameraTilt: {fileID: 1499051526}
   timer: {fileID: 678147398}
+  soundManager: {fileID: 0}
   depletedStamina: 25
   qTECooldownDuration: 2
   isRockQTEActive: 0
@@ -31904,6 +32017,7 @@ MonoBehaviour:
   fadeDuration: 1
   currentStaminaState: 0
   rockQTE: {fileID: 0}
+  uniFader: {fileID: 0}
 --- !u!54 &707984908
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -32310,6 +32424,7 @@ MonoBehaviour:
   fadeDuration: 1
   currentStaminaState: 0
   rockQTE: {fileID: 0}
+  uniFader: {fileID: 0}
 --- !u!54 &715105489
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -32384,6 +32499,7 @@ MonoBehaviour:
   movementText: {fileID: 542619160}
   staminaSlider: {fileID: 714449791}
   staminaText: {fileID: 338839102}
+  playerStaminaSlider: {fileID: 0}
   distanceSlider: {fileID: 1696531182}
   distanceText: {fileID: 398819642}
   proximitySlider: {fileID: 62817565}
@@ -46543,6 +46659,24 @@ MonoBehaviour:
     maxDistance: 0
     category: 0
     source: {fileID: 0}
+  - soundName: PlayerTrip
+    clip: {fileID: 8300000, guid: 7651f9a03cca3604f8d08045e3397e7e, type: 3}
+    volume: 0.78
+    pitch: 1.56
+    loop: 0
+    spatialBlend: 1
+    maxDistance: 0
+    category: 0
+    source: {fileID: 0}
+  - soundName: PlayerBalancing
+    clip: {fileID: 8300000, guid: 8600d815fbbe36849852d89de7bd355a, type: 3}
+    volume: 0.1
+    pitch: 0.8
+    loop: 1
+    spatialBlend: 1
+    maxDistance: 0
+    category: 0
+    source: {fileID: 0}
 --- !u!4 &991115925
 Transform:
   m_ObjectHideFlags: 0
@@ -52896,6 +53030,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1196225579}
   m_CullTransparentMesh: 1
+--- !u!1 &1197927849
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1197927850}
+  - component: {fileID: 1197927852}
+  - component: {fileID: 1197927851}
+  m_Layer: 5
+  m_Name: Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1197927850
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1197927849}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2128376140}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0.25}
+  m_AnchorMax: {x: 1, y: 0.75}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1197927851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1197927849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1197927852
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1197927849}
+  m_CullTransparentMesh: 1
 --- !u!1 &1202512400
 GameObject:
   m_ObjectHideFlags: 0
@@ -53033,6 +53242,7 @@ MonoBehaviour:
   movementText: {fileID: 1877270369}
   staminaSlider: {fileID: 1746215199}
   staminaText: {fileID: 252087884}
+  playerStaminaSlider: {fileID: 2128376142}
   distanceSlider: {fileID: 1135860234}
   distanceText: {fileID: 269251126}
   proximitySlider: {fileID: 229857699}
@@ -62533,6 +62743,7 @@ MonoBehaviour:
   rockQTE: {fileID: 707984905}
   playerInput: {fileID: 707984902}
   playerRockInput: {fileID: 707984904}
+  sound: {fileID: 0}
   isTripping: 0
   tripDuration: 0.5
   tripLurch: 17
@@ -78033,6 +78244,42 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1718469550}
   m_CullTransparentMesh: 1
+--- !u!1 &1721620657
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1721620658}
+  m_Layer: 5
+  m_Name: Fill Area
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1721620658
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721620657}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 439180100}
+  m_Father: {fileID: 2128376140}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0.25}
+  m_AnchorMax: {x: 1, y: 0.75}
+  m_AnchoredPosition: {x: -5, y: 0}
+  m_SizeDelta: {x: -20, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1722467654
 GameObject:
   m_ObjectHideFlags: 0
@@ -80372,6 +80619,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1781748408}
   - component: {fileID: 1781748407}
+  - component: {fileID: 1781748409}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -80406,6 +80654,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1781748409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781748406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ab6b51e8db9a5445a8e69a7e384a3b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UniversalObjectFade
+  fadeInDuration: 3
+  fadeOutDuration: 3
+  canvasGrp: {fileID: 0}
+  uiGraphics:
+  - {fileID: 1197927851}
+  - {fileID: 439180101}
+  meshRenderers: []
 --- !u!1 &1785581331
 GameObject:
   m_ObjectHideFlags: 0
@@ -81940,6 +82207,7 @@ MonoBehaviour:
   fadeDuration: 1
   currentStaminaState: 0
   rockQTE: {fileID: 0}
+  uniFader: {fileID: 0}
 --- !u!54 &1836735926
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -98779,6 +99047,7 @@ MonoBehaviour:
   movementText: {fileID: 1788518346}
   staminaSlider: {fileID: 407888173}
   staminaText: {fileID: 1490952920}
+  playerStaminaSlider: {fileID: 0}
   distanceSlider: {fileID: 1006166792}
   distanceText: {fileID: 1971196277}
   proximitySlider: {fileID: 301580752}
@@ -100421,6 +100690,7 @@ RectTransform:
   - {fileID: 1701918631}
   - {fileID: 381483864}
   - {fileID: 1261531355}
+  - {fileID: 249289361}
   m_Father: {fileID: 957395560}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -101082,6 +101352,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1210427473}
     - target: {fileID: 1355846132146268151, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
+      propertyPath: playerStrength
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355846132146268151, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
       propertyPath: cameraTransform
       value: 
       objectReference: {fileID: 12933224}
@@ -101121,6 +101395,10 @@ PrefabInstance:
       propertyPath: rockQTE
       value: 
       objectReference: {fileID: 1866825981}
+    - target: {fileID: 1781553547788496314, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
+      propertyPath: uniFader
+      value: 
+      objectReference: {fileID: 1781748409}
     - target: {fileID: 2106265208591782930, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
       propertyPath: rock
       value: 
@@ -101133,6 +101411,10 @@ PrefabInstance:
       propertyPath: cameraTilt
       value: 
       objectReference: {fileID: 12933229}
+    - target: {fileID: 2106265208591782930, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
+      propertyPath: soundManager
+      value: 
+      objectReference: {fileID: 991115924}
     - target: {fileID: 2611379885260443358, guid: 76b98e75f659f94499387b6a095abaac, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -102103,6 +102385,109 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1675085091760496143, guid: 06853aef684511e489cb78ff194739fc, type: 3}
   m_PrefabInstance: {fileID: 2125542291}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2128376139
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2128376140}
+  - component: {fileID: 2128376142}
+  - component: {fileID: 2128376141}
+  m_Layer: 5
+  m_Name: Player Stamina Slider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2128376140
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128376139}
+  m_LocalRotation: {x: -0, y: -0, z: 0.70710576, w: 0.70710784}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1197927850}
+  - {fileID: 1721620658}
+  m_Father: {fileID: 249289361}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -17}
+  m_SizeDelta: {x: 411.32, y: 58}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2128376141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128376139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcccaa6805657654aa0ab02775a52e28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  slider: {fileID: 0}
+--- !u!114 &2128376142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128376139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 0, b: 0.044427395, a: 1}
+    m_HighlightedColor: {r: 1, g: 0, b: 0, a: 1}
+    m_PressedColor: {r: 1, g: 0, b: 0, a: 1}
+    m_SelectedColor: {r: 1, g: 0, b: 0, a: 1}
+    m_DisabledColor: {r: 1, g: 0, b: 0, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 0
+  m_TargetGraphic: {fileID: 0}
+  m_FillRect: {fileID: 439180100}
+  m_HandleRect: {fileID: 0}
+  m_Direction: 0
+  m_MinValue: 0
+  m_MaxValue: 1
+  m_WholeNumbers: 0
+  m_Value: 0.418
+  m_OnValueChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2129692719
 GameObject:
   m_ObjectHideFlags: 0
