@@ -1,0 +1,136 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: UI_Text_en
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: f0b81ab65feba3d4aacbd0f3573f372d, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 19495866368
+    m_Localized: The Grove
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36419883008
+    m_Localized: Play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 87888187392
+    m_Localized: Options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 170771828736
+    m_Localized: Exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 224530223104
+    m_Localized: On
+    m_Metadata:
+      m_Items: []
+  - m_Id: 237389959168
+    m_Localized: Off
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9119780786176
+    m_Localized: Stamina
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9599546249216
+    m_Localized: Hold A or D to Adjust Camera After Colliding Rock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9135098384384
+    m_Localized: Press A and D to Move Straight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10013154955264
+    m_Localized: Stage 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11333324722176
+    m_Localized: Be on the opposite side of the track to avoid being attacked by
+      monster
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11530347958272
+    m_Localized: Press Spacebar to Turn Around
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11760615247872
+    m_Localized: You Will Autoturn as You Keep Walking
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11867628720128
+    m_Localized: Press/Hold A or D To Move Left or Right
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12138522038272
+    m_Localized: Press A and D to Move Straight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336353104187392
+    m_Localized: Accessibility
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336374637744128
+    m_Localized: Languages
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1357610801123328
+    m_Localized: The
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1362655642865664
+    m_Localized: JAN 22 2026
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1357640312246272
+    m_Localized: GROVE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1367587401977856
+    m_Localized: Stay away from the monster!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1372630477918208
+    m_Localized: Resetting cam in
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1372937740046336
+    m_Localized: 'NOTE:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1373365559054336
+    m_Localized: ERR 05
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1378774386692096
+    m_Localized: Check the monster's eyes! If they're red, switch lanes!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1383021366956032
+    m_Localized: Conserve your stamina!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1383160785620992
+    m_Localized: Stay close to your group!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1383052950065152
+    m_Localized: Watch out for obstacles!
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

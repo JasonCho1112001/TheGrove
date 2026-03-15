@@ -1,0 +1,140 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: UI_Text Shared Data
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
+  m_TableCollectionName: UI_Text
+  m_TableCollectionNameGuidString: f0b81ab65feba3d4aacbd0f3573f372d
+  m_Entries:
+  - m_Id: 19495866368
+    m_Key: Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36419883008
+    m_Key: Play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 87888187392
+    m_Key: Options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 170771828736
+    m_Key: Exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 224530223104
+    m_Key: On
+    m_Metadata:
+      m_Items: []
+  - m_Id: 237389959168
+    m_Key: Off
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9119780786176
+    m_Key: Stamina
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9135098384384
+    m_Key: Tutorial Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9599546249216
+    m_Key: Rock QTE Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10013154955264
+    m_Key: Stage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11333324722176
+    m_Key: Same Track Attack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11530347958272
+    m_Key: Spacebar to turn around
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11760615247872
+    m_Key: Autoturn
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11867628720128
+    m_Key: Move Left or Right
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12138522038272
+    m_Key: Move Straight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336353104187392
+    m_Key: Accessibility
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336374637744128
+    m_Key: Languages
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1357610801123328
+    m_Key: The
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1357640312246272
+    m_Key: Grove
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1362655642865664
+    m_Key: Title Date
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1367587401977856
+    m_Key: Stay away from the monster!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1372630477918208
+    m_Key: Resetting cam in
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1372937740046336
+    m_Key: 'NOTE:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1373365559054336
+    m_Key: ERR 05
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1378774386692096
+    m_Key: Check the monster's eyes! If they're red, switch lanes!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1383021366956032
+    m_Key: Conserve your stamina!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1383052950065152
+    m_Key: Watch out for obstacles!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1383160785620992
+    m_Key: Stay close to your group!
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 5722057780264173841
+  references:
+    version: 2
+    RefIds:
+    - rid: 5722057780264173841
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1773221194442

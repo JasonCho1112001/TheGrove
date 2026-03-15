@@ -1,0 +1,141 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: UI_Text_es
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: es
+  m_SharedData: {fileID: 11400000, guid: f0b81ab65feba3d4aacbd0f3573f372d, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 36419883008
+    m_Localized: Jugar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19495866368
+    m_Localized: El Arboleda
+    m_Metadata:
+      m_Items: []
+  - m_Id: 87888187392
+    m_Localized: Opciones
+    m_Metadata:
+      m_Items: []
+  - m_Id: 170771828736
+    m_Localized: Salida
+    m_Metadata:
+      m_Items: []
+  - m_Id: 224530223104
+    m_Localized: En
+    m_Metadata:
+      m_Items: []
+  - m_Id: 237389959168
+    m_Localized: De
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9119780786176
+    m_Localized: Aguante
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9599546249216
+    m_Localized: "Mantenga presionada la tecla A o D para ajustar la c\xE1mara despu\xE9s
+      de chocar contra una roca"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9135098384384
+    m_Localized: "Presione A y D para moverse en l\xEDnea recta"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10013154955264
+    m_Localized: Etapa 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11333324722176
+    m_Localized: Ponte en el lado opuesto de la pista para evitar ser atacado por
+      monstruos.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11530347958272
+    m_Localized: Presione la barra espaciadora para dar la vuelta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11760615247872
+    m_Localized: "Presiona la barra espaciadora para darte la vuelta. Girar\xE1s
+      autom\xE1ticamente mientras sigues caminando."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11867628720128
+    m_Localized: "Presiona la barra espaciadora para darte la vuelta. Girar\xE1s
+      autom\xE1ticamente mientras sigues caminando. Mant\xE9n presionado A o D para
+      moverte hacia la izquierda o la derecha."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12138522038272
+    m_Localized: "Presione A y D para moverse en l\xEDnea recta"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336353104187392
+    m_Localized: Accesibilidad
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336374637744128
+    m_Localized: Idiomas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1362655642865664
+    m_Localized: 22 de enero de 2026
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1357640312246272
+    m_Localized: Arboleda
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1357610801123328
+    m_Localized: El
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1367587401977856
+    m_Localized: "\xA1Al\xE9jate del monstruo!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1372630477918208
+    m_Localized: "Restableciendo la c\xE1mara"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1372937740046336
+    m_Localized: 'NOTA:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1373365559054336
+    m_Localized: ERROR 05
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1378774386692096
+    m_Localized: "\xA1Revisa los ojos del monstruo! Si est\xE1n rojos, \xA1c\xE1mbiate
+      de carril!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1383021366956032
+    m_Localized: "\xA1Conserva tu resistencia!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1383052950065152
+    m_Localized: "\xA1Cuidado con los obst\xE1culos!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1383160785620992
+    m_Localized: "\xA1Mant\xE9nganse cerca de su grupo!"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []
