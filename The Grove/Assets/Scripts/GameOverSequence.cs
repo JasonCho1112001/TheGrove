@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.Localization;
 
 public class GameOverSequence : MonoBehaviour
 {
@@ -17,16 +18,9 @@ public class GameOverSequence : MonoBehaviour
     public GameObject resetGroup;
     public TMP_Text resetNumber;
 
-    [Header("Tips")]
-        string[] tips = new string[]
-    {
-        "Stay away from the monster!",
-        "Check the monster's eyes! If they're red, switch lanes!",
-        "Conserve your stamina!",
-        "Watch out for obstacles!",
-        "Stay close to your group!",
-        "Silence can keep you alive."
-    };
+[Header("Localized Tips")]
+    // This creates a list in the Inspector where you can pick your translations
+    public LocalizedString[] localizedTips;
 
     void Start()
     {
@@ -47,10 +41,12 @@ public class GameOverSequence : MonoBehaviour
         // Show note section
         noteGroup.SetActive(true);
 
-        // Pick random tip
-        tipText.text = tips[Random.Range(0, tips.Length)];
-
-        yield return new WaitForSeconds(3f);
+        // Pick a random string and get its translated text
+        if (localizedTips.Length > 0)
+        {
+            var randomTip = localizedTips[Random.Range(0, localizedTips.Length)];
+            tipText.text = randomTip.GetLocalizedString();
+        }
 
         // Show reset section
         resetGroup.SetActive(true);

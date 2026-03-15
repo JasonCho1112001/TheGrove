@@ -87,6 +87,50 @@ MonoBehaviour:
     m_Localized: Languages
     m_Metadata:
       m_Items: []
+  - m_Id: 1357610801123328
+    m_Localized: The
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1362655642865664
+    m_Localized: JAN 22 2026
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1357640312246272
+    m_Localized: GROVE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1367587401977856
+    m_Localized: Stay away from the monster!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1372630477918208
+    m_Localized: Resetting cam in
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1372937740046336
+    m_Localized: 'NOTE:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1373365559054336
+    m_Localized: ERR 05
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1378774386692096
+    m_Localized: Check the monster's eyes! If they're red, switch lanes!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1383021366956032
+    m_Localized: Conserve your stamina!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1383160785620992
+    m_Localized: Stay close to your group!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1383052950065152
+    m_Localized: Watch out for obstacles!
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

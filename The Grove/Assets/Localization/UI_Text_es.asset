@@ -23,7 +23,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 19495866368
-    m_Localized: El Grove
+    m_Localized: El Arboleda
     m_Metadata:
       m_Items: []
   - m_Id: 87888187392
@@ -89,6 +89,51 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 336374637744128
     m_Localized: Idiomas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1362655642865664
+    m_Localized: 22 de enero de 2026
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1357640312246272
+    m_Localized: Arboleda
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1357610801123328
+    m_Localized: El
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1367587401977856
+    m_Localized: "\xA1Al\xE9jate del monstruo!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1372630477918208
+    m_Localized: "Restableciendo la c\xE1mara"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1372937740046336
+    m_Localized: 'NOTA:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1373365559054336
+    m_Localized: ERROR 05
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1378774386692096
+    m_Localized: "\xA1Revisa los ojos del monstruo! Si est\xE1n rojos, \xA1c\xE1mbiate
+      de carril!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1383021366956032
+    m_Localized: "\xA1Conserva tu resistencia!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1383052950065152
+    m_Localized: "\xA1Cuidado con los obst\xE1culos!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1383160785620992
+    m_Localized: "\xA1Mant\xE9nganse cerca de su grupo!"
     m_Metadata:
       m_Items: []
   references:
