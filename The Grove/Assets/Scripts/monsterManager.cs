@@ -193,6 +193,7 @@ public class monsterManager : MonoBehaviour
                 
                 // Play the sound specifically from the active emitter's position
                 audioManager.instance.Play("MonsterMove", activeEmitter);
+                ui.ActivateMotionText();
             }
             
             //UI

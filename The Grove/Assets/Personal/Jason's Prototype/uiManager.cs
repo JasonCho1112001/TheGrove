@@ -68,6 +68,10 @@ public class uiManager : MonoBehaviour
     public float vignetteBobbingSpeed = 2f;
     private Coroutine vignetteCoroutine;
 
+    public TextMeshProUGUI motionText;
+    public float motionTextDuration = 1.5f;
+    private Coroutine motionTextCoroutine;
+
     void Awake()
     {
         if (agitationSlider == null)
@@ -284,6 +288,43 @@ public class uiManager : MonoBehaviour
             vignette.intensity.value = Mathf.Lerp(min, max, t);
             yield return null;
         }
+    }
+
+    // Call to start the flashing
+    public void ActivateMotionText()
+    {
+        if (motionText == null) return;
+
+        if (motionTextCoroutine != null)
+        {
+            StopCoroutine(motionTextCoroutine);
+            motionTextCoroutine = null;
+        }
+
+        motionTextCoroutine = StartCoroutine(MotionTextFlash());
+    }
+
+    private System.Collections.IEnumerator MotionTextFlash()
+    {
+        if (motionText == null)
+            yield break;
+
+        float endTime = Time.time + motionTextDuration;
+        bool on = true;
+
+        // Choose your flash interval (seconds)
+        float flashInterval = 0.5f;
+
+        while (Time.time < endTime)
+        {
+            motionText.gameObject.SetActive(on);
+            on = !on;
+            yield return new WaitForSeconds(flashInterval);
+        }
+
+        // Ensure it's disabled at the end
+        motionText.gameObject.SetActive(false);
+        motionTextCoroutine = null;
     }
 }
 

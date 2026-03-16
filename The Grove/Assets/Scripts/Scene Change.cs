@@ -8,20 +8,28 @@ public class SceneChange : MonoBehaviour
     //Tyvin: I don't know why CTRL + 1,2, or 3 doesn't work for me.
     void Update()
     {
-        //Level Tutorial
-        if (Keyboard.current.digit1Key.wasPressedThisFrame)
+        if (Keyboard.current.shiftKey.isPressed)
         {
-            SceneManager.LoadScene(0);
+            //Level Tutorial
+            if (Keyboard.current.qKey.wasPressedThisFrame)
+            {
+                SceneManager.LoadScene("Tutorial Level");
+            }
+            //Level 1
+            if (Keyboard.current.wKey.wasPressedThisFrame)
+            {
+                SceneManager.LoadScene("Level 1");
+            }
+            //Level 2
+            if (Keyboard.current.eKey.wasPressedThisFrame)
+            {
+                SceneManager.LoadScene("Level 2");
+            }
         }
-        //Level 1
-        if (Keyboard.current.digit2Key.wasPressedThisFrame)
+        
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
-            SceneManager.LoadScene(1);
-        }
-        //Level 2
-        if (Keyboard.current.digit3Key.wasPressedThisFrame)
-        {
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene("Main Menu");
         }
     }
 }
