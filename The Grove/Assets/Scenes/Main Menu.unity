@@ -2387,7 +2387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   limitedVisionMode: 0
-  grayscaleVolume: {fileID: 0}
+  grayscaleVolume: {fileID: 1547651631}
 --- !u!1 &368407071
 GameObject:
   m_ObjectHideFlags: 0
