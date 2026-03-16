@@ -37,10 +37,11 @@ public class audioManager : MonoBehaviour
     void Awake()
     {
         // Singleton Pattern setup
-        if (instance == null) instance = this;
-        else { Destroy(gameObject); return; }
+        instance = this;
+        //if (instance == null) instance = this;
+        //else { Destroy(gameObject); return; }
         
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
         AudioListener.volume = masterVolume;
     }
 

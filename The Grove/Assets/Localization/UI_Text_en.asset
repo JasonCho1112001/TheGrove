@@ -19,7 +19,7 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 19495866368
-    m_Localized: The Grove
+    m_Localized: The GROVE
     m_Metadata:
       m_Items: []
   - m_Id: 36419883008
@@ -129,6 +129,75 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 1383052950065152
     m_Localized: Watch out for obstacles!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1792072332562432
+    m_Localized: Mash A and D to Move Straight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1792630397292544
+    m_Localized: Hold A or D to Adjust Camera After Colliding
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1794176832983040
+    m_Localized: Press or Hold A to Move Left
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1808011170107392
+    m_Localized: Press or Hold D to Move Straight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1815151767146496
+    m_Localized: You Will Autoturn as You Keep Walking
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1815151955890176
+    m_Localized: "If the monsters eyes are red, you are in their lane and will soon
+      attack you. \r\nBe on the opposite lane to avoid getting jumped"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1819658962030592
+    m_Localized: Limited Vision Mode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1819819222192128
+    m_Localized: Fullscreen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1819905226395648
+    m_Localized: General
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1820227713847296
+    m_Localized: Volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1820372463472640
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1820423533318144
+    m_Localized: Tutorial
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1820439681388544
+    m_Localized: Level 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1820453258350592
+    m_Localized: Level 2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1823171725185024
+    m_Localized: Level Select
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1827015020466176
+    m_Localized: The monster has caught you from being too close to its side!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1839336912539648
+    m_Localized: The monster has caught you from being too far from your friends!
     m_Metadata:
       m_Items: []
   references:

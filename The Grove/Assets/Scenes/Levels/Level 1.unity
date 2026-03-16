@@ -6288,6 +6288,27 @@ MonoBehaviour:
   player: {fileID: 1866825968}
   friendGroup: {fileID: 1060652391}
   jumpscareScreen: {fileID: 1701918630}
+  localizedProximityText:
+    m_TableReference:
+      m_TableCollectionName: GUID:f0b81ab65feba3d4aacbd0f3573f372d
+    m_TableEntryReference:
+      m_KeyId: 1827015020466176
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  localizedSameTrackText:
+    m_TableReference:
+      m_TableCollectionName: GUID:f0b81ab65feba3d4aacbd0f3573f372d
+    m_TableEntryReference:
+      m_KeyId: 1839336912539648
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!4 &76804123
 Transform:
   m_ObjectHideFlags: 0
@@ -22934,6 +22955,7 @@ GameObject:
   - component: {fileID: 777502767}
   - component: {fileID: 777502769}
   - component: {fileID: 777502768}
+  - component: {fileID: 777502770}
   m_Layer: 5
   m_Name: Jumpscare Text
   m_TagString: Untagged
@@ -23059,6 +23081,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 777502766}
   m_CullTransparentMesh: 1
+--- !u!114 &777502770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777502766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:f0b81ab65feba3d4aacbd0f3573f372d
+    m_TableEntryReference:
+      m_KeyId: 1827015020466176
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 777502768}
+        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+  references:
+    version: 2
+    RefIds: []
 --- !u!1001 &785728256
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31641,252 +31703,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 990824165}
   m_CullTransparentMesh: 1
---- !u!1 &991115923
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 991115925}
-  - component: {fileID: 991115924}
-  - component: {fileID: 991115927}
-  - component: {fileID: 991115926}
-  m_Layer: 0
-  m_Name: Audio Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &991115924
+--- !u!114 &991115924 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 1823109928548361341, guid: 114c7c110b1279742a413ddeef827929, type: 3}
+  m_PrefabInstance: {fileID: 7676543124076637379}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 991115923}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 48c2dca7bf38cfd4a98352f81b3eef51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::audioManager
-  masterVolume: 1
-  duckingVolume: 0.3
-  duckingDuration: 3
-  sounds:
-  - soundName: PlayerFootstep
-    clip: {fileID: 8300000, guid: 3512781ae76f6f445baffaeb033c6e1a, type: 3}
-    volume: 1
-    pitch: 1.58
-    loop: 0
-    spatialBlend: 0
-    maxDistance: 0
-    category: 0
-    source: {fileID: 0}
-  - soundName: HeavyBreathing
-    clip: {fileID: 8300000, guid: 73613c79df26b414390d197a0ed1ac06, type: 3}
-    volume: 1
-    pitch: 1.58
-    loop: 1
-    spatialBlend: 0
-    maxDistance: 0
-    category: 0
-    source: {fileID: 0}
-  - soundName: Heartbeat
-    clip: {fileID: 8300000, guid: eeaa31f46b551e544956c5ae2f954f85, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 1
-    spatialBlend: 0
-    maxDistance: 0
-    category: 0
-    source: {fileID: 0}
-  - soundName: MonsterAttack
-    clip: {fileID: 8300000, guid: d744a1094cd8c26468a53c891b26c195, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    spatialBlend: 0
-    maxDistance: 0
-    category: 0
-    source: {fileID: 0}
-  - soundName: MonsterChitter
-    clip: {fileID: 8300000, guid: 6b52e9c728df12c44815d46b33e90fbe, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 1
-    spatialBlend: 0
-    maxDistance: 55
-    category: 1
-    source: {fileID: 0}
-  - soundName: FailQTE
-    clip: {fileID: 8300000, guid: 7651f9a03cca3604f8d08045e3397e7e, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    spatialBlend: 0
-    maxDistance: 0
-    category: 0
-    source: {fileID: 0}
-  - soundName: StareSuccess
-    clip: {fileID: 8300000, guid: b0bbdbdc740dd3f4f880f23d102d5f58, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    spatialBlend: 0
-    maxDistance: 0
-    category: 1
-    source: {fileID: 0}
-  - soundName: FriendVoices
-    clip: {fileID: 8300000, guid: d86a62c8f323e9a4db4c10d2ac1ff7da, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 1
-    spatialBlend: 0
-    maxDistance: 0
-    category: 2
-    source: {fileID: 0}
-  - soundName: forestWind
-    clip: {fileID: 8300000, guid: 1d67a90ffe1b59145bdc26b574e96507, type: 3}
-    volume: 0.4
-    pitch: 1
-    loop: 1
-    spatialBlend: 0
-    maxDistance: 0
-    category: 3
-    source: {fileID: 0}
-  - soundName: MonsterMove
-    clip: {fileID: 8300000, guid: b295df5e00b65af45ad5dab96fe10344, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    spatialBlend: 1
-    maxDistance: 50
-    category: 1
-    source: {fileID: 0}
-  - soundName: JumpscareSound
-    clip: {fileID: 8300000, guid: b0bbdbdc740dd3f4f880f23d102d5f58, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    spatialBlend: 1
-    maxDistance: 0
-    category: 1
-    source: {fileID: 0}
-  - soundName: wolfHowl
-    clip: {fileID: 8300000, guid: 0fb7b4048822dbf47adf1f9473a0ae11, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    spatialBlend: 1
-    maxDistance: 0
-    category: 0
-    source: {fileID: 0}
-  - soundName: rockFalling
-    clip: {fileID: 8300000, guid: 8600d815fbbe36849852d89de7bd355a, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    spatialBlend: 1
-    maxDistance: 0
-    category: 0
-    source: {fileID: 0}
-  - soundName: leavesRustling
-    clip: {fileID: 8300000, guid: 34d14a1ae11677b43936c6f5c83cb5d5, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    spatialBlend: 1
-    maxDistance: 0
-    category: 0
-    source: {fileID: 0}
-  - soundName: leavesRustling2
-    clip: {fileID: 8300000, guid: d3e3cf5159a53984a87007aae9b66124, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    spatialBlend: 1
-    maxDistance: 0
-    category: 0
-    source: {fileID: 0}
-  - soundName: leavesRustling3
-    clip: {fileID: 8300000, guid: 8a0bc27c8d64a1744b9fedc0eb7b29c9, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    spatialBlend: 1
-    maxDistance: 0
-    category: 0
-    source: {fileID: 0}
-  - soundName: PlayerTrip
-    clip: {fileID: 8300000, guid: 7651f9a03cca3604f8d08045e3397e7e, type: 3}
-    volume: 0.78
-    pitch: 1.56
-    loop: 0
-    spatialBlend: 1
-    maxDistance: 0
-    category: 0
-    source: {fileID: 0}
-  - soundName: PlayerBalancing
-    clip: {fileID: 8300000, guid: 8600d815fbbe36849852d89de7bd355a, type: 3}
-    volume: 0.1
-    pitch: 0.8
-    loop: 1
-    spatialBlend: 1
-    maxDistance: 0
-    category: 0
-    source: {fileID: 0}
---- !u!4 &991115925
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 991115923}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.13853, y: 0.09697, z: 0.13853}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &991115926
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 991115923}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2f79e2f1bdd5194585ab5ebc7388a68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::redHerringManager
-  minWaitTime: 10
-  maxWaitTime: 15
-  spawnRadius: 20
-  redHerringSounds:
-  - wolfHowl
-  - leavesRustling
-  - leavesRustling2
-  - leavesRustling3
-  - rockFalling
---- !u!114 &991115927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 991115923}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed0ddcfe25d0e234d93b4a71e4a87926, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AmbientDirector
-  ambientTrack: forestWind
 --- !u!1001 &992899780
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37494,6 +37321,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1326680851}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1331681370
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1331681371}
+  m_Layer: 0
+  m_Name: Red Herring Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1331681371
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331681370}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 873.19855, y: 685.7093, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1336114548
 GameObject:
   m_ObjectHideFlags: 0
@@ -69463,6 +69321,63 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 872632033}
   m_SourcePrefab: {fileID: 100100000, guid: 6b2385e9e00540143ba2680af83d8b70, type: 3}
+--- !u!1001 &7676543124076637379
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3066995508987725641, guid: 114c7c110b1279742a413ddeef827929, type: 3}
+      propertyPath: m_Name
+      value: Audio Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787651379968492486, guid: 114c7c110b1279742a413ddeef827929, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.13853
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787651379968492486, guid: 114c7c110b1279742a413ddeef827929, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.09697
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787651379968492486, guid: 114c7c110b1279742a413ddeef827929, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.13853
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787651379968492486, guid: 114c7c110b1279742a413ddeef827929, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787651379968492486, guid: 114c7c110b1279742a413ddeef827929, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787651379968492486, guid: 114c7c110b1279742a413ddeef827929, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787651379968492486, guid: 114c7c110b1279742a413ddeef827929, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787651379968492486, guid: 114c7c110b1279742a413ddeef827929, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787651379968492486, guid: 114c7c110b1279742a413ddeef827929, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787651379968492486, guid: 114c7c110b1279742a413ddeef827929, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 114c7c110b1279742a413ddeef827929, type: 3}
 --- !u!1001 &8750254595265860779
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -69565,7 +69480,7 @@ SceneRoots:
   - {fileID: 107990462}
   - {fileID: 76804123}
   - {fileID: 1781748408}
-  - {fileID: 991115925}
+  - {fileID: 7676543124076637379}
   - {fileID: 957395560}
   - {fileID: 270690538}
   - {fileID: 1220637391}
@@ -69580,3 +69495,4 @@ SceneRoots:
   - {fileID: 629351870}
   - {fileID: 736354945}
   - {fileID: 609334934}
+  - {fileID: 1331681371}

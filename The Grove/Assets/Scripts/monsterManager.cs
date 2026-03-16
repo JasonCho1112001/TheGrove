@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Localization;
 
 public class monsterManager : MonoBehaviour
 {
@@ -61,7 +62,8 @@ public class monsterManager : MonoBehaviour
     public GameObject friendGroup;
     public GameObject jumpscareScreen;
     //public GameObject monsterPrefab;
-    
+    public LocalizedString localizedProximityText;
+    public LocalizedString localizedSameTrackText;
 
     void Awake()
     {
@@ -277,7 +279,7 @@ public class monsterManager : MonoBehaviour
 
         Debug.Log("Proximity Attack!");
         jumpscareScreen.SetActive(true);
-        ui.SetText(ui.jumpscareText, "The monster has caught you from being too far from your friends!");
+        ui.SetText(ui.jumpscareText, localizedProximityText.GetLocalizedString());
 
         //play the audio with a slight delay
         Invoke("PlayJumpscareSound", jumpScareDelay);
@@ -297,7 +299,7 @@ public class monsterManager : MonoBehaviour
         Debug.Log("Same Track Attack!");
         audioManager.instance.Play("JumpscareSound", gameObject);
         jumpscareScreen.SetActive(true);
-        ui.SetText(ui.jumpscareText, "The monster has caught you from being too close to its side!");
+        ui.SetText(ui.jumpscareText, localizedSameTrackText.GetLocalizedString());
     }
 
     void EnableMonsterMesh(MonsterSide sideToEnable)

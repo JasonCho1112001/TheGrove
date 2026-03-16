@@ -127,6 +127,75 @@ MonoBehaviour:
     m_Key: Stay close to your group!
     m_Metadata:
       m_Items: []
+  - m_Id: 1792072332562432
+    m_Key: Mash A and D to Move Straight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1792630397292544
+    m_Key: Hold A or D to Adjust Camera After Colliding
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1794176832983040
+    m_Key: Press or Hold A to Move Left
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1808011170107392
+    m_Key: Press or Hold D to Move Straight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1815151767146496
+    m_Key: You Will Autoturn as You Keep Walking
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1815151955890176
+    m_Key: "If the monsters eyes are red, you are in their lane and will soon attack
+      you. \r\nBe on the opposite lane to avoid getting jumped"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1819658962030592
+    m_Key: Limited Vision Mode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1819819222192128
+    m_Key: Fullscreen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1819905226395648
+    m_Key: General
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1820227713847296
+    m_Key: Volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1820372463472640
+    m_Key: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1820423533318144
+    m_Key: Tutorial
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1820439681388544
+    m_Key: Level 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1820453258350592
+    m_Key: Level 2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1823171725185024
+    m_Key: Level Select
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1827015020466176
+    m_Key: Same Track Attac
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1839336912539648
+    m_Key: Proximity Attack
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

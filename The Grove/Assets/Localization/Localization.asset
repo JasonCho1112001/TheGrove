@@ -16,6 +16,8 @@ MonoBehaviour:
   - rid: 5722057780264173809
   - rid: 5722057780264173810
   - rid: 5722057780264173811
+  - rid: 5722057892402036810
+  - rid: 5722057892402036811
   m_AvailableLocales:
     rid: 5722057780264173812
   m_AssetDatabase:
@@ -69,7 +71,7 @@ MonoBehaviour:
         m_CustomTablePostprocessor:
           rid: -2
         m_AsynchronousBehaviour: 0
-        m_UseFallback: 0
+        m_UseFallback: 1
         m_MissingTranslationState: 1
         m_NoTranslationFoundMessage: No translation found for '{key}' in {table.TableCollectionName}
         m_SmartFormat:
@@ -205,3 +207,13 @@ MonoBehaviour:
         - default
         - d
         - 
+    - rid: 5722057892402036810
+      type: {class: SpecificLocaleSelector, ns: UnityEngine.Localization.Settings, asm: Unity.Localization}
+      data:
+        m_LocaleId:
+          m_Code: ja
+    - rid: 5722057892402036811
+      type: {class: SpecificLocaleSelector, ns: UnityEngine.Localization.Settings, asm: Unity.Localization}
+      data:
+        m_LocaleId:
+          m_Code: es

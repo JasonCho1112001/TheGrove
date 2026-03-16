@@ -1,0 +1,248 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3066995508987725641
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6787651379968492486}
+  - component: {fileID: 1823109928548361341}
+  - component: {fileID: 6324001749668142936}
+  - component: {fileID: 2972308801219880269}
+  m_Layer: 0
+  m_Name: Audio Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6787651379968492486
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3066995508987725641}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.13853, y: 0.09697, z: 0.13853}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1823109928548361341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3066995508987725641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48c2dca7bf38cfd4a98352f81b3eef51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::audioManager
+  masterVolume: 1
+  duckingVolume: 0.3
+  duckingDuration: 3
+  sounds:
+  - soundName: PlayerFootstep
+    clip: {fileID: 8300000, guid: 3512781ae76f6f445baffaeb033c6e1a, type: 3}
+    volume: 1
+    pitch: 1.58
+    loop: 0
+    spatialBlend: 0
+    maxDistance: 0
+    category: 0
+    source: {fileID: 0}
+  - soundName: HeavyBreathing
+    clip: {fileID: 8300000, guid: 73613c79df26b414390d197a0ed1ac06, type: 3}
+    volume: 1
+    pitch: 1.58
+    loop: 1
+    spatialBlend: 0
+    maxDistance: 0
+    category: 0
+    source: {fileID: 0}
+  - soundName: Heartbeat
+    clip: {fileID: 8300000, guid: eeaa31f46b551e544956c5ae2f954f85, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    spatialBlend: 0
+    maxDistance: 0
+    category: 0
+    source: {fileID: 0}
+  - soundName: MonsterAttack
+    clip: {fileID: 8300000, guid: d744a1094cd8c26468a53c891b26c195, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    maxDistance: 0
+    category: 0
+    source: {fileID: 0}
+  - soundName: MonsterChitter
+    clip: {fileID: 8300000, guid: 6b52e9c728df12c44815d46b33e90fbe, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    spatialBlend: 0
+    maxDistance: 55
+    category: 1
+    source: {fileID: 0}
+  - soundName: FailQTE
+    clip: {fileID: 8300000, guid: 7651f9a03cca3604f8d08045e3397e7e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    maxDistance: 0
+    category: 0
+    source: {fileID: 0}
+  - soundName: StareSuccess
+    clip: {fileID: 8300000, guid: b0bbdbdc740dd3f4f880f23d102d5f58, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    maxDistance: 0
+    category: 1
+    source: {fileID: 0}
+  - soundName: FriendVoices
+    clip: {fileID: 8300000, guid: d86a62c8f323e9a4db4c10d2ac1ff7da, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    spatialBlend: 0
+    maxDistance: 0
+    category: 2
+    source: {fileID: 0}
+  - soundName: forestWind
+    clip: {fileID: 8300000, guid: 1d67a90ffe1b59145bdc26b574e96507, type: 3}
+    volume: 0.4
+    pitch: 1
+    loop: 1
+    spatialBlend: 0
+    maxDistance: 0
+    category: 3
+    source: {fileID: 0}
+  - soundName: MonsterMove
+    clip: {fileID: 8300000, guid: b295df5e00b65af45ad5dab96fe10344, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 1
+    maxDistance: 50
+    category: 1
+    source: {fileID: 0}
+  - soundName: JumpscareSound
+    clip: {fileID: 8300000, guid: b0bbdbdc740dd3f4f880f23d102d5f58, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 1
+    maxDistance: 0
+    category: 1
+    source: {fileID: 0}
+  - soundName: wolfHowl
+    clip: {fileID: 8300000, guid: 0fb7b4048822dbf47adf1f9473a0ae11, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 1
+    maxDistance: 0
+    category: 0
+    source: {fileID: 0}
+  - soundName: rockFalling
+    clip: {fileID: 8300000, guid: 8600d815fbbe36849852d89de7bd355a, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 1
+    maxDistance: 0
+    category: 0
+    source: {fileID: 0}
+  - soundName: leavesRustling
+    clip: {fileID: 8300000, guid: 34d14a1ae11677b43936c6f5c83cb5d5, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 1
+    maxDistance: 0
+    category: 0
+    source: {fileID: 0}
+  - soundName: leavesRustling2
+    clip: {fileID: 8300000, guid: d3e3cf5159a53984a87007aae9b66124, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 1
+    maxDistance: 0
+    category: 0
+    source: {fileID: 0}
+  - soundName: leavesRustling3
+    clip: {fileID: 8300000, guid: 8a0bc27c8d64a1744b9fedc0eb7b29c9, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 1
+    maxDistance: 0
+    category: 0
+    source: {fileID: 0}
+  - soundName: PlayerTrip
+    clip: {fileID: 8300000, guid: 7651f9a03cca3604f8d08045e3397e7e, type: 3}
+    volume: 0.78
+    pitch: 1.56
+    loop: 0
+    spatialBlend: 1
+    maxDistance: 0
+    category: 0
+    source: {fileID: 0}
+  - soundName: PlayerBalancing
+    clip: {fileID: 8300000, guid: 8600d815fbbe36849852d89de7bd355a, type: 3}
+    volume: 0.1
+    pitch: 0.8
+    loop: 1
+    spatialBlend: 1
+    maxDistance: 0
+    category: 0
+    source: {fileID: 0}
+--- !u!114 &6324001749668142936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3066995508987725641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed0ddcfe25d0e234d93b4a71e4a87926, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AmbientDirector
+  ambientTrack: forestWind
+--- !u!114 &2972308801219880269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3066995508987725641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2f79e2f1bdd5194585ab5ebc7388a68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::redHerringManager
+  minWaitTime: 10
+  maxWaitTime: 15
+  spawnRadius: 20
+  redHerringSounds:
+  - wolfHowl
+  - leavesRustling
+  - leavesRustling2
+  - leavesRustling3
+  - rockFalling
